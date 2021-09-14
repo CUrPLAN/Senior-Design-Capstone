@@ -1,6 +1,6 @@
 # Senior-Design-Capstone
-Project Name: CSDegreePlan4U
+### Project Name: CSDegreePlan4U
 
 
-Problem Statement: 
+### Problem Statement:  
 We are a team of 4 undergraduate students who have struggled with planning which classes to take each semester in order to graduate with a Bachelor's of Science degree in Computer Science. Every semester as students, we all have to figure out what classes we need and want to take for the next semester to stay on track with obtaining our degrees in ‘n’ years (‘n’ being the ideal number of years the college wants students to graduate in) while trying to figure out our career journeys. Currently, CU Denver's Computer Science and Engineering Department offers resources such as advisors, the degree audit, a pdf of the list of elective courses available for the upcoming semester, a degree map, and the registration cart to find and add classes. The current issue is, all these resources are available to us, but it is really hard to obtain and keep the resources together since they come either from our school emails, UCDAccess, and on the computer science website. It is also somewhat time consuming to figure out how far along we are with completing our degree, finding which requirements we still need to fulfill, and what classes will satisfy those requirement, while lining it up with our other responsibilities outside of university. We plan to create an application that will help current students save time on figuring out which classes to take each semester and use it to help create unique degree plans for students to graduate with a BS in Computer Science on time.
