@@ -1,0 +1,742 @@
+{
+  "Classes": [
+    {
+      "Name": "CSCI 1410",
+      "Credits": "3",
+      "Semester": "Fall-1"
+    },
+    {
+      "Name": "CSCI 1411",
+      "Credits": "1",
+      "Semester": "Fall-1"
+    },
+    {
+      "Name": "CSCI 1510",
+      "Credits": "3",
+      "Semester": "Fall-1"
+    },
+    {
+      "Name": "MATH 1401",
+      "Credits": "4",
+      "Semester": "Fall-1"
+    },
+    {
+      "Name": "ENGL 1020",
+      "Credits": "3",
+      "Semester": "Spring-1"
+    },
+    {
+      "Name": "ENGR 1200",
+      "Credits": "3",
+      "Semester": "Fall-1"
+    },
+    {
+      "Name": "CSCI 2312",
+      "Credits": "3",
+      "Semester": "Spring-1"
+    },
+    {
+      "Name": "CSCI 2525",
+      "Credits": "3",
+      "Semester": "Spring-1"
+    },
+    {
+      "Name": "MATH 2411",
+      "Credits": "4",
+      "Semester": "Spring-1"
+    },
+    {
+      "Name": "ENGL 2030",
+      "Credits": "3",
+      "Semester": "Spring-2"
+    },
+    {
+      "Name": "CORE CURRICULUM ELECTIVE",
+      "Credits": "3",
+      "Semester": "Spring-1"
+    },
+    {
+      "Name": "CSCI 2421",
+      "Credits": "3",
+      "Semester": "Fall-2"
+    },
+    {
+      "Name": "CSCI 2511",
+      "Credits": "3",
+      "Semester": "Fall-2"
+    },
+    {
+      "Name": "SCIENCE CHOICE",
+      "Credits": "3-4",
+      "Semester": "Fall-2"
+    },
+    {
+      "Name": "SCIENCE CHOICE LAB",
+      "Credits": "1",
+      "Semester": "Fall-2"
+    },
+    {
+      "Name": "CORE CURRICULUM ELECTIVE",
+      "Credits": "3",
+      "Semester": "Fall-2"
+    },
+    {
+      "Name": "CORE CURRICULUM ELECTIVE",
+      "Credits": "3",
+      "Semester": "Fall-2"
+    },
+    {
+      "Name": "CSCI 3287",
+      "Credits": "3",
+      "Semester": "Spring-2"
+    },
+    {
+      "Name": "CSCI 3412",
+      "Credits": "3",
+      "Semester": "Spring-2"
+    },
+    {
+      "Name": "CSCI 3761",
+      "Credits": "3",
+      "Semester": "Spring-2"
+    },
+    {
+      "Name": "CORE CURRICULUM ELECTIVE",
+      "Credits": "3",
+      "Semester": "Fall-1"
+    },
+    {
+      "Name": "SCIENCE CHOICE",
+      "Credits": "3-4",
+      "Semester": "Spring-2"
+    },
+    {
+      "Name": "SCIENCE CHOICE LAB",
+      "Credits": "1",
+      "Semester": "Spring-2"
+    },
+    {
+      "Name": "CSCI 3453",
+      "Credits": "3",
+      "Semester": "Fall-3"
+    },
+    {
+      "Name": "CSCI 3415",
+      "Credits": "3",
+      "Semester": "Fall-3"
+    },
+    {
+      "Name": "CS BREADTH",
+      "Credits": "3",
+      "Semester": "Fall-3"
+    },
+    {
+      "Name": "CS BREADTH",
+      "Credits": "3",
+      "Semester": "Fall-3"
+    },
+    {
+      "Name": "CS ELECTIVE",
+      "Credits": "3",
+      "Semester": "Fall-3"
+    },
+    {
+      "Name": "CSCI 3508",
+      "Credits": "3",
+      "Semester": "Spring-3"
+    },
+    {
+      "Name": "CS BREADTH",
+      "Credits": "3",
+      "Semester": "Spring-3"
+    },
+    {
+      "Name": "CS ELECTIVE",
+      "Credits": "3",
+      "Semester": "Spring-3"
+    },
+    {
+      "Name": "MATH 3195",
+      "Credits": "4",
+      "Semester": "Spring-3"
+    },
+    {
+      "Name": "CORE CURRICULUM ELECTIVE",
+      "Credits": "3",
+      "Semester": "Spring-3"
+    },
+    {
+      "Name": "CSCI 4034",
+      "Credits": "3",
+      "Semester": "Fall-4"
+    },
+    {
+      "Name": "CSCI 4551",
+      "Credits": "3",
+      "Semester": "Fall-4"
+    },
+    {
+      "Name": "CSCI 4738",
+      "Credits": "3",
+      "Semester": "Fall-4"
+    },
+    {
+      "Name": "CS BREADTH",
+      "Credits": "3",
+      "Semester": "Fall-4"
+    },
+    {
+      "Name": "CS ELECTIVE",
+      "Credits": "3",
+      "Semester": "Fall-4"
+    },
+    {
+      "Name": "CSCI 4591",
+      "Credits": "3",
+      "Semester": "Spring-4"
+    },
+    {
+      "Name": "CSCI 4739",
+      "Credits": "3",
+      "Semester": "Spring-4"
+    },
+    {
+      "Name": "CS BREADTH",
+      "Credits": "3",
+      "Semester": "Spring-4"
+    },
+    {
+      "Name": "CS ELECTIVE",
+      "Credits": "3",
+      "Semester": "Spring-4"
+    },
+    {
+      "Name": "CORE CURRICULUM ELECTIVE",
+      "Credits": "3",
+      "Semester": "Spring-4"
+    }
+  ],
+  "Class_Desc": [
+    {
+      "Credits": 3,
+      "Id": "ENGR 1200",
+      "Name": "Fundamentals of Engineering Design Innovation",
+      "Notes": "",
+      "Fullfills": "Required Engineering Design Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 1410",
+      "Name": "Fundamentals of Computing",
+      "Notes": "*Prerequisite: Freshman status",
+      "CoReqs": [
+        [
+          "CSCI 1411"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 1,
+      "Id": "CSCI 1411",
+      "Name": "Fundamentals of Computing Lab",
+      "Notes": "*Prerequisite: Freshman status",
+      "CoReqs": [
+        [
+          "CSCI 1410"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 2312",
+      "Name": "Object Oriented Programming",
+      "Notes": "*Prerequisite: CSCI 1410 & 1411",
+      "PreReqs": [
+        [
+          "CSCI 1410"
+        ],
+        [
+          "CSCI 1411"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 2421",
+      "Name": "Data Structures & Program Design",
+      "Notes": "*Prerequisite: CSCI 2312",
+      "PreReqs": [
+        [
+          "CSCI 2312"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 2511",
+      "Name": "Discrete Structures",
+      "Notes": "*Prerequisite: MATH 1401",
+      "PreReqs": [
+        [
+          "MATH 1401"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 3287",
+      "Name": "Database Systems",
+      "Notes": "*Prerequisite: ENGL 1020, CSCI 2312 & 2421",
+      "PreReqs": [
+        [
+          "ENGL 1020"
+        ],
+        [
+          "CSCI 2312"
+        ],
+        [
+          "CSCI 2412"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 3412",
+      "Name": "Algorithms",
+      "Notes": "*Prerequisite: CSCI 2312, 2421 & 2511",
+      "PreReqs": [
+        [
+          "CSCI 2312"
+        ],
+        [
+          "CSCI 2421"
+        ],
+        [
+          "CSCI 2511"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 3508",
+      "Name": "Introduction to Software Engineering",
+      "Notes": "*Prerequisite: CSCI 3412",
+      "PreReqs": [
+        [
+          "CSCI 3412"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4034",
+      "Name": "Theoretical Foundations of Computer Science",
+      "Notes": "*Prerequisite: CSCI 3412",
+      "PreReqs": [
+        [
+          "CSCI 3412"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 1510",
+      "Name": "Logic Design",
+      "Notes": "*Prerequisite: Freshman status, MATH 1120/1130 or Equivalent",
+      "PreReqs": [
+        [
+          "MATH 1120",
+          "MATH 1130"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Systems Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 2525",
+      "Name": "Assembly Language & Computer Organization",
+      "Notes": "*Prerequisite: CSCI 1410, CSCI 1411 & CSCI 1510",
+      "PreReqs": [
+        [
+          "CSCI 1410"
+        ],
+        [
+          "CSCI 1411"
+        ],
+        [
+          "CSCI 1510"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Systems Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 3415",
+      "Name": "Principles of Programming Languages",
+      "Notes": "*Prerequisite: CSCI 2312, 2421 & 2525",
+      "PreReqs": [
+        [
+          "CSCI 2312"
+        ],
+        [
+          "CSCI 2421"
+        ],
+        [
+          "CSCI 2525"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Systems Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 3453",
+      "Name": "Operating Systems Concepts",
+      "Notes": "*Prerequisite: CSCI 3412 & 2525",
+      "PreReqs": [
+        [
+          "CSCI 3412"
+        ],
+        [
+          "CSCI 2525"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Systems Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 3761",
+      "Name": "Introduction to Computer Networks",
+      "Notes": "*Prerequisite: CSCI 2312 & 2421",
+      "PreReqs": [
+        [
+          "CSCI 2312"
+        ],
+        [
+          "CSCI 2421"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Systems Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4551",
+      "Name": "Parallel & Distributed Computing",
+      "Notes": "*Prerequisite: MATH 3195, CSCI 3415 & 3453",
+      "PreReqs": [
+        [
+          "MATH 3195"
+        ],
+        [
+          "CSCI 3415"
+        ],
+        [
+          "CSCI 3453"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Systems Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4591",
+      "Name": "Computer Architecture",
+      "Notes": "*Prerequisite: CSCI 2525",
+      "PreReqs": [
+        [
+          "CSCI 2525"
+        ]
+      ],
+      "Fullfills": "Required Computer Science Systems Core Courses"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4738",
+      "Name": "Senior Design Project I",
+      "Notes": "*Prerequisite: CSCI 3287, 3415, 3453, & 3508",
+      "PreReqs": [
+        [
+          "CSCI 3287"
+        ],
+        [
+          "CSCI 3415"
+        ],
+        [
+          "CSCI 3453"
+        ],
+        [
+          "CSCI 3508"
+        ]
+      ],
+      "Restrictions": "Fall",
+      "Fullfills": "CS Breadth: Capstone Project"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4739",
+      "Name": "Senior Design Project II",
+      "Notes": "*Prerequisite: CSCI 4738",
+      "PreReqs": [
+        [
+          "CSCI 4738"
+        ]
+      ],
+      "Restrictions": "Spring",
+      "Fullfills": "CS Breadth: Capstone Project"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4455",
+      "Name": "Data Mining",
+      "Notes": "*Prerequisite: MATH 3195, CSCI 3287 & 3412",
+      "PreReqs": [
+        [
+          "MATH 3195"
+        ],
+        [
+          "CSCI 3287"
+        ],
+        [
+          "CSCI 3412"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Data Science"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4580",
+      "Name": "Data Science",
+      "Notes": "*Prerequisite: MATH 3195, CSCI 3287 & 3412",
+      "PreReqs": [
+        [
+          "MATH 3195"
+        ],
+        [
+          "CSCI 3287"
+        ],
+        [
+          "CSCI 3412"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Data Science"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4930",
+      "Name": "Machine Learning",
+      "Notes": "*Prerequisite: MATH 3195 & CSCI 3412",
+      "PreReqs": [
+        [
+          "MATH 3195"
+        ],
+        [
+          "CSCI 3412"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Data Science"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4931",
+      "Name": "Deep Learning",
+      "Notes": "*Prerequisite: MATH 3195 & CSCI 3412",
+      "PreReqs": [
+        [
+          "MATH 3195"
+        ],
+        [
+          "CSCI 3412"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Data Science"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4951",
+      "Name": "Big Data Systems",
+      "Notes": "*Prerequisite: MATH 3195, CSCI 3287 & CSCI 3412",
+      "PreReqs": [
+        [
+          "MATH 3195"
+        ],
+        [
+          "CSCI 3287"
+        ],
+        [
+          "CSCI 3412"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Data Science"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 3560",
+      "Name": "Probability & Computing",
+      "Notes": "*Prerequisite: MATH 2411 & CSCI 2511",
+      "PreReqs": [
+        [
+          "MATH 2411"
+        ],
+        [
+          "CSCI 2511"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Scientific Computing"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4650",
+      "Name": "Numerical Analysis I",
+      "Notes": "*Prerequisite: MATH 2411, MATH 3191 or 3195",
+      "PreReqs": [
+        [
+          "MATH 2411"
+        ],
+        [
+          "MATH 3191",
+          "MATH 3195"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Scientific Computing"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4110",
+      "Name": "Applied Number Theory",
+      "Notes": "*Prerequisite: CSCI 2511 or MATH 3000",
+      "PreReqs": [
+        [
+          "CSCI 2511",
+          "MATH 3000"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Scientific Computing"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4741",
+      "Name": "Principles of Cyber Security",
+      "Notes": "*Prerequisite: CSCI 3761 & 3287",
+      "PreReqs": [
+        [
+          "CSCI 3761"
+        ],
+        [
+          "CSCI 3287"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Secure Computing"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4742",
+      "Name": "Cybersecurity Programming & Analysis",
+      "Notes": "*Prerequisite: CSCI 3415",
+      "PreReqs": [
+        [
+          "CSCI 3415"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Secure Computing"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4743",
+      "Name": "Cyber and Infrastructure Defense",
+      "Notes": "*Prerequisite: CSCI 3761",
+      "PreReqs": [
+        [
+          "CSCI 3761"
+        ]
+      ],
+      "Fullfills": "CS Breadth: Secure Computing"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 3511",
+      "Name": "Hardware/Software Interface",
+      "Notes": "*Prerequisite: CSCI 2525",
+      "PreReqs": [
+        [
+          "CSCI 2525"
+        ]
+      ],
+      "Restrictions": "Fall",
+      "Fullfills": "CS Breadth: System Software"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4287",
+      "Name": "Embedded Systems Programming",
+      "Notes": "*Prerequisite: CSCI 3453",
+      "PreReqs": [
+        [
+          "CSCI 3453"
+        ]
+      ],
+      "Restrictions": "Spring",
+      "Fullfills": "CS Breadth: System Software"
+    },
+    {
+      "Credits": 3,
+      "Id": "CSCI 4565",
+      "Name": "Introduction to Computer Graphics",
+      "Notes": "*Prerequisite: CSCI 3412 & MATH 3191 or 3195",
+      "PreReqs": [
+        [
+          "CSCI 3412"
+        ],
+        [
+          "MATH 3191",
+          "MATH 3195"
+        ]
+      ],
+      "Restrictions": "Spring",
+      "Fullfills": "CS Breadth: System Software"
+    },
+    {
+      "Credits": 4,
+      "Id": "MATH 1401",
+      "Name": "Calculus I",
+      "Notes": "*Prerequisite: (MATH 1120 or 1130) and placement exam",
+      "PreReqs": [
+        [
+          "MATH 1120",
+          "MATH 1130"
+        ]
+      ],
+      "Fullfills": "Required Mathematics"
+    },
+    {
+      "Credits": 4,
+      "Id": "MATH 2411",
+      "Name": "Calculus II",
+      "Notes": "*Prerequisite: MATH 1401",
+      "PreReqs": [
+        [
+          "MATH 1401"
+        ]
+      ],
+      "Fullfills": "Required Mathematics"
+    },
+    {
+      "Credits": 4,
+      "Id": "MATH 3195",
+      "Name": "Linear Algebra and Differential Equations",
+      "Notes": "*Prerequisite: MATH 2411",
+      "PreReqs": [
+        [
+          "MATH 2411"
+        ]
+      ],
+      "Fullfills": "Required Mathematics"
+    }
+  ]
+}
