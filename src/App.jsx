@@ -1,8 +1,10 @@
 import './App.css';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -30,7 +32,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Display: 'Edit',
+      Display: 'Flow',
       Classes: [],
       Class_Desc: []
     };
@@ -41,7 +43,7 @@ class App extends React.Component {
     fetch('csreqs.json')
       .then(response => response.text())
       .then(json => JSON.parse(json))
-      .then(data => this.setState(data[0]))
+      .then(data => this.setState(data))
       .catch(e => console.error('Couldn\'t read json file. The error was:\n', e));
   }
 
@@ -49,6 +51,7 @@ class App extends React.Component {
     return (<div>
       <ListViewItem></ListViewItem>
       <p>Put something here to render.</p>
+      <Button>THIS IS A BUTTON</Button>
     </div>);
 
   }
@@ -57,7 +60,7 @@ class App extends React.Component {
     let semesters = [];
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 2; j++) {
-        semesters.push(<Col><p>{j ? 'Spring' : 'Fall'} {i+1}</p></Col>);
+        semesters.push(<Col><p>{j ? 'Spring' : 'Fall'} {i+1}</p><FlowChartItem></FlowChartItem></Col>);
       }
     }
     return (
