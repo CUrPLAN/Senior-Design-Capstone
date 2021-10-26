@@ -1,12 +1,11 @@
 import './App.css';
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 
 class ListViewItem extends React.Component {
   constructor(props) {
@@ -47,11 +46,18 @@ class App extends React.Component {
       .catch(e => console.error('Couldn\'t read json file. The error was:\n', e));
   }
 
+  menuClick(i) {
+    if (i === 0) {
+      this.setState({Display: 'Flow'});
+    } else if (i === 1) {
+      this.setState({Display: 'Edit'});
+    }
+  }
+
   displayEditView() {
     return (<div>
       <ListViewItem></ListViewItem>
       <p>Put something here to render.</p>
-      <Button>THIS IS A BUTTON</Button>
     </div>);
 
   }
@@ -60,7 +66,12 @@ class App extends React.Component {
     let semesters = [];
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 2; j++) {
-        semesters.push(<Col><p>{j ? 'Spring' : 'Fall'} {i+1}</p><FlowChartItem></FlowChartItem></Col>);
+        semesters.push(
+          <Col key={'year' + i + 'sem' + j}>
+            <p>{j ? 'Spring' : 'Fall'} {i+1}</p>
+            <FlowChartItem></FlowChartItem>
+          </Col>
+        );
       }
     }
     return (
@@ -88,14 +99,23 @@ class App extends React.Component {
         <Navbar variant='dark' bg='dark' sticky='top'>
           <Navbar.Brand>CUrPLAN</Navbar.Brand>
           <Nav>
-            <Nav.Link className={(this.state.Display === 'Flow') ? 'active' : 'inactive'}>Flowchart</Nav.Link>
-            <Nav.Link className={(this.state.Display === 'Edit') ? 'active' : 'inactive'}>Edit Mode</Nav.Link>
+            <Nav.Link 
+              className={(this.state.Display === 'Flow') ? 'active' : 'inactive'}
+              onClick={() => this.menuClick(0)}
+            >Flowchart</Nav.Link>
+            <Nav.Link 
+              className={(this.state.Display === 'Edit') ? 'active' : 'inactive'}
+              onClick={() => this.menuClick(1)}
+            >Edit Mode</Nav.Link>
           </Nav>
         </Navbar>
         <h1>Go to 'App.js' and put code here to make the app.</h1>
         <p>Check the console if you wanna see what information is loading 
           from the json file.</p>
         {content}
+        <Navbar variant='dark' bg='dark' fixed='bottom'>
+          <Button variant="outline-primary" id="save-button">Save</Button>
+        </Navbar>
       </div>
     );
   }
