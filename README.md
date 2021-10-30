@@ -1,3 +1,6 @@
+DURING DEVELOPMENT, ACCESS THE WEBVIEW THROUGH THIS LINK:
+https://senior-design-capstone.curplan.repl.co/
+
 # Senior-Design-Capstone
 ### Project Name: CUrPLAN
 

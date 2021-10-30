@@ -23,9 +23,37 @@ class FlowChartItem extends React.Component {
   }
 
   render() {
+    //console.log(this.props.cl);
+    //fills variable stores in the different categories of classes
+    let fills = '';
+    //if the cl property is not null and the element id 'Fullfills' is in the cl property
+    if (!!this.props.cl && 'Fullfills' in this.props.cl) {
+      //replace all the spaces (\s) with dashes (/g'-'), and makes all text lowercase for the element stored in 'Fullfills'
+      fills = this.props.cl.Fullfills.replace(/\s+/g, '-').toLowerCase();
+      //if the element stored in 'Fullfills' starts with 'cs-breadth' (ie. cs-breadth: systems software), then just replace it with 'cs-breadth'
+      if (fills.startsWith('cs-breadth')) {
+        fills = 'cs-breadth';
+      }
+    } else { //condition for modifying class names
+      fills = this.props.Name.replace(/\s+/g, '-').toLowerCase();
+      if (fills.startsWith('science')) {
+        fills = 'science';
+      } else if (fills.startsWith('engl')) {
+        fills = 'gen-ed-core';
+      }
+    }
+    console.log(fills);
+    
+    //each element for the class description is separated into its own section for future modifications/styling 
+    //!!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering)
     return (
-      <div className='flow-box'>
-        {this.props.Name}
+      <div className={'flow-box ' + fills}>
+        <div className='flow-id'>{this.props.Name}</div>
+        <div className='flow-desc'>
+          <div className='flow-name'>{!!this.props.cl && this.props.cl.Name}</div>
+          <div className='flow-credits'>{this.props.Credits} {this.props.Credits == 1 ? 'hour' : 'hours'}</div>
+          <div className='flow-notes'>{!!this.props.cl && this.props.cl.Notes}</div>
+        </div>
       </div>
     );
   }
@@ -68,31 +96,64 @@ class App extends React.Component {
 
   }
 
+  getClass(id) {
+    //checks every class description and finds the description that matches the class
+    //for (let _#1_ in _#2_) will only give you the index where the element is stored #2
+    for (let desc in this.state.Class_Desc) {
+      if (this.state.Class_Desc[desc].Id === id) {
+        return(this.state.Class_Desc[desc]);
+      }
+    }
+  }
+
   // function that handles the content from the json file that should be displayed, and labels the semesters accordingly
   displayFlowChart() {
     // stores the classes, semester type, and year for each semester
-    let semesters = [];
-    // i = number of years to graduate in
-    // j = number of semesters per year
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 2; j++) {
-        // Col: column tag, imported from bootstrap-react
-        // key attribute is used as a unique identifier for an item in a list in feact
-        // p tag will display Spring if j = 2, otherwise Fall will be displayed; shorthanded if/else statement used
-        // i+1 is displayed as the year because the loop starts at 0
-        // FlowchartItem tag will contain the information about the class (what class you are taking that semester will be displayed)
-        semesters.push(
-          <Col key={'year' + i + 'sem' + j}>
-            <p>{j ? 'Spring' : 'Fall'} {i+1}</p>
-            <FlowChartItem {...this.state.Classes[0]}></FlowChartItem>
-          </Col>
-        );
+    let semClasses = {};
+    // loops through all classes, sorts them into correct semClasses key based on semester
+    // let _#1_ of _#2_ will give you the element in _#1_
+    for (let cl of this.state.Classes) {
+      // add to object with array for all classes of the semester
+      if (cl.Semester in semClasses) {
+        semClasses[cl.Semester].push(cl);
+      } else {
+        semClasses[cl.Semester] = [cl];
       }
     }
+    let semesters = []; // holds code for all of the semesters
+    for (let sem in semClasses) {
+      // Col: column tag, imported from bootstrap-react
+      // key attribute is used as a unique identifier for an item in a list in react
+      // FlowchartItem tag will contain the information about the class (what class you are taking that semester will be displayed)
+      semesters.push(
+        <Col key={sem} className={'flowcol ' + (sem.startsWith('Fall') ? 'fallcol' : 'springcol')}>
+          <div className='sem-header'>{sem}</div>
+          {semClasses[sem].map((cl, i) => (
+            <FlowChartItem 
+              key={sem + 'class' + i}
+              {...cl} 
+              cl={this.getClass(cl.Name)}
+            ></FlowChartItem>))}
+        </Col>
+      );
+    }
+    // correctly sort semesters: sorted by years first, then by the semester
+    semesters = semesters.sort((a, b) => {
+      // get years and semesters of elements
+      let [sema, yra] = a.key.split('-');
+      let [semb, yrb] = b.key.split('-');
+      // if years are same, check semesters
+      if (yra == yrb) {
+        if (sema == 'Spring') return 1;
+        else return -1;
+      }
+      // otherwise, just sort by years
+      return Number(yra) - Number(yrb);
+    });
     // the display flowchart function will return the html for entire flowchart
-    // since the html code is stored in a variable, the curly brackets are used to denote that the html code in the object should be inserted at this spot
+    // since the html code is stored in a variable, the curly brackets are used to denote that the html code in the object should be inserted at this spot    
     return (
-      <Container>
+      <Container fluid id='flowchart'>
         <Row>
           {semesters}
         </Row>
@@ -131,11 +192,9 @@ class App extends React.Component {
             >Edit Mode</Nav.Link>
           </Nav>
         </Navbar>
-        <h1>Go to 'App.js' and put code here to make the app.</h1>
-        <p>Check the console if you wanna see what information is loading 
-          from the json file.</p>
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
+          <Button variant="outline-primary" id="upload-button">Upload</Button>
           <Button variant="outline-primary" id="save-button">Save</Button>
         </Navbar>
       </div>

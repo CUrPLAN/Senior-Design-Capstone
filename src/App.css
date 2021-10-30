@@ -1,8 +1,18 @@
+/* print styling */
+@media print {
+  .App { font-size: 0.7em; }
+  #root .App .navbar { display: none; } /* don't print navigation */
+  .flow-box { color: #000 !important; } /* make text black cause there's no background color */
+  .flow-desc { display: block !important; }
+  /* note: bootstrap auto clears every background color
+  to fix this, we need to add very specific rules for the background colors again */
+}
+
 .App {
   text-align: center;
 }
 
-
+/*** Navbar styling ***/
 .navbar-brand {
   margin-left: 2vw;
 }
@@ -12,14 +22,93 @@
   height: 100%;
 }
 
+#upload-button {
+  margin-left: 10px;
+}
+
 #save-button {
   margin-left: auto;
   margin-right: 10px;
 }
 
+/*** Flowchart styling ***/
+#flowchart {
+  margin: 1vh auto;
+  width: 98%;
+}
+
+.sem-header {
+  font-size: 1.2em;
+}
+
+.flowcol {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.fallcol {
+  margin-left: 2px;
+  border-left: 1px solid black;
+}
+
+.springcol {
+  margin-right: 2px;
+  border-right: 1px solid black;
+}
+
+/*** Flowchart box styling ***/
 .flow-box {
   width: 100%;
-  min-height: 10vh;
-  background-color: rgba(46,117,182,255);
+  min-height: 4em;
   border: 1px solid black;
+  margin-bottom: 3px;
+}
+
+.flow-desc {
+  display: none;
+}
+
+/* To reference for hovering containers based on different conditions: https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-one-element-is-hovered */
+/* When user hovers over the class they can see a description of the class */
+.flow-box:hover .flow-desc {
+  display: block;
+}
+
+.flow-id {
+  font-weight: bold;
+}
+
+.flow-notes {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* style each course based on the category it belongs to */
+.cs-core {
+  background-color: rgba(189,215,238,255);
+}
+
+.cs-systems-core {
+  color: white;
+  background-color: rgba(46,117,182,255);
+}
+
+.cs-breadth {
+  background-color: rgba(255,242,204,255);
+}
+
+.cs-elective {
+  background-color: rgba(255,217,102,255);
+}
+
+.math {
+  background-color: rgba(226,240,217,255);
+}
+
+.science {
+  background-color: rgba(169,209,142,255);
+}
+
+.gen-ed-core {
+  background-color: rgba(191,191,191,255);
 }

@@ -51,7 +51,7 @@
       "Semester": "Spring-2"
     },
     {
-      "Name": "CORE CURRICULUM ELECTIVE",
+      "Name": "Gen Ed Core",
       "Credits": "3",
       "Semester": "Spring-1"
     },
@@ -66,22 +66,22 @@
       "Semester": "Fall-2"
     },
     {
-      "Name": "SCIENCE CHOICE",
+      "Name": "Science 1",
       "Credits": "3-4",
       "Semester": "Fall-2"
     },
     {
-      "Name": "SCIENCE CHOICE LAB",
+      "Name": "Science 1 Lab",
       "Credits": "1",
       "Semester": "Fall-2"
     },
     {
-      "Name": "CORE CURRICULUM ELECTIVE",
+      "Name": "Gen Ed Core",
       "Credits": "3",
       "Semester": "Fall-2"
     },
     {
-      "Name": "CORE CURRICULUM ELECTIVE",
+      "Name": "Gen Ed Core",
       "Credits": "3",
       "Semester": "Fall-2"
     },
@@ -101,17 +101,17 @@
       "Semester": "Spring-2"
     },
     {
-      "Name": "CORE CURRICULUM ELECTIVE",
+      "Name": "Gen Ed Core",
       "Credits": "3",
       "Semester": "Fall-1"
     },
     {
-      "Name": "SCIENCE CHOICE",
+      "Name": "Science 2",
       "Credits": "3-4",
       "Semester": "Spring-2"
     },
     {
-      "Name": "SCIENCE CHOICE LAB",
+      "Name": "Science 2 Lab",
       "Credits": "1",
       "Semester": "Spring-2"
     },
@@ -126,17 +126,17 @@
       "Semester": "Fall-3"
     },
     {
-      "Name": "CS BREADTH",
+      "Name": "CS Breadth",
       "Credits": "3",
       "Semester": "Fall-3"
     },
     {
-      "Name": "CS BREADTH",
+      "Name": "CS Breadth",
       "Credits": "3",
       "Semester": "Fall-3"
     },
     {
-      "Name": "CS ELECTIVE",
+      "Name": "CS Elective",
       "Credits": "3",
       "Semester": "Fall-3"
     },
@@ -146,12 +146,12 @@
       "Semester": "Spring-3"
     },
     {
-      "Name": "CS BREADTH",
+      "Name": "CS Breadth",
       "Credits": "3",
       "Semester": "Spring-3"
     },
     {
-      "Name": "CS ELECTIVE",
+      "Name": "CS Elective",
       "Credits": "3",
       "Semester": "Spring-3"
     },
@@ -161,7 +161,7 @@
       "Semester": "Spring-3"
     },
     {
-      "Name": "CORE CURRICULUM ELECTIVE",
+      "Name": "Gen Ed Core",
       "Credits": "3",
       "Semester": "Spring-3"
     },
@@ -181,12 +181,12 @@
       "Semester": "Fall-4"
     },
     {
-      "Name": "CS BREADTH",
+      "Name": "CS Breadth",
       "Credits": "3",
       "Semester": "Fall-4"
     },
     {
-      "Name": "CS ELECTIVE",
+      "Name": "CS Elective",
       "Credits": "3",
       "Semester": "Fall-4"
     },
@@ -201,17 +201,17 @@
       "Semester": "Spring-4"
     },
     {
-      "Name": "CS BREADTH",
+      "Name": "CS Breadth",
       "Credits": "3",
       "Semester": "Spring-4"
     },
     {
-      "Name": "CS ELECTIVE",
+      "Name": "CS Elective",
       "Credits": "3",
       "Semester": "Spring-4"
     },
     {
-      "Name": "CORE CURRICULUM ELECTIVE",
+      "Name": "Gen Ed Core",
       "Credits": "3",
       "Semester": "Spring-4"
     }
@@ -222,7 +222,7 @@
       "Id": "ENGR 1200",
       "Name": "Fundamentals of Engineering Design Innovation",
       "Notes": "",
-      "Fullfills": "Required Engineering Design Courses"
+      "Fullfills": "CS Elective"
     },
     {
       "Credits": 3,
@@ -234,7 +234,7 @@
           "CSCI 1411"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 1,
@@ -246,7 +246,7 @@
           "CSCI 1410"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 3,
@@ -261,7 +261,7 @@
           "CSCI 1411"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 3,
@@ -273,7 +273,7 @@
           "CSCI 2312"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 3,
@@ -285,7 +285,7 @@
           "MATH 1401"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 3,
@@ -303,7 +303,7 @@
           "CSCI 2412"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 3,
@@ -321,7 +321,7 @@
           "CSCI 2511"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 3,
@@ -333,7 +333,7 @@
           "CSCI 3412"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 3,
@@ -345,7 +345,7 @@
           "CSCI 3412"
         ]
       ],
-      "Fullfills": "Required Computer Science Core Courses"
+      "Fullfills": "CS CORE"
     },
     {
       "Credits": 3,
@@ -358,7 +358,7 @@
           "MATH 1130"
         ]
       ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
+      "Fullfills": "CS SYSTEMS CORE"
     },
     {
       "Credits": 3,
@@ -376,7 +376,7 @@
           "CSCI 1510"
         ]
       ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
+      "Fullfills": "CS SYSTEMS CORE"
     },
     {
       "Credits": 3,
@@ -394,7 +394,7 @@
           "CSCI 2525"
         ]
       ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
+      "Fullfills": "CS SYSTEMS CORE"
     },
     {
       "Credits": 3,
@@ -409,7 +409,7 @@
           "CSCI 2525"
         ]
       ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
+      "Fullfills": "CS SYSTEMS CORE"
     },
     {
       "Credits": 3,
@@ -424,7 +424,7 @@
           "CSCI 2421"
         ]
       ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
+      "Fullfills": "CS SYSTEMS CORE"
     },
     {
       "Credits": 3,
@@ -442,7 +442,7 @@
           "CSCI 3453"
         ]
       ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
+      "Fullfills": "CS SYSTEMS CORE"
     },
     {
       "Credits": 3,
@@ -454,7 +454,7 @@
           "CSCI 2525"
         ]
       ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
+      "Fullfills": "CS SYSTEMS CORE"
     },
     {
       "Credits": 3,
@@ -712,7 +712,7 @@
           "MATH 1130"
         ]
       ],
-      "Fullfills": "Required Mathematics"
+      "Fullfills": "MATH"
     },
     {
       "Credits": 4,
@@ -724,7 +724,7 @@
           "MATH 1401"
         ]
       ],
-      "Fullfills": "Required Mathematics"
+      "Fullfills": "MATH"
     },
     {
       "Credits": 4,
@@ -736,7 +736,7 @@
           "MATH 2411"
         ]
       ],
-      "Fullfills": "Required Mathematics"
+      "Fullfills": "MATH"
     }
   ]
 }
