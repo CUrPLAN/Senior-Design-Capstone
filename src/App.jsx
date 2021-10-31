@@ -23,31 +23,10 @@ class FlowChartItem extends React.Component {
   }
 
   render() {
-    //console.log(this.props.cl);
-    //fills variable stores in the different categories of classes
-    let fills = '';
-    //if the cl property is not null and the element id 'Fullfills' is in the cl property
-    if (!!this.props.cl && 'Fullfills' in this.props.cl) {
-      //replace all the spaces (\s) with dashes (/g'-'), and makes all text lowercase for the element stored in 'Fullfills'
-      fills = this.props.cl.Fullfills.replace(/\s+/g, '-').toLowerCase();
-      //if the element stored in 'Fullfills' starts with 'cs-breadth' (ie. cs-breadth: systems software), then just replace it with 'cs-breadth'
-      if (fills.startsWith('cs-breadth')) {
-        fills = 'cs-breadth';
-      }
-    } else { //condition for modifying class names
-      fills = this.props.Name.replace(/\s+/g, '-').toLowerCase();
-      if (fills.startsWith('science')) {
-        fills = 'science';
-      } else if (fills.startsWith('engl')) {
-        fills = 'gen-ed-core';
-      }
-    }
-    console.log(fills);
-    
     //each element for the class description is separated into its own section for future modifications/styling 
     //!!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering)
     return (
-      <div className={'flow-box ' + fills}>
+      <div className={'flow-box ' + this.props.Color}>
         <div className='flow-id'>{this.props.Name}</div>
         <div className='flow-desc'>
           <div className='flow-name'>{!!this.props.cl && this.props.cl.Name}</div>
@@ -107,7 +86,7 @@ class App extends React.Component {
   }
 
   // function that handles the content from the json file that should be displayed, and labels the semesters accordingly
-  displayFlowChart() {
+  displayFlowChart() {      
     // stores the classes, semester type, and year for each semester
     let semClasses = {};
     // loops through all classes, sorts them into correct semClasses key based on semester

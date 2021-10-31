@@ -3,217 +3,260 @@
     {
       "Name": "CSCI 1410",
       "Credits": "3",
-      "Semester": "Fall-1"
+      "Semester": "Fall-1",
+      "Color": "cs-core"
     },
     {
       "Name": "CSCI 1411",
       "Credits": "1",
-      "Semester": "Fall-1"
+      "Semester": "Fall-1",
+      "Color": "cs-core"
     },
     {
       "Name": "CSCI 1510",
       "Credits": "3",
-      "Semester": "Fall-1"
+      "Semester": "Fall-1",
+      "Color": "cs-systems-core"
     },
     {
       "Name": "MATH 1401",
       "Credits": "4",
-      "Semester": "Fall-1"
+      "Semester": "Fall-1",
+      "Color": "math"
     },
     {
       "Name": "ENGL 1020",
       "Credits": "3",
-      "Semester": "Spring-1"
+      "Semester": "Spring-1",
+      "Color": "gen-ed-core"
     },
     {
       "Name": "ENGR 1200",
       "Credits": "3",
-      "Semester": "Fall-1"
+      "Semester": "Fall-1",
+      "Color": "cs-elective"
     },
     {
       "Name": "CSCI 2312",
       "Credits": "3",
-      "Semester": "Spring-1"
+      "Semester": "Spring-1",
+      "Color": "cs-core"
     },
     {
       "Name": "CSCI 2525",
       "Credits": "3",
-      "Semester": "Spring-1"
+      "Semester": "Spring-1",
+      "Color": "cs-systems-core"
     },
     {
       "Name": "MATH 2411",
       "Credits": "4",
-      "Semester": "Spring-1"
+      "Semester": "Spring-1",
+      "Color": "math"
     },
     {
       "Name": "ENGL 2030",
       "Credits": "3",
-      "Semester": "Spring-2"
+      "Semester": "Spring-2",
+      "Color": "gen-ed-core"
     },
     {
       "Name": "Gen Ed Core",
       "Credits": "3",
-      "Semester": "Spring-1"
+      "Semester": "Spring-1",
+      "Color": "gen-ed-core"
     },
     {
       "Name": "CSCI 2421",
       "Credits": "3",
-      "Semester": "Fall-2"
+      "Semester": "Fall-2",
+      "Color": "cs-core"
     },
     {
       "Name": "CSCI 2511",
       "Credits": "3",
-      "Semester": "Fall-2"
+      "Semester": "Fall-2",
+      "Color": "cs-core"
     },
     {
       "Name": "Science 1",
       "Credits": "3-4",
-      "Semester": "Fall-2"
+      "Semester": "Fall-2",
+      "Color": "science"
     },
     {
       "Name": "Science 1 Lab",
       "Credits": "1",
-      "Semester": "Fall-2"
+      "Semester": "Fall-2",
+      "Color": "science"
     },
     {
       "Name": "Gen Ed Core",
       "Credits": "3",
-      "Semester": "Fall-2"
+      "Semester": "Fall-2",
+      "Color": "gen-ed-core"
     },
     {
       "Name": "Gen Ed Core",
       "Credits": "3",
-      "Semester": "Fall-2"
+      "Semester": "Fall-2",
+      "Color": "gen-ed-core"
     },
     {
       "Name": "CSCI 3287",
       "Credits": "3",
-      "Semester": "Spring-2"
+      "Semester": "Spring-2",
+      "Color": "cs-core"
     },
     {
       "Name": "CSCI 3412",
       "Credits": "3",
-      "Semester": "Spring-2"
+      "Semester": "Spring-2",
+      "Color": "cs-core"
     },
     {
       "Name": "CSCI 3761",
       "Credits": "3",
-      "Semester": "Spring-2"
+      "Semester": "Spring-2",
+      "Color": "cs-systems-core"
     },
     {
       "Name": "Gen Ed Core",
       "Credits": "3",
-      "Semester": "Fall-1"
+      "Semester": "Fall-1",
+      "Color": "gen-ed-core"
     },
     {
       "Name": "Science 2",
       "Credits": "3-4",
-      "Semester": "Spring-2"
+      "Semester": "Spring-2",
+      "Color": "science"
     },
     {
       "Name": "Science 2 Lab",
       "Credits": "1",
-      "Semester": "Spring-2"
+      "Semester": "Spring-2",
+      "Color": "science"
     },
     {
       "Name": "CSCI 3453",
       "Credits": "3",
-      "Semester": "Fall-3"
+      "Semester": "Fall-3",
+      "Color": "cs-systems-core"
     },
     {
       "Name": "CSCI 3415",
       "Credits": "3",
-      "Semester": "Fall-3"
+      "Semester": "Fall-3",
+      "Color": "cs-systems-core"
     },
     {
       "Name": "CS Breadth",
       "Credits": "3",
-      "Semester": "Fall-3"
+      "Semester": "Fall-3",
+      "Color": "cs-breadth"
     },
     {
       "Name": "CS Breadth",
       "Credits": "3",
-      "Semester": "Fall-3"
+      "Semester": "Fall-3",
+      "Color": "cs-breadth"
     },
     {
       "Name": "CS Elective",
       "Credits": "3",
-      "Semester": "Fall-3"
+      "Semester": "Fall-3",
+      "Color": "cs-elective"
     },
     {
       "Name": "CSCI 3508",
       "Credits": "3",
-      "Semester": "Spring-3"
+      "Semester": "Spring-3",
+      "Color": "cs-core"
     },
     {
       "Name": "CS Breadth",
       "Credits": "3",
-      "Semester": "Spring-3"
+      "Semester": "Spring-3",
+      "Color": "cs-breadth"
     },
     {
       "Name": "CS Elective",
       "Credits": "3",
-      "Semester": "Spring-3"
+      "Semester": "Spring-3",
+      "Color": "cs-elective"
     },
     {
       "Name": "MATH 3195",
       "Credits": "4",
-      "Semester": "Spring-3"
+      "Semester": "Spring-3",
+      "Color": "math"
     },
     {
       "Name": "Gen Ed Core",
       "Credits": "3",
-      "Semester": "Spring-3"
+      "Semester": "Spring-3",
+      "Color": "gen-ed-core"
     },
     {
       "Name": "CSCI 4034",
       "Credits": "3",
-      "Semester": "Fall-4"
+      "Semester": "Fall-4",
+      "Color": "cs-core"
     },
     {
       "Name": "CSCI 4551",
       "Credits": "3",
-      "Semester": "Fall-4"
+      "Semester": "Fall-4",
+      "Color": "cs-systems-core"
     },
     {
       "Name": "CSCI 4738",
       "Credits": "3",
-      "Semester": "Fall-4"
+      "Semester": "Fall-4",
+      "Color": "cs-breadth"
     },
     {
       "Name": "CS Breadth",
       "Credits": "3",
-      "Semester": "Fall-4"
+      "Semester": "Fall-4",
+      "Color": "cs-breadth"
     },
     {
       "Name": "CS Elective",
       "Credits": "3",
-      "Semester": "Fall-4"
+      "Semester": "Fall-4",
+      "Color": "cs-elective"
     },
     {
       "Name": "CSCI 4591",
       "Credits": "3",
-      "Semester": "Spring-4"
+      "Semester": "Spring-4",
+      "Color": "cs-systems-core"
     },
     {
       "Name": "CSCI 4739",
       "Credits": "3",
-      "Semester": "Spring-4"
+      "Semester": "Spring-4",
+      "Color": "cs-breadth"
     },
     {
       "Name": "CS Breadth",
       "Credits": "3",
-      "Semester": "Spring-4"
+      "Semester": "Spring-4",
+      "Color": "cs-breadth"
     },
     {
       "Name": "CS Elective",
       "Credits": "3",
-      "Semester": "Spring-4"
+      "Semester": "Spring-4",
+      "Color": "cs-elective"
     },
     {
       "Name": "Gen Ed Core",
       "Credits": "3",
-      "Semester": "Spring-4"
+      "Semester": "Spring-4",
+      "Color": "gen-ed-core"
     }
   ],
   "Class_Desc": [
@@ -222,7 +265,7 @@
       "Id": "ENGR 1200",
       "Name": "Fundamentals of Engineering Design Innovation",
       "Notes": "",
-      "Fullfills": "CS Elective"
+      "Fullfills": "Required Engineering Design Courses"
     },
     {
       "Credits": 3,
@@ -234,7 +277,7 @@
           "CSCI 1411"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 1,
@@ -246,7 +289,7 @@
           "CSCI 1410"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 3,
@@ -261,7 +304,7 @@
           "CSCI 1411"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 3,
@@ -273,7 +316,7 @@
           "CSCI 2312"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 3,
@@ -285,7 +328,7 @@
           "MATH 1401"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 3,
@@ -303,7 +346,7 @@
           "CSCI 2412"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 3,
@@ -321,7 +364,7 @@
           "CSCI 2511"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 3,
@@ -333,7 +376,7 @@
           "CSCI 3412"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 3,
@@ -345,7 +388,7 @@
           "CSCI 3412"
         ]
       ],
-      "Fullfills": "CS CORE"
+      "Fullfills": "Required Computer Science Core Courses"
     },
     {
       "Credits": 3,
@@ -358,7 +401,7 @@
           "MATH 1130"
         ]
       ],
-      "Fullfills": "CS SYSTEMS CORE"
+      "Fullfills": "Required Computer Science Systems Core Courses"
     },
     {
       "Credits": 3,
@@ -376,7 +419,7 @@
           "CSCI 1510"
         ]
       ],
-      "Fullfills": "CS SYSTEMS CORE"
+      "Fullfills": "Required Computer Science Systems Core Courses"
     },
     {
       "Credits": 3,
@@ -394,7 +437,7 @@
           "CSCI 2525"
         ]
       ],
-      "Fullfills": "CS SYSTEMS CORE"
+      "Fullfills": "Required Computer Science Systems Core Courses"
     },
     {
       "Credits": 3,
@@ -409,7 +452,7 @@
           "CSCI 2525"
         ]
       ],
-      "Fullfills": "CS SYSTEMS CORE"
+      "Fullfills": "Required Computer Science Systems Core Courses"
     },
     {
       "Credits": 3,
@@ -424,7 +467,7 @@
           "CSCI 2421"
         ]
       ],
-      "Fullfills": "CS SYSTEMS CORE"
+      "Fullfills": "Required Computer Science Systems Core Courses"
     },
     {
       "Credits": 3,
@@ -442,7 +485,7 @@
           "CSCI 3453"
         ]
       ],
-      "Fullfills": "CS SYSTEMS CORE"
+      "Fullfills": "Required Computer Science Systems Core Courses"
     },
     {
       "Credits": 3,
@@ -454,7 +497,7 @@
           "CSCI 2525"
         ]
       ],
-      "Fullfills": "CS SYSTEMS CORE"
+      "Fullfills": "Required Computer Science Systems Core Courses"
     },
     {
       "Credits": 3,
@@ -712,7 +755,7 @@
           "MATH 1130"
         ]
       ],
-      "Fullfills": "MATH"
+      "Fullfills": "Required Mathematics"
     },
     {
       "Credits": 4,
@@ -724,7 +767,7 @@
           "MATH 1401"
         ]
       ],
-      "Fullfills": "MATH"
+      "Fullfills": "Required Mathematics"
     },
     {
       "Credits": 4,
@@ -736,7 +779,7 @@
           "MATH 2411"
         ]
       ],
-      "Fullfills": "MATH"
+      "Fullfills": "Required Mathematics"
     }
   ]
 }
