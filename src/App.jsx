@@ -13,7 +13,9 @@ class ListViewItem extends React.Component {
   }
 
   render() {
-    return (<div>Some list view element</div>);
+    return (
+      <div></div>
+      );
   }
 }
 
@@ -63,7 +65,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Display: 'Flow',
+      Display: 'Edit',
       Classes: [],
       Class_Desc: []
     };
@@ -87,13 +89,77 @@ class App extends React.Component {
     }
   }
 
-  // function that handles creating the edit view and list view components, with the json info that needs to be displayed
-  displayEditView() {
-    return (<div>
-      <ListViewItem></ListViewItem>
-      <p>Put something here to render.</p>
-    </div>);
+  // function to sum the credits for the category that is passed to it
+  getSum(fulfills){
+    //checks the 'fulfills' element of each course
+    // and if there is a match, it will add to the total.
 
+    let total_sum = 0;
+
+    for (let desc in this.state.Class_Desc) {
+      if (this.state.Class_Desc[desc].Fullfills === fulfills) {
+        total_sum += this.state.Class_Desc[desc].Credits;
+        console.log("sum: ", this.state.Class_Desc[desc].Credits)
+        console.log("total sum: ", total_sum)
+      }
+    }
+    return(total_sum);
+
+  }
+  // function that handles creating the edit view and list view components, with the json info that needs to be displayed
+  displayEditView() { 
+
+    return (
+      <div>
+      <ListViewItem></ListViewItem>
+        <table className='listview-table'>
+          <thead>
+            <tr>
+              <th className='courses'>Courses</th>
+              <th className='credits'>Credits</th>
+              <th className='notes'>Notes</th>
+            </tr>   
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="3" className="alert-td">* Course prerequisites change regularly. Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
+            </tr>
+            
+            <tr>
+              <td className="heading-courses-td">Required CU Denver Core Curriculum Coursework</td>
+              <td  className="heading-credits-td">24</td>
+              <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">See CU Denver Core Curriculum here</a></td>
+            </tr>
+
+            <tr>
+              <td className="heading-courses-td">Required Engineering Design Courses</td>
+              <td className="heading-credits-td">{this.getSum("ENGINEERING DESIGN")}</td>
+              <td className="heading-notes-td"></td>
+            </tr>
+            <tr>
+              <td className='courses'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Id: " "} {this.state.Class_Desc[0]?this.state.Class_Desc[0].Name: " "}</td>
+              <td className='credits'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Credits: " "}</td>
+              <td className='notes'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Notes: " "}</td>
+            </tr>
+            
+            <tr>
+              <td className="heading-courses-td">Required Computer Science Core Courses</td>
+              <td className="heading-credits-td">{this.getSum("CS CORE")}</td>
+              <td></td>
+            </tr>
+            
+            {this.state.Class_Desc.map((classes)=> (
+            <tr>
+              <td className = 'courses'>{classes.Id?classes.Id: " "} {classes.Name?classes.Name: " "}</td>
+              <td className= 'credits'>{classes.Credits?classes.Credits: " "}</td>
+              <td className= 'notes'>{classes.Notes?classes.Notes: " "}</td>
+            </tr>
+            ))}
+
+          </tbody>
+        </table>
+      </div>
+    );
   }
 
   getClass(id) {
@@ -125,6 +191,7 @@ class App extends React.Component {
       // Col: column tag, imported from bootstrap-react
       // key attribute is used as a unique identifier for an item in a list in react
       // FlowchartItem tag will contain the information about the class (what class you are taking that semester will be displayed)
+      // TODO: display flowchart items in order based on which reqs they fullfill
       semesters.push(
         <Col key={sem} className={'flowcol ' + (sem.startsWith('Fall') ? 'fallcol' : 'springcol')}>
           <div className='sem-header'>{sem}</div>
@@ -159,6 +226,10 @@ class App extends React.Component {
         </Row>
       </Container>
     );
+  }
+
+  print() {
+    window.print();
   }
 
   // render function under App class is used to tell application to display content
