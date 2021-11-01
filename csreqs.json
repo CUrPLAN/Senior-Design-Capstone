@@ -1,4 +1,5 @@
 {
+  "Color_Order": ["cs-core", "cs-systems-core", "cs-breadth", "cs-elective", "math", "science", "gen-ed-core"],
   "Classes": [
     {
       "Name": "CSCI 1410",

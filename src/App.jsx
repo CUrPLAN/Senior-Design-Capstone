@@ -34,11 +34,11 @@ class FlowChartItem extends React.Component {
 
   render() {
     //each element for the class description is separated into its own section for future modifications/styling 
-    //!!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering)
     return (
       <div className={'flow-box ' + this.props.Color}>
         <div className='flow-id'>{this.props.Name}</div>
         <div className='flow-desc'>
+          {/* !!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering) */}
           <div className='flow-name'>{!!this.props.cl && this.props.cl.Name}</div>
           <div className='flow-credits'>{this.props.Credits} {this.props.Credits == 1 ? 'hour' : 'hours'}</div>
           <div className='flow-notes'>{!!this.props.cl && this.props.cl.Notes}</div>
@@ -99,51 +99,43 @@ class App extends React.Component {
   displayFlowChart() {
     // get classes grouped by semester (using global function)
     let semClasses = groupBy(this.state.Classes, x => x.Semester);
-    let semesters = []; // holds code for all of the semesters
-    for (let sem in semClasses) {
-      // Col: column tag, imported from bootstrap-react
-      // key attribute is used as a unique identifier for an item in a list in react
-      // FlowchartItem tag will contain the information about the class (what class you are taking that semester will be displayed)
-      semesters.push(
-        <Col key={sem} className={'flowcol ' + (sem.startsWith('Fall') ? 'fallcol' : 'springcol')}>
-          <div className='sem-header'>{sem.split('-')[0]}</div>
-          {semClasses[sem].sort((a, b) => b.Color.length - a.Color.length).map((cl, i) => (
-            <FlowChartItem 
-              key={sem + 'class' + i}
-              {...cl} 
-              cl={this.getClass(cl.Name)}
-            ></FlowChartItem>))}
-        </Col>
-      );
-    }
-    // correctly sort semesters: sorted by years first, then by the semester
-    semesters = semesters.sort((a, b) => {
-      // get years and semesters of elements
-      let [sema, yra] = a.key.split('-');
-      let [semb, yrb] = b.key.split('-');
-      // if years are same, check semesters
-      if (yra == yrb) {
-        if (sema == 'Spring') return 1;
-        else return -1;
-      }
-      // otherwise, just sort by years
-      return Number(yra) - Number(yrb);
-    });
-    // groups semesters by year, maps each entry to the html code for each year
-    // makes new column for each year, new table inside for semester's columns
-    let sem_years = Object.entries(groupBy(semesters, (x) => x.key.split('-')[1])).map(
-      ([year, sem_classes]) => <Col key={'colyear' + year} className='yearcol'>
+    // get classes grouped by semester to be grouped by year
+    let yearSems = groupBy(Object.entries(semClasses), x => x[0].split('-')[1]);
+    // create all of the html code for the years by mapping each entry to the code
+    // uses map to loop and extract year number in 'year' and list of semesters in 'sems'
+    let newStuff = Object.entries(yearSems).map(([year, sems]) => (
+      // makes new column for each year with table inside for semesters
+      <Col key={'colyear' + year} className='yearcol'>
         <Container>
           <Row><Col className='year-header'>Year {year}</Col></Row>
-          <Row className='sem-classes'>{sem_classes}</Row>
+          <Row className='sem-classes'>{
+            // sort the semesters alphabetically, so that Fall always comes before Spring
+            // uses map to loop and extract semester string in 'sem' and list of classes in 'classes'
+            sems.sort((a, b) => a[0].localeCompare(b[0])).map(([sem, classes]) => (
+            <Col key={sem}> 
+              {/* Col: column tag, imported from bootstrap-react 
+                  key attribute is used as a unique identifier for an item in a list in react */}
+              <div className='sem-header'>{sem.split('-')[0]}</div>
+              {classes.sort((a, b) => 
+                // sort by color order 
+                this.state.Color_Order.indexOf(a.Color) - this.state.Color_Order.indexOf(b.Color)
+              ).map((cl, i) => (
+                // FlowchartItem tag will contain the information about the class (what class you are taking that semester will be displayed)
+                <FlowChartItem 
+                  key={sem + 'class' + i}
+                  {...cl} 
+                  cl={this.getClass(cl.Name)}
+                ></FlowChartItem>))}
+            </Col>))
+          }</Row>
         </Container>
-      </Col>);
+      </Col>));
     // the display flowchart function will return the html for entire flowchart
     // since the html code is stored in a variable, the curly brackets are used to denote that the html code in the object should be inserted at this spot    
     return (
       <Container fluid id='flowchart'>
         <Row>
-          {sem_years}
+          {newStuff}
         </Row>
       </Container>
     );
