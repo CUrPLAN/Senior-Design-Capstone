@@ -1,7 +1,8 @@
 /* print styling */
 @media print {
-  .App { font-size: 0.7em; }
+  .App { font-size: 0.65em; }
   #root .App .navbar { display: none; } /* don't print navigation */
+  #flowchart { margin: 0; }
   .flow-box { color: #000 !important; } /* make text black cause there's no background color */
   .flow-desc { display: block !important; }
   /* note: bootstrap auto clears every background color
@@ -35,25 +36,22 @@
 #flowchart {
   margin: 1vh auto;
   width: 98%;
+  padding-bottom: 2.5rem;
 }
 
-.sem-header {
+.yearcol {
+  padding: 15px;
+}
+
+.yearcol > .container {
+  padding: 0;
+}
+.year-header {
   font-size: 1.2em;
 }
 
-.flowcol {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-}
-
-.fallcol {
-  margin-left: 2px;
-  border-left: 1px solid black;
-}
-
-.springcol {
-  margin-right: 2px;
-  border-right: 1px solid black;
+.sem-classes {
+  border: 1px solid black;
 }
 
 /*** Flowchart box styling ***/
@@ -62,6 +60,7 @@
   min-height: 4em;
   border: 1px solid black;
   margin-bottom: 3px;
+  padding: 3px;
 }
 
 .flow-desc {
