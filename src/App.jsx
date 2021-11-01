@@ -7,6 +7,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 
+
+// adapted from https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-an-array-of-objects
+// call groupby(list to group, function which takes one argument which will be called on each element of the list to determine groups)
+var groupBy = function(xs, func) {
+  return xs.reduce(function(rv, x) {
+    (rv[func(x)] = rv[func(x)] || []).push(x);
+    return rv;
+  }, {});
+};
+
+
 class ListViewItem extends React.Component {
   constructor(props) {
     super(props);
