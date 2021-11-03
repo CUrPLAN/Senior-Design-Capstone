@@ -111,3 +111,69 @@
 .gen-ed-core {
   background-color: rgba(191,191,191,255);
 }
+
+/* .listview {
+  margin: 1vh auto;
+  width: 98%;
+} */
+
+.listview-table {
+  border: solid 1px black;
+  margin: 1em 1em 4em 1em
+}
+
+th {
+  border: solid 2px black;
+}
+
+.alert-td {
+  border: solid 2px black;
+  text-align: center;
+  background: rgb(197, 9, 9);
+  color: white;
+  font-weight: bold;
+}
+
+.heading-courses-td {
+  border: solid 2px black;
+  text-align: left;
+  font-weight: bold;
+}
+
+.heading-credits-td {
+  border: solid 2px black;
+  text-align: center;
+  font-weight: bold;
+}
+
+.heading-notes-td {
+  border: solid 2px black;
+  text-align: left;
+  font-weight: bold;
+}
+
+td {
+  border: solid 2px black;
+}
+
+.courses {
+  width: 55vw;
+  text-align: left;
+  padding: 0.2em;
+}
+
+.credits {
+  width: 5vw;
+  text-align: center;
+  padding: 0.2em;
+}
+
+.notes {
+  width: 40vw;
+  text-align: left;
+  padding: 0.2em;
+}
+
+thead {
+  background-color: lightgray;
+}
