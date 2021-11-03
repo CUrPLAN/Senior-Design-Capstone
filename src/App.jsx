@@ -17,10 +17,6 @@ var groupBy = function(xs, func) {
   }, {});
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> list_view
 class ListViewItem extends React.Component {
   constructor(props) {
     super(props);
@@ -167,14 +163,13 @@ class App extends React.Component {
 
   // function that handles the content from the json file that should be displayed, and labels the semesters accordingly
   displayFlowChart() {
-<<<<<<< HEAD
     // get classes grouped by semester (using global function)
     let semClasses = groupBy(this.state.Classes, x => x.Semester);
     // get classes grouped by semester to be grouped by year
     let yearSems = groupBy(Object.entries(semClasses), x => x[0].split('-')[1]);
     // create all of the html code for the years by mapping each entry to the code
     // uses map to loop and extract year number in 'year' and list of semesters in 'sems'
-    let newStuff = Object.entries(yearSems).map(([year, sems]) => (
+    let content = Object.entries(yearSems).map(([year, sems]) => (
       // makes new column for each year with table inside for semesters
       <Col key={'colyear' + year} className='yearcol'>
         <Container>
@@ -201,57 +196,12 @@ class App extends React.Component {
           }</Row>
         </Container>
       </Col>));
-=======
-    // stores the classes, semester type, and year for each semester
-    let semClasses = {};
-    // loops through all classes, sorts them into correct semClasses key based on semester
-    // let _#1_ of _#2_ will give you the element in _#1_
-    for (let cl of this.state.Classes) {
-      // add to object with array for all classes of the semester
-      if (cl.Semester in semClasses) {
-        semClasses[cl.Semester].push(cl);
-      } else {
-        semClasses[cl.Semester] = [cl];
-      }
-    }
-    let semesters = []; // holds code for all of the semesters
-    for (let sem in semClasses) {
-      // Col: column tag, imported from bootstrap-react
-      // key attribute is used as a unique identifier for an item in a list in react
-      // FlowchartItem tag will contain the information about the class (what class you are taking that semester will be displayed)
-      // TODO: display flowchart items in order based on which reqs they fullfill
-      semesters.push(
-        <Col key={sem} className={'flowcol ' + (sem.startsWith('Fall') ? 'fallcol' : 'springcol')}>
-          <div className='sem-header'>{sem}</div>
-          {semClasses[sem].map((cl, i) => (
-            <FlowChartItem 
-              key={sem + 'class' + i}
-              {...cl} 
-              cl={this.getClass(cl.Name)}
-            ></FlowChartItem>))}
-        </Col>
-      );
-    }
-    // correctly sort semesters: sorted by years first, then by the semester
-    semesters = semesters.sort((a, b) => {
-      // get years and semesters of elements
-      let [sema, yra] = a.key.split('-');
-      let [semb, yrb] = b.key.split('-');
-      // if years are same, check semesters
-      if (yra == yrb) {
-        if (sema == 'Spring') return 1;
-        else return -1;
-      }
-      // otherwise, just sort by years
-      return Number(yra) - Number(yrb);
-    });
->>>>>>> list_view
     // the display flowchart function will return the html for entire flowchart
     // since the html code is stored in a variable, the curly brackets are used to denote that the html code in the object should be inserted at this spot    
     return (
       <Container fluid id='flowchart'>
         <Row>
-          {newStuff}
+          {content}
         </Row>
       </Container>
     );
