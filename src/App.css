@@ -1,3 +1,4 @@
+
 /* print styling */
 @media print {
   .App { font-size: 0.65em; }
@@ -176,4 +177,14 @@ td {
 
 thead {
   background-color: lightgray;
+}
+
+.class-checkbox {
+  display: inline;
+}
+
+.class-checkbox > .input-group-text {
+  display: inline;
+  background-color: rgba(0,0,0,0);
+  border: none;
 }

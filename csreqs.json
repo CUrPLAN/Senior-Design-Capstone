@@ -1,5 +1,19 @@
 {
   "Color_Order": ["cs-core", "cs-systems-core", "cs-breadth", "cs-elective", "math", "science", "gen-ed-core"],
+  "Needed": {
+    "Required CU Denver Core Curriculum Coursework": 24,
+    "Required Engineering Design Courses": 3,
+    "Required Computer Science Core Courses": 25,
+    "Required Computer Science Systems Core Courses": 21,
+    "CS Breadth: Capstone Project": 6,
+    "CS Breadth: Data Science": 3,
+    "CS Breadth: Scientific Computing": 3,
+    "CS Breadth: Secure Computing": 3,
+    "CS Breadth: System Software": 6,
+    "Required Mathematics": 12,
+    "Required Science": 10,
+    "CS Technical Electives": 12
+  }, 
   "Classes": [
     {
       "Name": "CSCI 1410",

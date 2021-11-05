@@ -6,6 +6,8 @@ import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+
 
 
 // adapted from https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-an-array-of-objects
@@ -83,20 +85,85 @@ class App extends React.Component {
     //checks the 'fulfills' element of each course
     // and if there is a match, it will add to the total.
 
-    let total_sum = 0;
-
-    for (let desc in this.state.Class_Desc) {
-      if (this.state.Class_Desc[desc].Fullfills === fulfills) {
-        total_sum += this.state.Class_Desc[desc].Credits;
-        console.log("sum: ", this.state.Class_Desc[desc].Credits)
-        console.log("total sum: ", total_sum)
+    for (let i in this.state.Needed) {
+      if (i === fulfills) {
+        return(this.state.Needed[fulfills])
+        // console.log("total sum: ", total_sum)
       }
     }
-    return(total_sum);
-
   }
   // function that handles creating the edit view and list view components, with the json info that needs to be displayed
   displayEditView() { 
+
+    let headerList = groupBy(this.state.Class_Desc, x => x.Fullfills);
+    // let header_zero = Object.entries(headerList)[1]?Object.entries(headerList)[1]: " ";
+    // let header_zero_zero = header_zero[0];
+    // console.log("header_zero_zero: ", header_zero_zero);
+
+    // let arr = new Array(20);
+    // {Object.entries(headerList).map((headers) => (
+    //     console.log("header: ", headers)
+    // ))};
+
+    // {this.state.Class_Desc.map((headerList)=> (
+    //           <tr>
+    //             <td></td>
+    //           </tr>
+    //         ))}
+    // let header = new Array(headerList.length);
+    // {for (let i = 0; i < headerList.length; i++){
+    //         header.push(Object.entries(headerList)[i])
+    // }}
+    // console.log("header", header)
+
+    // let header = new Array(headerList.length);
+    // headerList.forEach(function(element){
+    //         header.push(element)
+    // })
+    
+    // console.log("type of headerList", typeof(header))
+
+    // let a = new Array(4)
+    // for (let i = 0; i < 4; i++) {
+    //   a[i] = new Array(4)
+    //   for (let j = 0; j < 4; j++) {
+    //     a[i][j] = '[' + i + ', ' + j + ']'
+    //   }
+    // }
+    // console.log("a", a)
+
+    // let headers = new Array(20);
+    // {this.state.Class_Desc.map((classes)=> (
+    //         headers.push(classes.Fulfills?classes.Fulfills: " ")
+    //         ))}
+
+    //console.log("headers", headers)
+
+    // <tr>
+    //           <td className="heading-courses-td">Required Engineering Design Courses</td>
+    //           <td className="heading-credits-td">{this.getSum("Required Engineering Design Courses")}</td>
+    //           <td className="heading-notes-td"></td>
+    //         </tr>
+    //         <tr>
+    //           <td className='courses'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Id: " "} {this.state.Class_Desc[0]?this.state.Class_Desc[0].Name: " "}</td>
+    //           <td className='credits'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Credits: " "}</td>
+    //           <td className='notes'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Notes: " "}</td>
+    //         </tr>
+
+    // <tr>
+    //           <td className="heading-courses-td">Required Computer Science Core Courses</td>
+    //           <td className="heading-credits-td">{this.getSum("Required Computer Science Core Courses")}</td>
+    //           <td></td>
+    //         </tr>
+            
+    //         {this.state.Class_Desc.map((classes)=> (
+    //         <tr>
+    //           <td className = 'courses'>{classes.Id?classes.Id: " "} {classes.Name?classes.Name: " "}</td>
+    //           <td className= 'credits'>{classes.Credits?classes.Credits: " "}</td>
+    //           <td className= 'notes'>{classes.Notes?classes.Notes: " "}</td>
+    //         </tr>
+    //         ))}
+    console.log(headerList);
 
     return (
       <div>
@@ -111,39 +178,38 @@ class App extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td colspan="3" className="alert-td">* Course prerequisites change regularly. Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
+              <td colSpan="3" className="alert-td">* Course prerequisites change regularly. Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
             </tr>
-            
+
             <tr>
               <td className="heading-courses-td">Required CU Denver Core Curriculum Coursework</td>
               <td  className="heading-credits-td">24</td>
               <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">See CU Denver Core Curriculum here</a></td>
             </tr>
+            
+            {Object.entries(headerList).map((headers) => (
+              <React.Fragment>
+              <tr>
+                <td className="heading-courses-td">{headers[0]}</td>
+                <td className="heading-credits-td">{this.getSum(headers[0])}</td>
+                <td className="heading-notes-td"></td>
+              </tr>
+            
+              {Object.entries(headers[1]).map((courses, index) => (
+                <tr>
+                  
+                  <td className="courses">
+                  <InputGroup className='class-checkbox'>
+                    <InputGroup.Checkbox aria-label="Checkbox for class"/>
+                  </InputGroup>{courses[1].Id?courses[1].Id: " "} {courses[1].Name?courses[1].Name: " "}</td>
+                  <td className="credits">{courses[1].Credits?courses[1].Credits: " "}</td>
+                  <td className="notes">{courses[1].Notes?courses[1].Notes: " "}</td>
+                  {console.log("index: ", index)}
+                </tr>)
+              )}
 
-            <tr>
-              <td className="heading-courses-td">Required Engineering Design Courses</td>
-              <td className="heading-credits-td">{this.getSum("ENGINEERING DESIGN")}</td>
-              <td className="heading-notes-td"></td>
-            </tr>
-            <tr>
-              <td className='courses'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Id: " "} {this.state.Class_Desc[0]?this.state.Class_Desc[0].Name: " "}</td>
-              <td className='credits'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Credits: " "}</td>
-              <td className='notes'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Notes: " "}</td>
-            </tr>
-            
-            <tr>
-              <td className="heading-courses-td">Required Computer Science Core Courses</td>
-              <td className="heading-credits-td">{this.getSum("CS CORE")}</td>
-              <td></td>
-            </tr>
-            
-            {this.state.Class_Desc.map((classes)=> (
-            <tr>
-              <td className = 'courses'>{classes.Id?classes.Id: " "} {classes.Name?classes.Name: " "}</td>
-              <td className= 'credits'>{classes.Credits?classes.Credits: " "}</td>
-              <td className= 'notes'>{classes.Notes?classes.Notes: " "}</td>
-            </tr>
-            ))}
+              </React.Fragment>
+              ))}
 
           </tbody>
         </table>
@@ -165,8 +231,10 @@ class App extends React.Component {
   displayFlowChart() {
     // get classes grouped by semester (using global function)
     let semClasses = groupBy(this.state.Classes, x => x.Semester);
+    console.log("List: ", Object.entries(semClasses));
     // get classes grouped by semester to be grouped by year
     let yearSems = groupBy(Object.entries(semClasses), x => x[0].split('-')[1]);
+    console.log("List2: ", Object.entries(yearSems));
     // create all of the html code for the years by mapping each entry to the code
     // uses map to loop and extract year number in 'year' and list of semesters in 'sems'
     let content = Object.entries(yearSems).map(([year, sems]) => (
