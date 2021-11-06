@@ -26,7 +26,18 @@ class ListViewItem extends React.Component {
 
   render() {
     return (
-      <div></div>
+      <tr>
+        <td className="courses">
+        <InputGroup className='class-checkbox'>
+          <InputGroup.Checkbox 
+            aria-label="Checkbox for class" 
+            onChange={this.props.changeFunc /* calls change function passed as property when checkbox is toggled*/}
+            checked={this.props.checked /* sets checkboxes as checked based on property passed */}
+          />
+        </InputGroup>{/*this is a shorthand if else statement ? :; if condition ? output true statement : output false statement */}{this.props.Id?this.props.Id: " "} {this.props.Name?this.props.Name: " "}</td>
+        <td className="credits">{this.props.Credits?this.props.Credits: " "}</td>
+        <td className="notes">{this.props.Notes?this.props.Notes: " "}</td>
+      </tr>
       );
   }
 }
@@ -37,9 +48,17 @@ class FlowChartItem extends React.Component {
   }
 
   render() {
-    //each element for the class description is separated into its own section for future modifications/styling 
+    // each element for the class description is separated into its own section for future modifications/styling 
+
+    // If the class is in the taken classes list modify transparency
+    // need spaces so that if there are different css styling elements that need to be applied, that the className property can differentiate from them
+    let transparency = ' ';
+    if (this.props.taken) {
+      transparency = ' taken-class';
+    }
+
     return (
-      <div className={'flow-box ' + this.props.Color}>
+      <div className={'flow-box ' + this.props.Color + transparency}>
         <div className='flow-id'>{this.props.Name}</div>
         <div className='flow-desc'>
           {/* !!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering) */}
@@ -56,9 +75,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Display: 'Edit',
+      Display: 'Flow',
       Classes: [],
-      Class_Desc: []
+      Class_Desc: [],
+      Taken_Classes: [], // ["CSCI 2942", "CSCI 4892"] < --- only include the classes that have been taken in this list
     };
   }
 
@@ -80,140 +100,64 @@ class App extends React.Component {
     }
   }
 
-  // function to sum the credits for the category that is passed to it
-  getSum(fulfills){
-    //checks the 'fulfills' element of each course
-    // and if there is a match, it will add to the total.
-
-    for (let i in this.state.Needed) {
-      if (i === fulfills) {
-        return(this.state.Needed[fulfills])
-        // console.log("total sum: ", total_sum)
-      }
+  // function for handling a click on a checkbox
+  checkboxClick(classID) {
+    // create a copy of the taken classes (for re-rendering purposes in React)
+    if (this.state.Taken_Classes.indexOf(classID) > -1) { // if class is already in taken list
+      // removes classid from taken classes list by creating a new list that does not include that classID
+      this.setState({Taken_Classes: this.state.Taken_Classes.filter(c => c !== classID)});
+    } else {
+      // sets state to be the list of previously selected taken classes, with the addition of the new classID
+      // ... is the spread operator, it makes the elements into elements of the new array
+      this.setState({Taken_Classes: [...this.state.Taken_Classes, classID]})
     }
   }
+
   // function that handles creating the edit view and list view components, with the json info that needs to be displayed
   displayEditView() { 
-
     let headerList = groupBy(this.state.Class_Desc, x => x.Fullfills);
-    // let header_zero = Object.entries(headerList)[1]?Object.entries(headerList)[1]: " ";
-    // let header_zero_zero = header_zero[0];
-    // console.log("header_zero_zero: ", header_zero_zero);
-
-    // let arr = new Array(20);
-    // {Object.entries(headerList).map((headers) => (
-    //     console.log("header: ", headers)
-    // ))};
-
-    // {this.state.Class_Desc.map((headerList)=> (
-    //           <tr>
-    //             <td></td>
-    //           </tr>
-    //         ))}
-    // let header = new Array(headerList.length);
-    // {for (let i = 0; i < headerList.length; i++){
-    //         header.push(Object.entries(headerList)[i])
-    // }}
-    // console.log("header", header)
-
-    // let header = new Array(headerList.length);
-    // headerList.forEach(function(element){
-    //         header.push(element)
-    // })
-    
-    // console.log("type of headerList", typeof(header))
-
-    // let a = new Array(4)
-    // for (let i = 0; i < 4; i++) {
-    //   a[i] = new Array(4)
-    //   for (let j = 0; j < 4; j++) {
-    //     a[i][j] = '[' + i + ', ' + j + ']'
-    //   }
-    // }
-    // console.log("a", a)
-
-    // let headers = new Array(20);
-    // {this.state.Class_Desc.map((classes)=> (
-    //         headers.push(classes.Fulfills?classes.Fulfills: " ")
-    //         ))}
-
-    //console.log("headers", headers)
-
-    // <tr>
-    //           <td className="heading-courses-td">Required Engineering Design Courses</td>
-    //           <td className="heading-credits-td">{this.getSum("Required Engineering Design Courses")}</td>
-    //           <td className="heading-notes-td"></td>
-    //         </tr>
-    //         <tr>
-    //           <td className='courses'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Id: " "} {this.state.Class_Desc[0]?this.state.Class_Desc[0].Name: " "}</td>
-    //           <td className='credits'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Credits: " "}</td>
-    //           <td className='notes'>{this.state.Class_Desc[0]?this.state.Class_Desc[0].Notes: " "}</td>
-    //         </tr>
-
-    // <tr>
-    //           <td className="heading-courses-td">Required Computer Science Core Courses</td>
-    //           <td className="heading-credits-td">{this.getSum("Required Computer Science Core Courses")}</td>
-    //           <td></td>
-    //         </tr>
-            
-    //         {this.state.Class_Desc.map((classes)=> (
-    //         <tr>
-    //           <td className = 'courses'>{classes.Id?classes.Id: " "} {classes.Name?classes.Name: " "}</td>
-    //           <td className= 'credits'>{classes.Credits?classes.Credits: " "}</td>
-    //           <td className= 'notes'>{classes.Notes?classes.Notes: " "}</td>
-    //         </tr>
-    //         ))}
-    console.log(headerList);
 
     return (
-      <div>
-      <ListViewItem></ListViewItem>
-        <table className='listview-table'>
-          <thead>
-            <tr>
-              <th className='courses'>Courses</th>
-              <th className='credits'>Credits</th>
-              <th className='notes'>Notes</th>
-            </tr>   
-          </thead>
-          <tbody>
-            <tr>
-              <td colSpan="3" className="alert-td">* Course prerequisites change regularly. Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
-            </tr>
+      <table className='listview-table'>
+        <thead>
+          <tr>
+            <th className='courses'>Courses</th>
+            <th className='credits'>Credits</th>
+            <th className='notes'>Notes</th>
+          </tr>   
+        </thead>
+        <tbody>
+          <tr>
+            <td colSpan="3" className="alert-td">* Course prerequisites change regularly. Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
+          </tr>
 
-            <tr>
-              <td className="heading-courses-td">Required CU Denver Core Curriculum Coursework</td>
-              <td  className="heading-credits-td">24</td>
-              <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">See CU Denver Core Curriculum here</a></td>
-            </tr>
-            
-            {Object.entries(headerList).map((headers) => (
-              <React.Fragment>
+          <tr>
+            <td className="heading-courses-td">Required CU Denver Core Curriculum Coursework</td>
+            <td className="heading-credits-td">24</td>
+            <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">See CU Denver Core Curriculum here</a></td>
+          </tr>
+          
+          { // convert list of headers and courses to appropriate table rows
+            Object.entries(headerList).map(([header, courses]) => (
+            <React.Fragment key={'section'+header}>
               <tr>
-                <td className="heading-courses-td">{headers[0]}</td>
-                <td className="heading-credits-td">{this.getSum(headers[0])}</td>
+                <td className="heading-courses-td">{header}</td>
+                {/* get needed credits for section by looking in object */}
+                <td className="heading-credits-td">{this.state.Needed[header]}</td>
                 <td className="heading-notes-td"></td>
               </tr>
-            
-              {Object.entries(headers[1]).map((courses, index) => (
-                <tr>
-                  
-                  <td className="courses">
-                  <InputGroup className='class-checkbox'>
-                    <InputGroup.Checkbox aria-label="Checkbox for class"/>
-                  </InputGroup>{courses[1].Id?courses[1].Id: " "} {courses[1].Name?courses[1].Name: " "}</td>
-                  <td className="credits">{courses[1].Credits?courses[1].Credits: " "}</td>
-                  <td className="notes">{courses[1].Notes?courses[1].Notes: " "}</td>
-                  {console.log("index: ", index)}
-                </tr>)
-              )}
-
-              </React.Fragment>
-              ))}
-
-          </tbody>
-        </table>
-      </div>
+              { /* pass all properties of a course to the list view item to get the html code */
+                courses.map((course) => (<ListViewItem 
+                  key={'course'+course.Id}
+                  {...course} // pass elements of a course as properties to the ListViewItem
+                  // () => is a way to bind functions when needing to pass functions to another component
+                  changeFunc={() => this.checkboxClick(course.Id)} // pass function to component: https://reactjs.org/docs/faq-functions.html
+                  checked={this.state.Taken_Classes.indexOf(course.Id) > -1} // variable used to keep boxes checked when switch between views
+                ></ListViewItem>))}
+            </React.Fragment>
+          ))}
+        </tbody>
+      </table>
     );
   }
 
@@ -231,10 +175,8 @@ class App extends React.Component {
   displayFlowChart() {
     // get classes grouped by semester (using global function)
     let semClasses = groupBy(this.state.Classes, x => x.Semester);
-    console.log("List: ", Object.entries(semClasses));
     // get classes grouped by semester to be grouped by year
     let yearSems = groupBy(Object.entries(semClasses), x => x[0].split('-')[1]);
-    console.log("List2: ", Object.entries(yearSems));
     // create all of the html code for the years by mapping each entry to the code
     // uses map to loop and extract year number in 'year' and list of semesters in 'sems'
     let content = Object.entries(yearSems).map(([year, sems]) => (
@@ -246,7 +188,7 @@ class App extends React.Component {
             // sort the semesters alphabetically, so that Fall always comes before Spring
             // uses map to loop and extract semester string in 'sem' and list of classes in 'classes'
             sems.sort((a, b) => a[0].localeCompare(b[0])).map(([sem, classes]) => (
-            <Col key={sem}> 
+            <Col key={sem} className='semcol'> 
               {/* Col: column tag, imported from bootstrap-react 
                   key attribute is used as a unique identifier for an item in a list in react */}
               <div className='sem-header'>{sem.split('-')[0]}</div>
@@ -259,6 +201,7 @@ class App extends React.Component {
                   key={sem + 'class' + i}
                   {...cl} 
                   cl={this.getClass(cl.Name)}
+                  taken={this.state.Taken_Classes.indexOf(cl.Name) > -1 /* use indexOf to get the index of the element in the list, if not in the list it returns -1*/}
                 ></FlowChartItem>))}
             </Col>))
           }</Row>
@@ -281,8 +224,7 @@ class App extends React.Component {
 
   // render function under App class is used to tell application to display content
   render() {
-    console.log("Rendering:");
-    console.log("Have state information of:");
+    console.log("this.state:");
     console.log(this.state);
 
     let content; // variable to store the content to render
