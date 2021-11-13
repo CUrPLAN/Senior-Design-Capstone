@@ -79,7 +79,7 @@ class App extends React.Component {
       Classes: [],
       Class_Desc: [],
       Taken_Classes: [], // ["CSCI 2942", "CSCI 4892"] < --- only include the classes that have been taken in this list
-      FileUploadState: "" // the uploaded file
+      JSONFile: {} // the uploaded file
     };
 
 
@@ -115,15 +115,39 @@ class App extends React.Component {
       this.setState({Taken_Classes: [...this.state.Taken_Classes, classID]});
     }
   }
-  // when a file is uploaded by the user, we store the file in the appropriate state variable where we can access it
- onClickUpload = () => {
+
+// this function handles the reading of the uploaded file and parses it to JSON for further use
+ onChange(e){
+    
+    let file = event.target.files[0];
+    console.log("file", file);
+
+    if (file) {
+      let data = new FormData();
+      data.append('file', file)
+    }
+
+    let reader = new FileReader();
+    console.log("reader", reader)
+
+      reader.onload = (e) => {
+        console.log("reader results", reader.result)
+        this.setState({ JSONFile: JSON.parse(e.target.result) }, () => {
+          console.log("jsonFile", this.state.JSONFile);
+        });
+      };
+      reader.readAsText(file);
+  }
+
+  // this function handles the functionality of the upload button itself so the user can choose a file to upload
+  onClickUpload = () => {
   document.getElementById('uploadFileButton').click();
   document.getElementById('uploadFileButton').onchange = () =>{      
   this.setState({
     FileUploadState:document.getElementById('uploadFileButton').value
         });
     }
-}
+  }
 
   // function that handles creating the edit view and list view components, with the json info that needs to be displayed
   displayEditView() { 
@@ -277,7 +301,7 @@ class App extends React.Component {
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
           <div>
-          <input id="uploadFileButton" type="file" hidden />
+          <input id="uploadFileButton" type="file" hidden onChange={(e)=>this.onChange(e)} />
           <Button variant="outline-primary" id="upload-button" onClick={this.onClickUpload}>Upload</Button>
           {this.state.FileUploadState}
           </div>
