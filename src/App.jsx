@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { saveAs } from 'file-saver';
 
 
 
@@ -111,6 +112,22 @@ class App extends React.Component {
       // ... is the spread operator, it makes the elements into elements of the new array
       this.setState({Taken_Classes: [...this.state.Taken_Classes, classID]})
     }
+  }
+
+  //make sure to open the webpage into a new tab to test save click functionality
+  saveClick() {
+    // adapted from answer to https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
+    console.log("Save click");
+    const fileData = JSON.stringify(this.state.Taken_Classes);
+    const blob = new Blob([fileData], {type: "text/plain"});
+    saveAs(blob, "CUrPLAN");
+    console.log("Finished saving");
+
+    // const url = URL.createObjectURL(blob);
+    // const link = document.createElement('a');
+    // link.download = `CUrPLAN.json`;
+    // link.href = url;
+    // link.click(); 
   }
 
   // function that handles creating the edit view and list view components, with the json info that needs to be displayed
@@ -255,7 +272,7 @@ class App extends React.Component {
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
           <Button variant="outline-primary" id="upload-button">Upload</Button>
-          <Button variant="outline-primary" id="save-button">Save</Button>
+          <Button variant="outline-primary" id="save-button" onClick={() => this.saveClick()}>Save</Button>
         </Navbar>
       </div>
     );
