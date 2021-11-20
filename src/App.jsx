@@ -80,7 +80,10 @@ class App extends React.Component {
       Classes: [],
       Class_Desc: [],
       Taken_Classes: [], // ["CSCI 2942", "CSCI 4892"] < --- only include the classes that have been taken in this list
+      JSONFile: {} // the uploaded file
     };
+
+
   }
 
   // load data from json, set state with information
@@ -110,7 +113,40 @@ class App extends React.Component {
     } else {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
-      this.setState({Taken_Classes: [...this.state.Taken_Classes, classID]})
+      this.setState({Taken_Classes: [...this.state.Taken_Classes, classID]});
+    }
+  }
+
+// this function handles the reading of the uploaded file and parses it to JSON for further use
+ onChange(e){
+    
+    let file = event.target.files[0];
+    console.log("file", file);
+
+    if (file) {
+      let data = new FormData();
+      data.append('file', file)
+    }
+
+    let reader = new FileReader();
+    console.log("reader", reader)
+
+      reader.onload = (e) => {
+        console.log("reader results", reader.result)
+        this.setState({ JSONFile: JSON.parse(e.target.result) }, () => {
+          console.log("jsonFile", this.state.JSONFile);
+        });
+      };
+      reader.readAsText(file);
+  }
+
+  // this function handles the functionality of the upload button itself so the user can choose a file to upload
+  onClickUpload = () => {
+  document.getElementById('uploadFileButton').click();
+  document.getElementById('uploadFileButton').onchange = () =>{      
+  this.setState({
+    FileUploadState:document.getElementById('uploadFileButton').value
+        });
     }
   }
 
@@ -251,6 +287,16 @@ class App extends React.Component {
     } else {
       content = this.displayFlowChart();
     }
+
+    // const [name, setName] = useState("");
+    // const [selectedFile, setSelectedFile] = useState(null);
+
+    // const hiddenFileInput = React.useRef(null);
+
+    // const handleClick = event => {
+      // hiddenFileInput.current.click();
+    // };
+
     // this return function in the render function will display the content
     // it creates the html code for the navbars and basic layout of the page
     // the {content} segment indicates that the html code from the variable above should be inserted
@@ -271,7 +317,11 @@ class App extends React.Component {
         </Navbar>
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
-          <Button variant="outline-primary" id="upload-button">Upload</Button>
+          <div>
+          <input id="uploadFileButton" type="file" hidden onChange={(e)=>this.onChange(e)} />
+          <Button variant="outline-primary" id="upload-button" onClick={this.onClickUpload}>Upload</Button>
+          {this.state.FileUploadState}
+          </div>
           <Button variant="outline-primary" id="save-button" onClick={() => this.saveClick()}>Save</Button>
         </Navbar>
       </div>
