@@ -1,13 +1,24 @@
 
 /* print styling */
 @media print {
-  .App { font-size: 0.65em; }
+  .App { 
+    font-size: 0.65em; 
+    /* forces webpage to print colored boxes */
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
   #root .App .navbar { display: none; } /* don't print navigation */
   #flowchart { margin: 0; }
-  .flow-box { color: #000 !important; } /* make text black cause there's no background color */
-  .flow-desc { display: block !important; }
-  /* note: bootstrap auto clears every background color
-  to fix this, we need to add very specific rules for the background colors again */
+  .flow-desc { 
+    display: block !important; 
+    overflow: hidden;
+  }
+}
+
+/*https://stackoverflow.com/questions/39356258/force-landscape-orientation-in-css*/
+/* forces webpage to print in landscape mode */
+@page {
+  size: A4 landscape;
 }
 
 body {
