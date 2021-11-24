@@ -79,7 +79,7 @@ class App extends React.Component {
       Classes: [],
       Class_Desc: [],
       Taken_Classes: [], // ["CSCI 2942", "CSCI 4892"] < --- only include the classes that have been taken in this list
-      JSONFile: {} // the uploaded file
+      UploadedFile: {} // the uploaded file
     };
 
 
@@ -132,8 +132,8 @@ class App extends React.Component {
 
       reader.onload = (e) => {
         console.log("reader results", reader.result)
-        this.setState({ JSONFile: JSON.parse(e.target.result) }, () => {
-          console.log("jsonFile", this.state.JSONFile);
+        this.setState({ UploadedFile: (e.target.result) }, () => {
+          console.log("UploadedFile", this.state.UploadedFile);
         });
       };
       reader.readAsText(file);
