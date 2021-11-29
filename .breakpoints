@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "src/App.jsx": [
+      {
+        "id": "2894b5dd-3123-47d3-8f9d-c20d4a3a0338",
+        "line": 93,
+        "version": 29012,
+        "index": 3397
+      }
+    ]
+  }
 }
