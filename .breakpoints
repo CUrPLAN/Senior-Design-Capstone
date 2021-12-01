@@ -1,11 +1,11 @@
 {
   "files": {
-    "src/App.jsx": [
+    ".breakpoints": [
       {
-        "id": "2894b5dd-3123-47d3-8f9d-c20d4a3a0338",
-        "line": 93,
-        "version": 29012,
-        "index": 3397
+        "id": "66bfde95-6fa2-4b8b-9ae0-212a50053423",
+        "line": 12,
+        "version": 1,
+        "index": 184
       }
     ]
   }
