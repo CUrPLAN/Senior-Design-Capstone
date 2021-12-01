@@ -108,6 +108,10 @@ body {
   opacity: 50%;
 }
 
+.pre-reqs {
+  border: red solid 3px;
+}
+
 /* style each course based on the category it belongs to */
 .cs-core {
   background-color: rgba(189,215,238,255);

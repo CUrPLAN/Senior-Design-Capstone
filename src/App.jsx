@@ -29,17 +29,17 @@ class ListViewItem extends React.Component {
     return (
       <tr>
         <td className="courses">
-        <InputGroup className='class-checkbox'>
-          <InputGroup.Checkbox 
-            aria-label="Checkbox for class" 
-            onChange={this.props.changeFunc /* calls change function passed as property when checkbox is toggled*/}
-            checked={this.props.checked /* sets checkboxes as checked based on property passed */}
-          />
-        </InputGroup>{/*this is a shorthand if else statement ? :; if condition ? output true statement : output false statement */}{this.props.Id?this.props.Id: " "} {this.props.Name?this.props.Name: " "}</td>
-        <td className="credits">{this.props.Credits?this.props.Credits: " "}</td>
-        <td className="notes">{this.props.Notes?this.props.Notes: " "}</td>
+          <InputGroup className='class-checkbox'>
+            <InputGroup.Checkbox
+              aria-label="Checkbox for class"
+              onChange={this.props.changeFunc /* calls change function passed as property when checkbox is toggled*/}
+              checked={this.props.checked /* sets checkboxes as checked based on property passed */}
+            />
+          </InputGroup>{/*this is a shorthand if else statement ? :; if condition ? output true statement : output false statement */}{this.props.Id ? this.props.Id : " "} {this.props.Name ? this.props.Name : " "}</td>
+        <td className="credits">{this.props.Credits ? this.props.Credits : " "}</td>
+        <td className="notes">{this.props.Notes ? this.props.Notes : " "}</td>
       </tr>
-      );
+    );
   }
 }
 
@@ -53,13 +53,10 @@ class FlowChartItem extends React.Component {
 
     // If the class is in the taken classes list modify transparency
     // need spaces so that if there are different css styling elements that need to be applied, that the className property can differentiate from them
-    let transparency = ' ';
-    if (this.props.taken) {
-      transparency = ' taken-class';
-    }
-
     return (
-      <div className={'flow-box ' + this.props.Color + transparency}>
+      <div className={'flow-box ' + this.props.Color + (this.props.taken ? ' taken-class' : '') + (this.props.isPreReq ? ' pre-reqs' : '')} 
+      onMouseEnter={this.props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
+      onMouseLeave={this.props.leaveFunc}>
         <div className='flow-id'>{this.props.Name}</div>
         <div className='flow-desc'>
           {/* !!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering) */}
@@ -80,10 +77,8 @@ class App extends React.Component {
       Classes: [],
       Class_Desc: [],
       Taken_Classes: [], // ["CSCI 2942", "CSCI 4892"] < --- only include the classes that have been taken in this list
-      
+      CurPreReqs: []
     };
-
-
   }
 
   // load data from json, set state with information
@@ -98,28 +93,50 @@ class App extends React.Component {
   // function for handling a click on one of the top navbar links
   menuClick(i) {
     if (i === 0) { // if the first button is clicked
-      this.setState({Display: 'Flow'});
+      this.setState({ Display: 'Flow' });
     } else if (i === 1) { // if the second button is clicked
-      this.setState({Display: 'Edit'});
+      this.setState({ Display: 'Edit' });
     }
   }
 
   // function for handling a click on a checkbox
-  checkboxClick(classID) {
+  checkboxClick(cl) {
+    let classID = cl.Id;
     // create a copy of the taken classes (for re-rendering purposes in React)
     if (this.state.Taken_Classes.indexOf(classID) > -1) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
-      this.setState({Taken_Classes: this.state.Taken_Classes.filter(c => c !== classID)});
+      this.setState({ Taken_Classes: this.state.Taken_Classes.filter(c => c !== classID) });
+      if (cl.Fullfills.startsWith("CS Breadth")) { // if breadth course 
+        let newClasses = this.state.Classes.slice();
+        for (let nCl of newClasses) {
+          //change the name of the breadth course back to CS breadth if it is no longer a taken class
+          if (nCl.Name === cl.Id) {
+            nCl.Name = 'CS Breadth';
+            break;
+          }
+        }
+        this.setState({ Classes: newClasses });
+      }
     } else {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
       this.setState({Taken_Classes: [...this.state.Taken_Classes, classID]});
+      if (cl.Fullfills.startsWith("CS Breadth")) { // if breadth course 
+        let newClasses = this.state.Classes.slice();
+        for (let nCl of newClasses) {
+          //change the name of the CS breadth course to the ID of the course if it has been taken (checkbox clicked)
+          if (nCl.Name === 'CS Breadth') {
+            nCl.Name = cl.Id;
+            break;
+          }
+        }
+        this.setState({ Classes: newClasses });
+      }
     }
   }
 
 // this function handles the reading of the uploaded file and parses it to JSON for further use
  onChange(e){
-    
     let file = event.target.files[0];
     console.log("file", file);
 
@@ -138,8 +155,6 @@ class App extends React.Component {
         });
       };
       reader.readAsText(file);
-
-    
   }
 
   // this function handles the functionality of the upload button itself so the user can choose a file to upload
@@ -152,12 +167,25 @@ class App extends React.Component {
     }
   }
 
+  // when begin hovering over box 
+  // note: this takes ugly parameters
+  flowBoxEnter(cl) {
+    if (typeof cl !== "undefined" && 'PreReqs' in cl) { // make sure information & property exist
+      this.setState({ CurPreReqs: cl.PreReqs.flat() }); // get prereqs and put in state
+    } 
+  }
+
+  // when end hovering over box
+  flowBoxLeave() {
+    this.setState({ CurPreReqs: [] }); // clear prereqs list from state
+  }
+
   //make sure to open the webpage into a new tab to test save click functionality
   saveClick() {
     // adapted from answer to https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
     console.log("Save click");
     const fileData = JSON.stringify(this.state.Taken_Classes);
-    const blob = new Blob([fileData], {type: "text/plain"});
+    const blob = new Blob([fileData], { type: "text/plain" });
     saveAs(blob, "CUrPLAN");
     console.log("Finished saving");
 
@@ -169,7 +197,7 @@ class App extends React.Component {
   }
 
   // function that handles creating the edit view and list view components, with the json info that needs to be displayed
-  displayEditView() { 
+  displayEditView() {
     let headerList = groupBy(this.state.Class_Desc, x => x.Fullfills);
 
     return (
@@ -179,7 +207,7 @@ class App extends React.Component {
             <th className='courses'>Courses</th>
             <th className='credits'>Credits</th>
             <th className='notes'>Notes</th>
-          </tr>   
+          </tr>
         </thead>
         <tbody>
           <tr>
@@ -191,26 +219,26 @@ class App extends React.Component {
             <td className="heading-credits-td">24</td>
             <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">See CU Denver Core Curriculum here</a></td>
           </tr>
-          
+
           { // convert list of headers and courses to appropriate table rows
             Object.entries(headerList).map(([header, courses]) => (
-            <React.Fragment key={'section'+header}>
-              <tr>
-                <td className="heading-courses-td">{header}</td>
-                {/* get needed credits for section by looking in object */}
-                <td className="heading-credits-td">{this.state.Needed[header]}</td>
-                <td className="heading-notes-td"></td>
-              </tr>
-              { /* pass all properties of a course to the list view item to get the html code */
-                courses.map((course) => (<ListViewItem 
-                  key={'course'+course.Id}
-                  {...course} // pass elements of a course as properties to the ListViewItem
-                  // () => is a way to bind functions when needing to pass functions to another component
-                  changeFunc={() => this.checkboxClick(course.Id)} // pass function to component: https://reactjs.org/docs/faq-functions.html
-                  checked={this.state.Taken_Classes.indexOf(course.Id) > -1} // variable used to keep boxes checked when switch between views
-                ></ListViewItem>))}
-            </React.Fragment>
-          ))}
+              <React.Fragment key={'section' + header}>
+                <tr>
+                  <td className="heading-courses-td">{header}</td>
+                  {/* get needed credits for section by looking in object */}
+                  <td className="heading-credits-td">{this.state.Needed[header]}</td>
+                  <td className="heading-notes-td"></td>
+                </tr>
+                { /* pass all properties of a course to the list view item to get the html code */
+                  courses.map((course) => (<ListViewItem
+                    key={'course' + course.Id}
+                    {...course} // pass elements of a course as properties to the ListViewItem
+                    // () => is a way to bind functions when needing to pass functions to another component
+                    changeFunc={() => this.checkboxClick(course)} // pass function to component: https://reactjs.org/docs/faq-functions.html
+                    checked={this.state.Taken_Classes.indexOf(course.Id) > -1} // variable used to keep boxes checked when switch between views
+                  ></ListViewItem>))}
+              </React.Fragment>
+            ))}
         </tbody>
       </table>
     );
@@ -221,13 +249,29 @@ class App extends React.Component {
     //for (let _#1_ in _#2_) will only give you the index where the element is stored #2
     for (let desc in this.state.Class_Desc) {
       if (this.state.Class_Desc[desc].Id === id) {
-        return(this.state.Class_Desc[desc]);
+        return (this.state.Class_Desc[desc]);
       }
     }
   }
 
   // function that handles the content from the json file that should be displayed, and labels the semesters accordingly
   displayFlowChart() {
+    // create copies of state variables
+    /*let newClasses = this.state.Classes.slice();
+    let usedClasses = [];
+    for (let newCl of newClasses) {
+      // add class description to new list 
+      if (!!this.getClass(newCl.Id)) {
+        newCl.cl = this.getClass(newCl.Name);
+      }
+      // mark all the classes in taken that aren't breadth courses as 
+      if (this.state.Taken_Classes.indexOf(newCl.Name) > -1) {
+        usedClasses.push(newCl.Name);
+      }
+    }
+    console.log(usedClasses);
+    let notIDClasses = this.state.Taken_Classes.filter(x => usedClasses.indexOf(x) === -1);
+    console.log(notIDClasses);*/
     // get classes grouped by semester (using global function)
     let semClasses = groupBy(this.state.Classes, x => x.Semester);
     // get classes grouped by semester to be grouped by year
@@ -243,22 +287,25 @@ class App extends React.Component {
             // sort the semesters alphabetically, so that Fall always comes before Spring
             // uses map to loop and extract semester string in 'sem' and list of classes in 'classes'
             sems.sort((a, b) => a[0].localeCompare(b[0])).map(([sem, classes]) => (
-            <Col key={sem} className='semcol'> 
-              {/* Col: column tag, imported from bootstrap-react 
+              <Col key={sem} className='semcol'>
+                {/* Col: column tag, imported from bootstrap-react 
                   key attribute is used as a unique identifier for an item in a list in react */}
-              <div className='sem-header'>{sem.split('-')[0]}</div>
-              {classes.sort((a, b) => 
-                // sort by color order 
-                this.state.Color_Order.indexOf(a.Color) - this.state.Color_Order.indexOf(b.Color)
-              ).map((cl, i) => (
-                // FlowchartItem tag will contain the information about the class (what class you are taking that semester will be displayed)
-                <FlowChartItem 
-                  key={sem + 'class' + i}
-                  {...cl} 
-                  cl={this.getClass(cl.Name)}
-                  taken={this.state.Taken_Classes.indexOf(cl.Name) > -1 /* use indexOf to get the index of the element in the list, if not in the list it returns -1*/}
-                ></FlowChartItem>))}
-            </Col>))
+                <div className='sem-header'>{sem.split('-')[0]}</div>
+                {classes.sort((a, b) =>
+                  // sort by color order 
+                  this.state.Color_Order.indexOf(a.Color) - this.state.Color_Order.indexOf(b.Color)
+                ).map((cl, i) => (
+                  // FlowchartItem tag will contain the information about the class (what class you are taking that semester will be displayed)
+                  <FlowChartItem
+                    key={sem + 'class' + i}
+                    {...cl}
+                    cl={this.getClass(cl.Name)}
+                    enterFunc={() => this.flowBoxEnter(this.getClass(cl.Name)) /* very ugly way to pass parameters to the flowboxenter function */}
+                    leaveFunc={() => this.flowBoxLeave()}
+                    isPreReq={this.state.CurPreReqs.indexOf(cl.Name) > -1}
+                    taken={this.state.Taken_Classes.indexOf(cl.Name) > -1 /* use indexOf to get the index of the element in the list, if not in the list it returns -1*/}
+                  ></FlowChartItem>))}
+              </Col>))
           }</Row>
         </Container>
       </Col>));
@@ -307,11 +354,11 @@ class App extends React.Component {
         <Navbar variant='dark' bg='dark' sticky='top'>
           <Navbar.Brand>CUrPLAN</Navbar.Brand>
           <Nav>
-            <Nav.Link 
+            <Nav.Link
               className={(this.state.Display === 'Flow') ? 'active' : 'inactive'}
               onClick={() => this.menuClick(0)}
             >Flowchart</Nav.Link>
-            <Nav.Link 
+            <Nav.Link
               className={(this.state.Display === 'Edit') ? 'active' : 'inactive'}
               onClick={() => this.menuClick(1)}
             >Edit Mode</Nav.Link>
