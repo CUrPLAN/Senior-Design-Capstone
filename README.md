@@ -1,5 +1,9 @@
-DURING DEVELOPMENT, ACCESS THE WEBVIEW THROUGH THIS LINK:
+# Development Notes
+## When using repl, the webpage can be opened from:
 https://senior-design-capstone.curplan.repl.co/
+
+## When running on a local computer
+use the command ```npx vite --config local-config.js``` to run the dev server
 
 # Senior-Design-Capstone
 ### Project Name: CUrPLAN
