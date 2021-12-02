@@ -8,6 +8,9 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { saveAs } from 'file-saver';
+import { useCallback } from 'react';
+// import { useDropzone } from 'react-dropzone';
+import Dropzone from 'react-dropzone';
 
 
 
@@ -76,7 +79,7 @@ class App extends React.Component {
       Display: 'Flow',
       Classes: [],
       Class_Desc: [],
-      Taken_Classes: [], // ["CSCI 2942", "CSCI 4892"] < --- only include the classes that have been taken in this list
+      Taken_Classes: [],
       CurPreReqs: []
     };
   }
@@ -136,8 +139,9 @@ class App extends React.Component {
   }
 
 // this function handles the reading of the uploaded file and parses it to JSON for further use
- onChange(e){
-    let file = event.target.files[0];
+ onUploadFile(files){
+    
+    let file = files[0];
     console.log("file", file);
 
     if (file) {
@@ -148,23 +152,22 @@ class App extends React.Component {
     let reader = new FileReader();
     console.log("reader", reader)
 
-      reader.onload = (e) => {
-        console.log("reader results", reader.result)
+    reader.onload = (e) => {
+      console.log("reader results", reader.result)
+      try {
         // automatically populating the taken classes object with the parsed uploaded file
-        this.setState({ Taken_Classes: JSON.parse(e.target.result) }, () => {
-        });
-      };
-      reader.readAsText(file);
+        this.setState({ Taken_Classes: JSON.parse(e.target.result) });
+      } catch (err) {
+        console.log(err);
+        alert("File is not a valid json file");
+      }
+    };
+    reader.readAsText(file);
   }
 
   // this function handles the functionality of the upload button itself so the user can choose a file to upload
-  onClickUpload = () => {
-  document.getElementById('uploadFileButton').click();
-  document.getElementById('uploadFileButton').onchange = () =>{      
-  this.setState({
-    FileUploadState:document.getElementById('uploadFileButton').value
-        });
-    }
+  onClickUpload() {
+    document.getElementById('uploadFileButton').click();
   }
 
   // when begin hovering over box 
@@ -185,15 +188,9 @@ class App extends React.Component {
     // adapted from answer to https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
     console.log("Save click");
     const fileData = JSON.stringify(this.state.Taken_Classes);
-    const blob = new Blob([fileData], { type: "text/plain" });
+    const blob = new Blob([fileData], {type: "application/json"});
     saveAs(blob, "CUrPLAN");
     console.log("Finished saving");
-
-    // const url = URL.createObjectURL(blob);
-    // const link = document.createElement('a');
-    // link.download = `CUrPLAN.json`;
-    // link.href = url;
-    // link.click(); 
   }
 
   // function that handles creating the edit view and list view components, with the json info that needs to be displayed
@@ -337,15 +334,6 @@ class App extends React.Component {
       content = this.displayFlowChart();
     }
 
-    // const [name, setName] = useState("");
-    // const [selectedFile, setSelectedFile] = useState(null);
-
-    // const hiddenFileInput = React.useRef(null);
-
-    // const handleClick = event => {
-      // hiddenFileInput.current.click();
-    // };
-
     // this return function in the render function will display the content
     // it creates the html code for the navbars and basic layout of the page
     // the {content} segment indicates that the html code from the variable above should be inserted
@@ -367,10 +355,25 @@ class App extends React.Component {
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
           <div>
-          <input id="uploadFileButton" type="file" hidden onChange={(e)=>this.onChange(e)} />
-          <Button variant="outline-primary" id="upload-button" onClick={this.onClickUpload}>Upload</Button>
-          {this.state.FileUploadState}
+            <input id="uploadFileButton" accept=".json" type="file" onChange={(e)=>this.onUploadFile(e.target.files)} />
+            <Button variant="outline-primary" id="upload-button" onClick={()=>this.onClickUpload()}>Upload</Button>
           </div>
+
+
+          <div className="drop">
+            <Dropzone onDrop={acceptedFiles => this.onUploadFile(acceptedFiles)}>
+              {({getRootProps, getInputProps}) => (
+                <section>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <p>Drop your CUrPLAN .json file here</p>
+                  </div>
+                </section>
+              )}
+            </Dropzone>
+          </div>
+
+
           <Button variant="outline-primary" id="save-button" onClick={() => this.saveClick()}>Save</Button>
         </Navbar>
       </div>
