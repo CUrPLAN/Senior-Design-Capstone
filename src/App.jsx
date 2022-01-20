@@ -7,9 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { saveAs } from 'file-saver';
-import { useCallback } from 'react';
-// import { useDropzone } from 'react-dropzone';
+import saveAs from 'file-saver';
 import Dropzone from 'react-dropzone';
 
 
@@ -22,6 +20,23 @@ var groupBy = function(xs, func) {
     return rv;
   }, {});
 };
+
+var getNotes = function(oldPrereqs) {
+  let prereqs = oldPrereqs.slice();
+  if (!(typeof prereqs == 'undefined') && (prereqs.length > 0)) {
+    let lastSubject = prereqs[0].slice(0,4);
+    for (let i = 1; i < prereqs.length; i++) {
+      if (prereqs[i].slice(0,4) == lastSubject) {
+        prereqs[i] = prereqs[i].slice(5,);
+      } else {
+        lastSubject = prereqs[i].slice(0,4);
+      }
+    }
+    return 'Prereqs: ' + prereqs.join(' & ');
+  } else {
+    return "";
+  }
+}
 
 class ListViewItem extends React.Component {
   constructor(props) {
@@ -38,9 +53,11 @@ class ListViewItem extends React.Component {
               onChange={this.props.changeFunc /* calls change function passed as property when checkbox is toggled*/}
               checked={this.props.checked /* sets checkboxes as checked based on property passed */}
             />
-          </InputGroup>{/*this is a shorthand if else statement ? :; if condition ? output true statement : output false statement */}{this.props.Id ? this.props.Id : " "} {this.props.Name ? this.props.Name : " "}</td>
-        <td className="credits">{this.props.Credits ? this.props.Credits : " "}</td>
-        <td className="notes">{this.props.Notes ? this.props.Notes : " "}</td>
+          </InputGroup>{/*this is a shorthand if else statement ? :; if condition ? output true statement : output false statement */}
+            {this.props.Id ? this.props.Id : " "} {this.props.Name ? this.props.Name : " "}</td>
+        <td className="credits">{this.props.Credits ? this.props.Credits.slice(0,1) : " "}</td>
+        {/*<td className="notes">{this.props.Notes ? this.props.Notes : " "}</td>*/}
+        <td className="notes">{this.props.Prereqs ? getNotes(this.props.Prereqs) : " "}</td>
       </tr>
     );
   }
@@ -56,16 +73,19 @@ class FlowChartItem extends React.Component {
 
     // If the class is in the taken classes list modify transparency
     // need spaces so that if there are different css styling elements that need to be applied, that the className property can differentiate from them
+    let bgRGB = this.props.bgCol.slice(1).match(/.{1,2}/g).map(x => Number.parseInt(x, 16));
+    let textCol = (bgRGB[0]*0.299 + bgRGB[1]*0.587 + bgRGB[2]*0.114) > 186 ? "#000000" : "#ffffff";
     return (
-      <div className={'flow-box ' + this.props.Color + (this.props.taken ? ' taken-class' : '') + (this.props.isPreReq ? ' pre-reqs' : '')} 
+      <div style={{backgroundColor: this.props.bgCol, color: textCol}} className={'flow-box ' + 
+      (this.props.taken ? ' taken-class' : '') + (this.props.isPreReq ? ' pre-reqs' : '')} 
       onMouseEnter={this.props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
       onMouseLeave={this.props.leaveFunc}>
         <div className='flow-id'>{this.props.Name}</div>
         <div className='flow-desc'>
           {/* !!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering) */}
           <div className='flow-name'>{!!this.props.cl && this.props.cl.Name}</div>
-          <div className='flow-credits'>{this.props.Credits} {this.props.Credits == 1 ? 'hour' : 'hours'}</div>
-          <div className='flow-notes'>{!!this.props.cl && this.props.cl.Notes}</div>
+          <div className='flow-credits'>{this.props.Credits.slice(0,1)} {this.props.Credits == 1 ? 'hour' : 'hours'}</div>
+          <div className='flow-notes'>{!!this.props.cl && getNotes(this.props.cl.Prereqs)}</div>
         </div>
       </div>
     );
@@ -102,67 +122,89 @@ class App extends React.Component {
     }
   }
 
+  addClassToCategory(classId, classCredits, category) {
+    this.state.Categories[category].Credits -= Number.parseInt(classCredits.slice(0,1));
+    if ('FC_Name' in this.state.Categories[category]) {
+      let index = this.state.Classes.findIndex(c => c.Name === this.state.Categories[category].FC_Name);
+      let newClasses = this.state.Classes.slice();
+      newClasses[index].Type = newClasses[index].Name;
+      newClasses[index].Name = classId;
+      this.setState({ Classes: newClasses });
+    }
+  }
+
+  removeClassFromCategory(classId, classCredits, category) {
+    this.state.Categories[category].Credits += Number.parseInt(classCredits.slice(0,1));
+    let index = this.state.Classes.findIndex(cl => cl.Name === classId);
+    if ('Type' in this.state.Classes[index]) {
+      let newClasses = this.state.Classes.slice();
+      newClasses[index].Name = newClasses[index].Type;
+      this.setState({ Classes: newClasses });
+    }
+  }
+
   // function for handling a click on a checkbox
-  checkboxClick(cl) {
-    let classID = cl.Id;
+  checkboxClick(classID) {
     // create a copy of the taken classes (for re-rendering purposes in React)
     if (this.state.Taken_Classes.indexOf(classID) > -1) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
       this.setState({ Taken_Classes: this.state.Taken_Classes.filter(c => c !== classID) });
-      if (cl.Fullfills.startsWith("CS Breadth")) { // if breadth course 
-        let newClasses = this.state.Classes.slice();
-        for (let nCl of newClasses) {
-          //change the name of the breadth course back to CS breadth if it is no longer a taken class
-          if (nCl.Name === cl.Id) {
-            nCl.Name = 'CS Breadth';
-            break;
+      let cl = this.state.Class_Desc[classID];
+      if ('Classes' in this.state.Categories[cl.Fulfills] && this.state.Categories[cl.Fulfills].Classes.indexOf(classID) > -1) {
+        this.state.Categories[cl.Fulfills].Classes = this.state.Categories[cl.Fulfills].Classes.filter(c => c !== classID);
+        if ('Fallback_Cat' in this.state.Categories[cl.Fulfills]) {
+          this.removeClassFromCategory(classID, cl.Credits, this.state.Categories[cl.Fulfills].Fallback_Cat);
+        }
+      } else {
+        this.removeClassFromCategory(classID, cl.Credits, cl.Fulfills);
+        if ('Classes' in this.state.Categories[cl.Fulfills] && this.state.Categories[cl.Fulfills].Classes.length > 0) {
+          let newClassId = this.state.Categories[cl.Fulfills].Classes[0];
+          cl = this.state.Class_Desc[newClassId];
+          this.state.Categories[cl.Fulfills].Classes = this.state.Categories[cl.Fulfills].Classes.filter(c => c !== newClassId);
+          if ('Fallback_Cat' in this.state.Categories[cl.Fulfills]) {
+            this.removeClassFromCategory(newClassId, cl.Credits, this.state.Categories[cl.Fulfills].Fallback_Cat);
+          }
+          if (this.state.Categories[cl.Fulfills].Credits > 0) {
+            this.addClassToCategory(newClassId, cl.Credits, cl.Fulfills);
+          } else {
+            this.state.Categories[cl.Fulfills].Classes = ('Classes' in this.state.Categories[cl.Fulfills]) ? [...this.state.Categories[cl.Fulfills].Classes, newClassId] : [newClassId];
+            if ('Fallback_Cat' in this.state.Categories[cl.Fulfills]) {
+              this.addClassToCategory(newClassId, cl.Credits, this.state.Categories[cl.Fulfills].Fallback_Cat);
+            }
           }
         }
-        this.setState({ Classes: newClasses });
       }
     } else {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
       this.setState({Taken_Classes: [...this.state.Taken_Classes, classID]});
-      if (cl.Fullfills.startsWith("CS Breadth")) { // if breadth course 
-        let newClasses = this.state.Classes.slice();
-        for (let nCl of newClasses) {
-          //change the name of the CS breadth course to the ID of the course if it has been taken (checkbox clicked)
-          if (nCl.Name === 'CS Breadth') {
-            nCl.Name = cl.Id;
-            break;
-          }
+      let cl = this.state.Class_Desc[classID];
+      if (this.state.Categories[cl.Fulfills].Credits > 0) {
+        this.addClassToCategory(classID, cl.Credits, cl.Fulfills);
+      } else {
+        this.state.Categories[cl.Fulfills].Classes = ('Classes' in this.state.Categories[cl.Fulfills]) ? [...this.state.Categories[cl.Fulfills].Classes, classID] : [classID];
+        if ('Fallback_Cat' in this.state.Categories[cl.Fulfills]) {
+          this.addClassToCategory(classID, cl.Credits, this.state.Categories[cl.Fulfills].Fallback_Cat);
         }
-        this.setState({ Classes: newClasses });
       }
     }
   }
 
 // this function handles the reading of the uploaded file and parses it to JSON for further use
  onUploadFile(files){
-    
-    let file = files[0];
-    console.log("file", file);
-
-    if (file) {
-      let data = new FormData();
-      data.append('file', file)
-    }
-
     let reader = new FileReader();
-    console.log("reader", reader)
-
+    // when reader reads a file
     reader.onload = (e) => {
-      console.log("reader results", reader.result)
+      console.log("reader results", reader.result);
       try {
-        // automatically populating the taken classes object with the parsed uploaded file
-        this.setState({ Taken_Classes: JSON.parse(e.target.result) });
-      } catch (err) {
-        console.log(err);
-        alert("File is not a valid json file");
+        this.setState({ Taken_Classes: JSON.parse(e.target.result) }); // populate Taken_Classes with parsed upload file
+      } catch (err) { // if error during parsing to json or setting state
+        console.log(err); // print to console for debugging
+        alert("File is not a valid json file"); // alert
       }
     };
-    reader.readAsText(file);
+    // make reader read the first file uploaded
+    reader.readAsText(files[0]);
   }
 
   // this function handles the functionality of the upload button itself so the user can choose a file to upload
@@ -170,33 +212,46 @@ class App extends React.Component {
     document.getElementById('uploadFileButton').click();
   }
 
-  // when begin hovering over box 
-  // note: this takes ugly parameters
-  flowBoxEnter(cl) {
-    if (typeof cl !== "undefined" && 'PreReqs' in cl) { // make sure information & property exist
-      this.setState({ CurPreReqs: cl.PreReqs.flat() }); // get prereqs and put in state
-    } 
+  // when begin hovering over box, get prereqs and put in state
+  flowBoxEnter(classId) {
+    this.setState({ CurPreReqs: this.state.Class_Desc[classId].Prereqs });
   }
 
-  // when end hovering over box
+  // IF WE WANNA DO THIS:
+  // recursive function to get all prerequisites of a class
+  getPrereqs(clId) {
+    // check if information and property exist
+    if ((clId in this.state.Class_Desc) && ('Prereqs' in this.state.Class_Desc[clId])) {
+      // make array of the current prereqs
+      let prereqarr = this.state.Class_Desc[clId].Prereqs;
+      let newprereq = prereqarr.slice(); // make a copy for adding to (else we infinite loop)
+      // for each prereq, add all of its prereqs that aren't in the list already
+      for (let preCl of prereqarr) {
+        if (preCl != clId) { // prevent infinite self referencing loops
+          newprereq = newprereq.concat(this.getPrereqs(preCl).filter(x => newprereq.indexOf(x) < 0));
+        }
+      }
+      return newprereq;
+    }
+    return []; // if no class or no information, return no prereqs
+  }
+
+  // when end hovering over box, clear prereqs list from state
   flowBoxLeave() {
-    this.setState({ CurPreReqs: [] }); // clear prereqs list from state
+    this.setState({ CurPreReqs: [] });
   }
 
   //make sure to open the webpage into a new tab to test save click functionality
   saveClick() {
     // adapted from answer to https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
-    console.log("Save click");
     const fileData = JSON.stringify(this.state.Taken_Classes);
     const blob = new Blob([fileData], {type: "application/json"});
     saveAs(blob, "CUrPLAN");
-    console.log("Finished saving");
   }
 
   // function that handles creating the edit view and list view components, with the json info that needs to be displayed
   displayEditView() {
-    let headerList = groupBy(this.state.Class_Desc, x => x.Fullfills);
-
+    let headerList = groupBy(Object.entries(this.state.Class_Desc), x => x[1].Fulfills);
     return (
       <table className='listview-table'>
         <thead>
@@ -208,13 +263,15 @@ class App extends React.Component {
         </thead>
         <tbody>
           <tr>
-            <td colSpan="3" className="alert-td">* Course prerequisites change regularly. Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
+            <td colSpan="3" className="alert-td">* Course prerequisites change regularly. 
+            Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
           </tr>
 
           <tr>
             <td className="heading-courses-td">Required CU Denver Core Curriculum Coursework</td>
             <td className="heading-credits-td">24</td>
-            <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">See CU Denver Core Curriculum here</a></td>
+            <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">
+              See CU Denver Core Curriculum here</a></td>
           </tr>
 
           { // convert list of headers and courses to appropriate table rows
@@ -223,16 +280,17 @@ class App extends React.Component {
                 <tr>
                   <td className="heading-courses-td">{header}</td>
                   {/* get needed credits for section by looking in object */}
-                  <td className="heading-credits-td">{this.state.Needed[header]}</td>
+                  <td className="heading-credits-td">{this.state.Categories[header].Credits}</td>
                   <td className="heading-notes-td"></td>
                 </tr>
                 { /* pass all properties of a course to the list view item to get the html code */
-                  courses.map((course) => (<ListViewItem
-                    key={'course' + course.Id}
+                  courses.map(([courseId, course]) => (<ListViewItem
+                    key={'course' + courseId}
+                    Id={courseId}
                     {...course} // pass elements of a course as properties to the ListViewItem
                     // () => is a way to bind functions when needing to pass functions to another component
-                    changeFunc={() => this.checkboxClick(course)} // pass function to component: https://reactjs.org/docs/faq-functions.html
-                    checked={this.state.Taken_Classes.indexOf(course.Id) > -1} // variable used to keep boxes checked when switch between views
+                    changeFunc={() => this.checkboxClick(courseId)} // pass function to component: https://reactjs.org/docs/faq-functions.html
+                    checked={this.state.Taken_Classes.indexOf(courseId) > -1} // variable used to keep boxes checked when switch between views
                   ></ListViewItem>))}
               </React.Fragment>
             ))}
@@ -241,34 +299,8 @@ class App extends React.Component {
     );
   }
 
-  getClass(id) {
-    //checks every class description and finds the description that matches the class
-    //for (let _#1_ in _#2_) will only give you the index where the element is stored #2
-    for (let desc in this.state.Class_Desc) {
-      if (this.state.Class_Desc[desc].Id === id) {
-        return (this.state.Class_Desc[desc]);
-      }
-    }
-  }
-
   // function that handles the content from the json file that should be displayed, and labels the semesters accordingly
   displayFlowChart() {
-    // create copies of state variables
-    /*let newClasses = this.state.Classes.slice();
-    let usedClasses = [];
-    for (let newCl of newClasses) {
-      // add class description to new list 
-      if (!!this.getClass(newCl.Id)) {
-        newCl.cl = this.getClass(newCl.Name);
-      }
-      // mark all the classes in taken that aren't breadth courses as 
-      if (this.state.Taken_Classes.indexOf(newCl.Name) > -1) {
-        usedClasses.push(newCl.Name);
-      }
-    }
-    console.log(usedClasses);
-    let notIDClasses = this.state.Taken_Classes.filter(x => usedClasses.indexOf(x) === -1);
-    console.log(notIDClasses);*/
     // get classes grouped by semester (using global function)
     let semClasses = groupBy(this.state.Classes, x => x.Semester);
     // get classes grouped by semester to be grouped by year
@@ -296,8 +328,9 @@ class App extends React.Component {
                   <FlowChartItem
                     key={sem + 'class' + i}
                     {...cl}
-                    cl={this.getClass(cl.Name)}
-                    enterFunc={() => this.flowBoxEnter(this.getClass(cl.Name)) /* very ugly way to pass parameters to the flowboxenter function */}
+                    cl={this.state.Class_Desc[cl.Name]}
+                    bgCol={this.state.Colors[cl.Color]}
+                    enterFunc={() => this.flowBoxEnter(cl.Name)}
                     leaveFunc={() => this.flowBoxLeave()}
                     isPreReq={this.state.CurPreReqs.indexOf(cl.Name) > -1}
                     taken={this.state.Taken_Classes.indexOf(cl.Name) > -1 /* use indexOf to get the index of the element in the list, if not in the list it returns -1*/}
@@ -315,10 +348,6 @@ class App extends React.Component {
         </Row>
       </Container>
     );
-  }
-
-  print() {
-    window.print();
   }
 
   // render function under App class is used to tell application to display content

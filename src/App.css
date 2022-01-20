@@ -111,44 +111,9 @@ body {
   border: red solid 3px;
 }
 
-/* style each course based on the category it belongs to */
-.cs-core {
-  background-color: rgba(189,215,238,255);
-}
-
-.cs-systems-core {
-  color: white;
-  background-color: rgba(46,117,182,255);
-}
-
-.cs-breadth {
-  background-color: rgba(255,242,204,255);
-}
-
-.cs-elective {
-  background-color: rgba(255,217,102,255);
-}
-
-.math {
-  background-color: rgba(226,240,217,255);
-}
-
-.science {
-  background-color: rgba(169,209,142,255);
-}
-
-.gen-ed-core {
-  background-color: rgba(191,191,191,255);
-}
-
-/* .listview {
-  margin: 1vh auto;
-  width: 98%;
-} */
-
 .listview-table {
   border: solid 1px black;
-  margin: 1em 1em 4em 1em
+  margin: 1vh 1vw 12vh 1vw;
 }
 
 th {

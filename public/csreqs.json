@@ -1,800 +1,1694 @@
 {
-  "Color_Order": ["cs-core", "cs-systems-core", "cs-breadth", "cs-elective", "math", "science", "gen-ed-core"],
-  "Needed": {
-    "Required CU Denver Core Curriculum Coursework": 24,
-    "Required Engineering Design Courses": 3,
-    "Required Computer Science Core Courses": 25,
-    "Required Computer Science Systems Core Courses": 21,
-    "CS Breadth: Capstone Project": 6,
-    "CS Breadth: Data Science": 3,
-    "CS Breadth: Scientific Computing": 3,
-    "CS Breadth: Secure Computing": 3,
-    "CS Breadth: System Software": 6,
-    "Required Mathematics": 12,
-    "Required Science": 10,
-    "CS Technical Electives": 12
-  }, 
-  "Classes": [
-    {
-      "Name": "CSCI 1410",
-      "Credits": "3",
-      "Semester": "Fall-1",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "CSCI 1411",
-      "Credits": "1",
-      "Semester": "Fall-1",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "CSCI 1510",
-      "Credits": "3",
-      "Semester": "Fall-1",
-      "Color": "cs-systems-core"
-    },
-    {
-      "Name": "MATH 1401",
-      "Credits": "4",
-      "Semester": "Fall-1",
-      "Color": "math"
-    },
-    {
-      "Name": "ENGL 1020",
-      "Credits": "3",
-      "Semester": "Spring-1",
-      "Color": "gen-ed-core"
-    },
-    {
-      "Name": "ENGR 1200",
-      "Credits": "3",
-      "Semester": "Fall-1",
-      "Color": "cs-elective"
-    },
-    {
-      "Name": "CSCI 2312",
-      "Credits": "3",
-      "Semester": "Spring-1",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "CSCI 2525",
-      "Credits": "3",
-      "Semester": "Spring-1",
-      "Color": "cs-systems-core"
-    },
-    {
-      "Name": "MATH 2411",
-      "Credits": "4",
-      "Semester": "Spring-1",
-      "Color": "math"
-    },
-    {
-      "Name": "ENGL 2030",
-      "Credits": "3",
-      "Semester": "Spring-2",
-      "Color": "gen-ed-core"
-    },
-    {
-      "Name": "Gen Ed Core",
-      "Credits": "3",
-      "Semester": "Spring-1",
-      "Color": "gen-ed-core"
-    },
-    {
-      "Name": "CSCI 2421",
-      "Credits": "3",
-      "Semester": "Fall-2",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "CSCI 2511",
-      "Credits": "3",
-      "Semester": "Fall-2",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "Science 1",
-      "Credits": "3-4",
-      "Semester": "Fall-2",
-      "Color": "science"
-    },
-    {
-      "Name": "Science 1 Lab",
-      "Credits": "1",
-      "Semester": "Fall-2",
-      "Color": "science"
-    },
-    {
-      "Name": "Gen Ed Core",
-      "Credits": "3",
-      "Semester": "Fall-2",
-      "Color": "gen-ed-core"
-    },
-    {
-      "Name": "Gen Ed Core",
-      "Credits": "3",
-      "Semester": "Fall-2",
-      "Color": "gen-ed-core"
-    },
-    {
-      "Name": "CSCI 3287",
-      "Credits": "3",
-      "Semester": "Spring-2",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "CSCI 3412",
-      "Credits": "3",
-      "Semester": "Spring-2",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "CSCI 3761",
-      "Credits": "3",
-      "Semester": "Spring-2",
-      "Color": "cs-systems-core"
-    },
-    {
-      "Name": "Gen Ed Core",
-      "Credits": "3",
-      "Semester": "Fall-1",
-      "Color": "gen-ed-core"
-    },
-    {
-      "Name": "Science 2",
-      "Credits": "3-4",
-      "Semester": "Spring-2",
-      "Color": "science"
-    },
-    {
-      "Name": "Science 2 Lab",
-      "Credits": "1",
-      "Semester": "Spring-2",
-      "Color": "science"
-    },
-    {
-      "Name": "CSCI 3453",
-      "Credits": "3",
-      "Semester": "Fall-3",
-      "Color": "cs-systems-core"
-    },
-    {
-      "Name": "CSCI 3415",
-      "Credits": "3",
-      "Semester": "Fall-3",
-      "Color": "cs-systems-core"
-    },
-    {
-      "Name": "CS Breadth",
-      "Credits": "3",
-      "Semester": "Fall-3",
-      "Color": "cs-breadth"
-    },
-    {
-      "Name": "CS Breadth",
-      "Credits": "3",
-      "Semester": "Fall-3",
-      "Color": "cs-breadth"
-    },
-    {
-      "Name": "CS Elective",
-      "Credits": "3",
-      "Semester": "Fall-3",
-      "Color": "cs-elective"
-    },
-    {
-      "Name": "CSCI 3508",
-      "Credits": "3",
-      "Semester": "Spring-3",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "CS Breadth",
-      "Credits": "3",
-      "Semester": "Spring-3",
-      "Color": "cs-breadth"
-    },
-    {
-      "Name": "CS Elective",
-      "Credits": "3",
-      "Semester": "Spring-3",
-      "Color": "cs-elective"
-    },
-    {
-      "Name": "MATH 3195",
-      "Credits": "4",
-      "Semester": "Spring-3",
-      "Color": "math"
-    },
-    {
-      "Name": "Gen Ed Core",
-      "Credits": "3",
-      "Semester": "Spring-3",
-      "Color": "gen-ed-core"
-    },
-    {
-      "Name": "CSCI 4034",
-      "Credits": "3",
-      "Semester": "Fall-4",
-      "Color": "cs-core"
-    },
-    {
-      "Name": "CSCI 4551",
-      "Credits": "3",
-      "Semester": "Fall-4",
-      "Color": "cs-systems-core"
-    },
-    {
-      "Name": "CSCI 4738",
-      "Credits": "3",
-      "Semester": "Fall-4",
-      "Color": "cs-breadth"
-    },
-    {
-      "Name": "CS Breadth",
-      "Credits": "3",
-      "Semester": "Fall-4",
-      "Color": "cs-breadth"
-    },
-    {
-      "Name": "CS Elective",
-      "Credits": "3",
-      "Semester": "Fall-4",
-      "Color": "cs-elective"
-    },
-    {
-      "Name": "CSCI 4591",
-      "Credits": "3",
-      "Semester": "Spring-4",
-      "Color": "cs-systems-core"
-    },
-    {
-      "Name": "CSCI 4739",
-      "Credits": "3",
-      "Semester": "Spring-4",
-      "Color": "cs-breadth"
-    },
-    {
-      "Name": "CS Breadth",
-      "Credits": "3",
-      "Semester": "Spring-4",
-      "Color": "cs-breadth"
-    },
-    {
-      "Name": "CS Elective",
-      "Credits": "3",
-      "Semester": "Spring-4",
-      "Color": "cs-elective"
-    },
-    {
-      "Name": "Gen Ed Core",
-      "Credits": "3",
-      "Semester": "Spring-4",
-      "Color": "gen-ed-core"
-    }
-  ],
-  "Class_Desc": [
-    {
-      "Credits": 3,
-      "Id": "ENGR 1200",
-      "Name": "Fundamentals of Engineering Design Innovation",
-      "Notes": "",
-      "Fullfills": "Required Engineering Design Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 1410",
-      "Name": "Fundamentals of Computing",
-      "Notes": "*Prerequisite: Freshman status",
-      "CoReqs": [
-        [
-          "CSCI 1411"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 1,
-      "Id": "CSCI 1411",
-      "Name": "Fundamentals of Computing Lab",
-      "Notes": "*Prerequisite: Freshman status",
-      "CoReqs": [
-        [
-          "CSCI 1410"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 2312",
-      "Name": "Object Oriented Programming",
-      "Notes": "*Prerequisite: CSCI 1410 & 1411",
-      "PreReqs": [
-        [
-          "CSCI 1410"
-        ],
-        [
-          "CSCI 1411"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 2421",
-      "Name": "Data Structures & Program Design",
-      "Notes": "*Prerequisite: CSCI 2312",
-      "PreReqs": [
-        [
-          "CSCI 2312"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 2511",
-      "Name": "Discrete Structures",
-      "Notes": "*Prerequisite: MATH 1401",
-      "PreReqs": [
-        [
-          "MATH 1401"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 3287",
-      "Name": "Database Systems",
-      "Notes": "*Prerequisite: ENGL 1020, CSCI 2312 & 2421",
-      "PreReqs": [
-        [
-          "ENGL 1020"
-        ],
-        [
-          "CSCI 2312"
-        ],
-        [
-          "CSCI 2421"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 3412",
-      "Name": "Algorithms",
-      "Notes": "*Prerequisite: CSCI 2312, 2421 & 2511",
-      "PreReqs": [
-        [
-          "CSCI 2312"
-        ],
-        [
-          "CSCI 2421"
-        ],
-        [
-          "CSCI 2511"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 3508",
-      "Name": "Introduction to Software Engineering",
-      "Notes": "*Prerequisite: CSCI 3412",
-      "PreReqs": [
-        [
-          "CSCI 3412"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4034",
-      "Name": "Theoretical Foundations of Computer Science",
-      "Notes": "*Prerequisite: CSCI 3412",
-      "PreReqs": [
-        [
-          "CSCI 3412"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 1510",
-      "Name": "Logic Design",
-      "Notes": "*Prerequisite: Freshman status, MATH 1120/1130 or Equivalent",
-      "PreReqs": [
-        [
-          "MATH 1120",
-          "MATH 1130"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 2525",
-      "Name": "Assembly Language & Computer Organization",
-      "Notes": "*Prerequisite: CSCI 1410, CSCI 1411 & CSCI 1510",
-      "PreReqs": [
-        [
-          "CSCI 1410"
-        ],
-        [
-          "CSCI 1411"
-        ],
-        [
-          "CSCI 1510"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 3415",
-      "Name": "Principles of Programming Languages",
-      "Notes": "*Prerequisite: CSCI 2312, 2421 & 2525",
-      "PreReqs": [
-        [
-          "CSCI 2312"
-        ],
-        [
-          "CSCI 2421"
-        ],
-        [
-          "CSCI 2525"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 3453",
-      "Name": "Operating Systems Concepts",
-      "Notes": "*Prerequisite: CSCI 3412 & 2525",
-      "PreReqs": [
-        [
-          "CSCI 3412"
-        ],
-        [
-          "CSCI 2525"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 3761",
-      "Name": "Introduction to Computer Networks",
-      "Notes": "*Prerequisite: CSCI 2312 & 2421",
-      "PreReqs": [
-        [
-          "CSCI 2312"
-        ],
-        [
-          "CSCI 2421"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4551",
-      "Name": "Parallel & Distributed Computing",
-      "Notes": "*Prerequisite: MATH 3195, CSCI 3415 & 3453",
-      "PreReqs": [
-        [
-          "MATH 3195"
-        ],
-        [
-          "CSCI 3415"
-        ],
-        [
-          "CSCI 3453"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4591",
-      "Name": "Computer Architecture",
-      "Notes": "*Prerequisite: CSCI 2525",
-      "PreReqs": [
-        [
-          "CSCI 2525"
-        ]
-      ],
-      "Fullfills": "Required Computer Science Systems Core Courses"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4738",
-      "Name": "Senior Design Project I",
-      "Notes": "*Prerequisite: CSCI 3287, 3415, 3453, & 3508",
-      "PreReqs": [
-        [
-          "CSCI 3287"
-        ],
-        [
-          "CSCI 3415"
-        ],
-        [
-          "CSCI 3453"
-        ],
-        [
-          "CSCI 3508"
-        ]
-      ],
-      "Restrictions": "Fall",
-      "Fullfills": "CS Breadth: Capstone Project"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4739",
-      "Name": "Senior Design Project II",
-      "Notes": "*Prerequisite: CSCI 4738",
-      "PreReqs": [
-        [
-          "CSCI 4738"
-        ]
-      ],
-      "Restrictions": "Spring",
-      "Fullfills": "CS Breadth: Capstone Project"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4455",
-      "Name": "Data Mining",
-      "Notes": "*Prerequisite: MATH 3195, CSCI 3287 & 3412",
-      "PreReqs": [
-        [
-          "MATH 3195"
-        ],
-        [
-          "CSCI 3287"
-        ],
-        [
-          "CSCI 3412"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Data Science"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4580",
-      "Name": "Data Science",
-      "Notes": "*Prerequisite: MATH 3195, CSCI 3287 & 3412",
-      "PreReqs": [
-        [
-          "MATH 3195"
-        ],
-        [
-          "CSCI 3287"
-        ],
-        [
-          "CSCI 3412"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Data Science"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4930",
-      "Name": "Machine Learning",
-      "Notes": "*Prerequisite: MATH 3195 & CSCI 3412",
-      "PreReqs": [
-        [
-          "MATH 3195"
-        ],
-        [
-          "CSCI 3412"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Data Science"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4931",
-      "Name": "Deep Learning",
-      "Notes": "*Prerequisite: MATH 3195 & CSCI 3412",
-      "PreReqs": [
-        [
-          "MATH 3195"
-        ],
-        [
-          "CSCI 3412"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Data Science"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4951",
-      "Name": "Big Data Systems",
-      "Notes": "*Prerequisite: MATH 3195, CSCI 3287 & CSCI 3412",
-      "PreReqs": [
-        [
-          "MATH 3195"
-        ],
-        [
-          "CSCI 3287"
-        ],
-        [
-          "CSCI 3412"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Data Science"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 3560",
-      "Name": "Probability & Computing",
-      "Notes": "*Prerequisite: MATH 2411 & CSCI 2511",
-      "PreReqs": [
-        [
-          "MATH 2411"
-        ],
-        [
-          "CSCI 2511"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Scientific Computing"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4650",
-      "Name": "Numerical Analysis I",
-      "Notes": "*Prerequisite: MATH 2411, MATH 3191 or 3195",
-      "PreReqs": [
-        [
-          "MATH 2411"
-        ],
-        [
-          "MATH 3191",
-          "MATH 3195"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Scientific Computing"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4110",
-      "Name": "Applied Number Theory",
-      "Notes": "*Prerequisite: CSCI 2511 or MATH 3000",
-      "PreReqs": [
-        [
-          "CSCI 2511",
-          "MATH 3000"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Scientific Computing"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4741",
-      "Name": "Principles of Cyber Security",
-      "Notes": "*Prerequisite: CSCI 3761 & 3287",
-      "PreReqs": [
-        [
-          "CSCI 3761"
-        ],
-        [
-          "CSCI 3287"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Secure Computing"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4742",
-      "Name": "Cybersecurity Programming & Analysis",
-      "Notes": "*Prerequisite: CSCI 3415",
-      "PreReqs": [
-        [
-          "CSCI 3415"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Secure Computing"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4743",
-      "Name": "Cyber and Infrastructure Defense",
-      "Notes": "*Prerequisite: CSCI 3761",
-      "PreReqs": [
-        [
-          "CSCI 3761"
-        ]
-      ],
-      "Fullfills": "CS Breadth: Secure Computing"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 3511",
-      "Name": "Hardware/Software Interface",
-      "Notes": "*Prerequisite: CSCI 2525",
-      "PreReqs": [
-        [
-          "CSCI 2525"
-        ]
-      ],
-      "Restrictions": "Fall",
-      "Fullfills": "CS Breadth: System Software"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4287",
-      "Name": "Embedded Systems Programming",
-      "Notes": "*Prerequisite: CSCI 3453",
-      "PreReqs": [
-        [
-          "CSCI 3453"
-        ]
-      ],
-      "Restrictions": "Spring",
-      "Fullfills": "CS Breadth: System Software"
-    },
-    {
-      "Credits": 3,
-      "Id": "CSCI 4565",
-      "Name": "Introduction to Computer Graphics",
-      "Notes": "*Prerequisite: CSCI 3412 & MATH 3191 or 3195",
-      "PreReqs": [
-        [
-          "CSCI 3412"
-        ],
-        [
-          "MATH 3191",
-          "MATH 3195"
-        ]
-      ],
-      "Restrictions": "Spring",
-      "Fullfills": "CS Breadth: System Software"
-    },
-    {
-      "Credits": 4,
-      "Id": "MATH 1401",
-      "Name": "Calculus I",
-      "Notes": "*Prerequisite: (MATH 1120 or 1130) and placement exam",
-      "PreReqs": [
-        [
-          "MATH 1120",
-          "MATH 1130"
-        ]
-      ],
-      "Fullfills": "Required Mathematics"
-    },
-    {
-      "Credits": 4,
-      "Id": "MATH 2411",
-      "Name": "Calculus II",
-      "Notes": "*Prerequisite: MATH 1401",
-      "PreReqs": [
-        [
-          "MATH 1401"
-        ]
-      ],
-      "Fullfills": "Required Mathematics"
-    },
-    {
-      "Credits": 4,
-      "Id": "MATH 3195",
-      "Name": "Linear Algebra and Differential Equations",
-      "Notes": "*Prerequisite: MATH 2411",
-      "PreReqs": [
-        [
-          "MATH 2411"
-        ]
-      ],
-      "Fullfills": "Required Mathematics"
-    }
-  ]
+	"Color_Order": [
+		"CS CORE",
+		"CS SYSTEMS CORE",
+		"CS BREADTH",
+		"CS ELECTIVE",
+		"MATH",
+		"ENGR",
+		"SCIENCE",
+		"GEN ED CORE"
+	],
+	"Colors": {
+		"CS CORE": "#bcd6ed",
+		"CS ELECTIVE": "#ffd865",
+		"SCIENCE": "#a8d08d",
+		"GEN ED CORE": "#bebebe",
+		"MATH": "#e1efd8",
+		"CS SYSTEMS CORE": "#2d74b5",
+		"CS BREADTH": "#fff1cb",
+		"ENGR": "#e7d0b9"
+	},
+	"Classes": [
+		{
+			"Name": "CSCI 1410",
+			"Credits": "3 hours",
+			"Semester": "Fall-1",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "CSCI 1411",
+			"Credits": "1 hour",
+			"Semester": "Fall-1",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "CSCI 1510",
+			"Credits": "3 hours",
+			"Semester": "Fall-1",
+			"Color": "CS SYSTEMS CORE"
+		},
+		{
+			"Name": "MATH 1401",
+			"Credits": "4 hours",
+			"Semester": "Fall-1",
+			"Color": "MATH"
+		},
+		{
+			"Name": "ENGR 1200",
+			"Credits": "3 hours",
+			"Semester": "Fall-1",
+			"Color": "ENGR"
+		},
+		{
+			"Name": "Gen Ed Core",
+			"Credits": "3 hours",
+			"Semester": "Fall-1",
+			"Color": "GEN ED CORE"
+		},
+		{
+			"Name": "CSCI 2312",
+			"Credits": "3 hours",
+			"Semester": "Spring-1",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "CSCI 2525",
+			"Credits": "3 hours",
+			"Semester": "Spring-1",
+			"Color": "CS SYSTEMS CORE"
+		},
+		{
+			"Name": "MATH 2411",
+			"Credits": "4 hours",
+			"Semester": "Spring-1",
+			"Color": "MATH"
+		},
+		{
+			"Name": "ENGL 1020",
+			"Credits": "3 hours",
+			"Semester": "Spring-1",
+			"Color": "GEN ED CORE"
+		},
+		{
+			"Name": "Gen Ed Core",
+			"Credits": "3 hours",
+			"Semester": "Spring-1",
+			"Color": "GEN ED CORE"
+		},
+		{
+			"Name": "CSCI 2421",
+			"Credits": "3 hours",
+			"Semester": "Fall-2",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "CSCI 2511",
+			"Credits": "3 hours",
+			"Semester": "Fall-2",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "Science 1",
+			"Credits": "3\u20104 hours",
+			"Semester": "Fall-2",
+			"Color": "SCIENCE"
+		},
+		{
+			"Name": "Science 1 Lab",
+			"Credits": "1 hour",
+			"Semester": "Fall-2",
+			"Color": "SCIENCE"
+		},
+		{
+			"Name": "ENGL 2030",
+			"Credits": "3 hours",
+			"Semester": "Fall-2",
+			"Color": "GEN ED CORE"
+		},
+		{
+			"Name": "Gen Ed Core",
+			"Credits": "3 hours",
+			"Semester": "Fall-2",
+			"Color": "GEN ED CORE"
+		},
+		{
+			"Name": "CSCI 3287",
+			"Credits": "3 hours",
+			"Semester": "Spring-2",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "CSCI 3412",
+			"Credits": "3 hours",
+			"Semester": "Spring-2",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "CSCI 3761",
+			"Credits": "3 hours",
+			"Semester": "Spring-2",
+			"Color": "CS SYSTEMS CORE"
+		},
+		{
+			"Name": "Science 2",
+			"Credits": "3\u20104 hours",
+			"Semester": "Spring-2",
+			"Color": "SCIENCE"
+		},
+		{
+			"Name": "Science 2 Lab",
+			"Credits": "1 hour",
+			"Semester": "Spring-2",
+			"Color": "SCIENCE"
+		},
+		{
+			"Name": "Gen Ed Core",
+			"Credits": "3 hours",
+			"Semester": "Spring-2",
+			"Color": "GEN ED CORE"
+		},
+		{
+			"Name": "CSCI 3415",
+			"Credits": "3 hours",
+			"Semester": "Fall-3",
+			"Color": "CS SYSTEMS CORE"
+		},
+		{
+			"Name": "CSCI 3453",
+			"Credits": "3 hours",
+			"Semester": "Fall-3",
+			"Color": "CS SYSTEMS CORE"
+		},
+		{
+			"Name": "CS Breadth Choice",
+			"Credits": "3 hours",
+			"Semester": "Fall-3",
+			"Color": "CS BREADTH"
+		},
+		{
+			"Name": "CS Breadth Choice",
+			"Credits": "3 hours",
+			"Semester": "Fall-3",
+			"Color": "CS BREADTH"
+		},
+		{
+			"Name": "Technical Elective",
+			"Credits": "3 hours",
+			"Semester": "Fall-3",
+			"Color": "CS ELECTIVE"
+		},
+		{
+			"Name": "CSCI 3508",
+			"Credits": "3 hours",
+			"Semester": "Spring-3",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "CS Breadth Choice",
+			"Credits": "3 hours",
+			"Semester": "Spring-3",
+			"Color": "CS BREADTH"
+		},
+		{
+			"Name": "Technical Elective",
+			"Credits": "3 hours",
+			"Semester": "Spring-3",
+			"Color": "CS ELECTIVE"
+		},
+		{
+			"Name": "MATH 3195",
+			"Credits": "4 hours",
+			"Semester": "Spring-3",
+			"Color": "MATH"
+		},
+		{
+			"Name": "Gen Ed Core",
+			"Credits": "3 hours",
+			"Semester": "Spring-3",
+			"Color": "GEN ED CORE"
+		},
+		{
+			"Name": "CSCI 4034",
+			"Credits": "3 hours",
+			"Semester": "Fall-4",
+			"Color": "CS CORE"
+		},
+		{
+			"Name": "CSCI 4738",
+			"Credits": "3 hours",
+			"Semester": "Fall-4",
+			"Color": "CS BREADTH",
+			"Restriction": "FALL ONLY"
+		},
+		{
+			"Name": "CS Breadth Choice",
+			"Credits": "3 hours",
+			"Semester": "Fall-4",
+			"Color": "CS BREADTH"
+		},
+		{
+			"Name": "CSCI 4551",
+			"Credits": "3 hours",
+			"Semester": "Fall-4",
+			"Color": "CS SYSTEMS CORE",
+			"Restriction": "FALL ONLY"
+		},
+		{
+			"Name": "Technical Elective",
+			"Credits": "3 hours",
+			"Semester": "Fall-4",
+			"Color": "CS ELECTIVE"
+		},
+		{
+			"Name": "CSCI 4591",
+			"Credits": "3 hours",
+			"Semester": "Spring-4",
+			"Color": "CS SYSTEMS CORE"
+		},
+		{
+			"Name": "CSCI 4739",
+			"Credits": "3 hours",
+			"Semester": "Spring-4",
+			"Color": "CS BREADTH",
+			"Restriction": "SPRING ONLY"
+		},
+		{
+			"Name": "CS Breadth Choice",
+			"Credits": "3 hours",
+			"Semester": "Spring-4",
+			"Color": "CS BREADTH"
+		},
+		{
+			"Name": "Technical Elective",
+			"Credits": "3 hours",
+			"Semester": "Spring-4",
+			"Color": "CS ELECTIVE"
+		},
+		{
+			"Name": "Gen Ed Core",
+			"Credits": "3 hours",
+			"Semester": "Spring-4",
+			"Color": "GEN ED CORE"
+		}
+	],
+	"Categories": {
+		"Required CU Denver Core Curriculum Coursework": {
+			"Credits": 24,
+			"Notes": "Create and link to a common CU Denver Core Curriculum Handout"
+		},
+		"Required Engineering Design Courses": {
+			"Credits": 3,
+			"Notes": ""
+		},
+		"Required Computer Science Core Courses": {
+			"Credits": 25,
+			"Notes": ""
+		},
+		"Required Computer Science Systems Core Courses": {
+			"Credits": 21,
+			"Notes": ""
+		},
+		"CS Breadth: Capstone Project": {
+			"Credits": 6,
+			"Notes": "(Take Two)"
+		},
+		"CS Breadth: Data Science": {
+			"Credits": 3,
+			"Notes": "(Take One)",
+			"FC_Name": "CS Breadth Choice",
+			"Fallback_Cat": "CS Technical Electives"
+		},
+		"CS Breadth: Scientific Computing": {
+			"Credits": 3,
+			"Notes": "(Take One)",
+			"FC_Name": "CS Breadth Choice",
+			"Fallback_Cat": "CS Technical Electives"
+		},
+		"CS Breadth: Secure Computing": {
+			"Credits": 3,
+			"Notes": "(Take One)",
+			"FC_Name": "CS Breadth Choice",
+			"Fallback_Cat": "CS Technical Electives"
+		},
+		"CS Breadth: System Software": {
+			"Credits": 6,
+			"Notes": "(Take Two)",
+			"FC_Name": "CS Breadth Choice",
+			"Fallback_Cat": "CS Technical Electives"
+		},
+		"Required Mathematics": {
+			"Credits": 12,
+			"Notes": ""
+		},
+		"Required Science": {
+			"Credits": 10,
+			"Notes": "(Pick Choice 1, 2 or 3)                                                                  \n(*for additional credits to meet 10 see handbook)\nFor choice 1 & 2 addtl credits: CS course, science above chosen \nsequence, math beyond Calc II or ENGR elective (not gen-ed course)"
+		},
+		"CS Technical Electives": {
+			"Credits": 12,
+			"Notes": "See handbook for additional information\nCheck individual courses for prerequisites",
+			"FC_Name": "Technical Elective"
+		},
+		"Total Program Hours:": {
+			"Credits": 128,
+			"Notes": ""
+		},
+		"Gen Ed: Core English Composition": {
+			"Credits": 6,
+			"Notes": "Both courses are required."
+		},
+		"Gen Ed: Core Arts": {
+			"Credits": 3,
+			"Notes": "Select one of the following: 3 Credits",
+			"FC_Name": "Gen Ed Core"
+		},
+		"Gen Ed: Core Humanities": {
+			"Credits": 3,
+			"Notes": "Select one of the following: 3 Credits",
+			"FC_Name": "Gen Ed Core"
+		},
+		"Gen Ed: Core Behavioral Sciences": {
+			"Credits": 3,
+			"Notes": "Select one of the following: 3-4 Credits",
+			"FC_Name": "Gen Ed Core"
+		},
+		"Gen Ed: Core Social Sciences": {
+			"Credits": 3,
+			"Notes": "Select one of the following: 3-4 Credits",
+			"FC_Name": "Gen Ed Core"
+		},
+		"Gen Ed: Core International Perspectives": {
+			"Credits": 3,
+			"Notes": "Select one of the following: 3 Credits",
+			"FC_Name": "Gen Ed Core"
+		},
+		"Gen Ed: Core Cultural Diversity": {
+			"Credits": 3,
+			"Notes": "Select one of the following: 3 Credits",
+			"FC_Name": "Gen Ed Core"
+		}
+	},
+	"Class_Desc": {
+		"ENGL 1020": {
+			"Name": "Core Composition I",
+			"Credits": "3 Credits",
+			"Desc": "Provides opportunities to write for different purposes and audiences, with an emphasis on learning how to respond to various rhetorical situations; improving critical thinking, reading, and writing abilities; understanding various writing processes; and gaining a deeper knowledge of language conventions. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-C01.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-CO1, Communication; Denver Core Requirement, English Composition.",
+			"Fulfills": "Gen Ed: Core English Composition",
+			"Prereqs": []
+		},
+		"ENGL 2030": {
+			"Name": "Core Composition II",
+			"Credits": "3 Credits",
+			"Desc": "Focuses on academic and other types of research-based writing and builds on the work completed in ENGL\u00a01020. Focuses on critical thinking, reading and writing as well as working with primary and secondary source material to produce a variety of research-based essays. Emphasis on using both print-based and electronic-based information. Prereq: ENGL\u00a01020. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-C02.\nGrading Basis: Letter Grade\nPrereq:  ENGL\u00a01020\nAdditional Information: Denver Core Requirement, English Composition; GT courses GT Pathways, GT-CO2, Communication.",
+			"Fulfills": "Gen Ed: Core English Composition",
+			"Prereqs": [
+				"ENGL 1020"
+			]
+		},
+		"ENGL 2156": {
+			"Name": "Introduction to Creative Writing",
+			"Credits": "3 Credits",
+			"Desc": "Reading, discussing, writing short fiction and poetry in a workshop setting. Note: this course assumes that students have completed ENGL\u00a01020. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"FINE 1000": {
+			"Name": "Fostering Creativity",
+			"Credits": "3 Credits",
+			"Desc": "Through discussions, readings, writings and creative investigations, students will delve into theoretical and experiential approaches to creativity and consider how different kinds of creativity and passions can be identified, cultivated and leveraged in their current and future academic and professional lives. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"FINE 1001": {
+			"Name": "Introduction to Art",
+			"Credits": "3 Credits",
+			"Desc": "The course introduces visual analysis and critical examination of art from prehistory to modern times. Through reading, vocabulary development, group discussions, tests, and research projects, students will learn how to appreciate art and critically evaluate form, content, and context. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH1.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-AH1, Arts  Hum: Arts  Expression; Denver Core Requirement, Arts.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"FINE 1450": {
+			"Name": "Visual Culture: Ways of Seeing",
+			"Credits": "3 Credits",
+			"Desc": "A core course for majors and non-majors Visual Culture: Ways of Seeing explores how the meaning of imagery is encoded in cultural settings and transforms globally through changing technology and is integrated into daily life. Max hours: 3 Credits.  GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH1.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts; GT courses GT Pathways, GT-AH1, Arts  Hum: Arts  Expression.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"FITV 1001": {
+			"Name": "Fundamentals of Film and Television",
+			"Credits": "3 Credits",
+			"Desc": "Provides fundamentals in academic theories surrounding visual culture.  Topics include representation, spectatorship, mass media and popular culture, new media, and scientific images.  Student participation is through discussion, creative projects, reading, and written response. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"FITV 1005": {
+			"Name": "Introduction to Theatre & Arts in the Community",
+			"Credits": "3 Credits",
+			"Desc": "Discussion, workshops, and lectures designed to discover, analyze, and evaluate all aspects of the theatre experience: writing, acting, directing, staging, history, theory and its relationship to film & video.  Attending plays and field trips to several Denver-area theaters, and demonstrations.  Max hours: 3 Credits.  GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH1\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts; GT courses GT Pathways, GT-AH1, Arts  Hum: Arts  Expression.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"FITV 1115": {
+			"Name": "Horror in Western Culture and Cinema",
+			"Credits": "3 Credits",
+			"Desc": "This course is designed to analyze the history, practice and production of the horror film. By examining the horror genre students analyze how cinema is both a reflection of the time it was produced as well as it impacts on art and society.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"LDAR 1015": {
+			"Name": "Engaging Landscapes for Wicked Change",
+			"Credits": "3 Credits",
+			"Desc": "This course will offer students the tools and perspectives to understand how landscapes impact them and others, analyze and describe the forces that inform landscape form, and propose changes to landscapes that will address the wicked problems of our time. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"PMUS 1001": {
+			"Name": "Music Appreciation",
+			"Credits": "3 Credits",
+			"Desc": "Explores the style of music in the major compositional periods, including contemporary pop styles. This course will not satisfy any degree requirements for music majors. For non-music majors who want to learn how to listen to music with greater understanding and pleasure.  Max hours: 3 Credits.  GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH1\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts; GT courses GT Pathways, GT-AH1, Arts  Hum: Arts  Expression.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"PMUS 1011": {
+			"Name": "World Pop",
+			"Credits": "3 Credits",
+			"Desc": "Explores popular music from around the world with an emphasis on the latest trends. This is for non-music majors who want to learn about other cultures and learn how to listen to all music with greater understanding. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Arts.",
+			"Fulfills": "Gen Ed: Core Arts",
+			"Prereqs": []
+		},
+		"ARAB 1000": {
+			"Name": "Introduction to Cultures of the Arabic-Speaking World",
+			"Credits": "3 Credits",
+			"Desc": "Introduces students to the Arabicspeaking cultures of North Africa, some Asian countries, and the Gulf States, with a focus on politics, culture, economics, literature and the arts. Taught in English. Term offered: spring, fall. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"CHIN 1000": {
+			"Name": "China and the Chinese",
+			"Credits": "3 Credits",
+			"Desc": "A multidisciplinary introduction to Chinese society both past and present. Prehistory, birth of imperial China, literature, philosophy, religion, nationalism, revolution, modernization, contemporary life, social structure, gender, food, family life, population policy, ethnicity, popular culture, economics and politics. Note: This course is taught in English. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH4.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-AH4, Arts  Hum: Foreign Languages.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"ENGL 1601": {
+			"Name": "Storytelling: Literature, Film, and Television",
+			"Credits": "3 Credits",
+			"Desc": "Asks students to explore how stories determine who we are. Everything people do fits into a narrative pattern, evident everywhere from TV news to memory to daily schedules. We tell ourselves stories about ourselves and others--how do these stories shape who we are as cultural beings? Note: this course assumes that students have completed or are currently taking ENGL\u00a01020. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH2.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-AH2, Arts  Hum: Lit  Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"ENGL 2600": {
+			"Name": "Literary Classics",
+			"Credits": "3 Credits",
+			"Desc": "Traces the traditions of British and American literature from medieval times to the present, by examining a variety of texts, studying the impact of different time periods, and cultural movements on the evolving literary tradition. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH2.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-AH2, Arts  Hum: Lit  Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"ETST 2155": {
+			"Name": "African American History",
+			"Credits": "3 Credits",
+			"Desc": "Surveys the history of African Americans. Study interpretations, and analysis of major problems, issues, and trends affecting the African American population from pre-slavery to the present. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-HI1.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-HI1, History; Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"FINE 2600": {
+			"Name": "Art History Survey I",
+			"Credits": "3 Credits",
+			"Desc": "A lecture course studying Western and non-Western art from prehistory to medieval times, including major artists and periods. Through visual analysis, vocabulary acquisition, exams, and writing assignments, students demonstrate knowledge of historical developments and an ability to analyze the arts. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"FINE 2610": {
+			"Name": "Art History Survey II",
+			"Credits": "3 Credits",
+			"Desc": "A lecture course studying Western and non-Western art from the Renaissance to today, including major artists and periods.  Through visual analysis, vocabulary acquisition, exams, and writing assignments, students demonstrate knowledge of historical developments and an ability to analyze the arts. Prerequisite applicable only for FINE-BA majors: FINE\u00a02600. No prerequisite for all others. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq:  FINE-BA and FINE\u00a02600\nAdditional Information: Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": [
+				"FINE 2600"
+			]
+		},
+		"FREN 1000": {
+			"Name": "Introduction to Cultures of the French- Speaking World",
+			"Credits": "3 Credits",
+			"Desc": "Introduces students to the many cultures of the French-speaking world. Taught in English for accessibility to students from different colleges at the University. The countries studied are: France, its overseas departments (Guadeloupe and Martinique) and territories (Tahiti); Quebec; Senegal; and other African countries. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH4.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-AH4, Arts  Hum: Foreign Languages; Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"FREN 2003": {
+			"Name": "French Language III",
+			"Credits": "3 Credits",
+			"Desc": "Third semester of French language skills- continuation of French Language II (FREN\u00a01002). Further introduction to beginning & intermediate level grammatical structures with appropriate vocabulary and cultural & literary readings that allow students to understand oral & written French and to speak & write in French in everyday situations. Note: This course assumes that students have passed FREN\u00a01002 or 1020 or equivalent, or have taken two years of high school French, or possess equivalent proficiency. A grade of C- or higher in the previous French course is recommended for success in this course. Note: Students may not enroll in any lower division (1000/2000) language skills course in which their level of proficiency exceeds that of the course. Students placing into a course through any means other than following the regular sequence must consult with an appropriate faculty member of the Dept. of Modern Languages prior to enrollment. This course is not intended for native speakers. No co-credit with FREN\u00a02110. Max hours:  3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"FREN 2004": {
+			"Name": "French Language 4: Introduction to Advanced Studies",
+			"Credits": "3 Credits",
+			"Desc": "This course is designed to review and further develop French language skills, to continue the study of Francophone cultures and to prepare students for advanced-level French studies. Note: This course assumes that students have passed FREN\u00a02003 or 2110 or equivalent, or have taken three years of high school French, or possess equivalent proficiency. A grade of Cor higher in the previous French course is recommended for success in this course. Note: Students may not enroll in any lower division (1000/2000) language skills course in which their level of proficiency exceeds that of the course. Students placing into a course through any means other than following the regular sequence must consult with an appropriate faculty member of the Dept. of Modern Languages prior to enrollment. This course is not intended for native speakers. No co-credit with FREN 2020. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"GRMN 1000": {
+			"Name": "Germany and the Germans",
+			"Credits": "3 Credits",
+			"Desc": "Introduces the ways in which the various aspects of German culture help define German life and national identity. By examining art, music and media, primarily of the 20th century, students explore what it means to be German. Note: Taught in English. Term offered: spring, fall. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH4.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-AH4, Arts  Hum: Foreign Languages.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"HIST 1361": {
+			"Name": "U.S. History to 1876",
+			"Credits": "3 Credits",
+			"Desc": "Provides an introduction to the major forces, events and individuals that shaped the historical development of American society, beginning with the European settlement of America and concluding with the Civil War, reconstruction and the early growth of an industrial order. Term offered: fall, spring. Max Hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-HI1.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-HI1, History; Denver Core Requirement, Humanities.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"HIST 1362": {
+			"Name": "U.S. History Since 1876",
+			"Credits": "3 Credits",
+			"Desc": "Provides an introduction to the major forces, events, and individuals that shaped the historical development of American society from the Civil War to the present. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-HI1.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-HI1, History; Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"HIST 1381": {
+			"Name": "The History of Now",
+			"Credits": "3 Credits",
+			"Desc": "Examines several topics of profound interest to historians world wide: nature and technology, secular and religious faiths, and concepts of political union. The experience of the U.S. as it relates to the experiences of other periods and cultures. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-HI1.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-HI1, History; Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"HIST 1400": {
+			"Name": "Controversies in History",
+			"Credits": "3 Credits",
+			"Desc": "Examines a variety of cases where historians have significant disagreement or diverse interpretations regarding \"what happened\" and \"why,\" to come to an understanding of what historians do and how they do it. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-HI1, History.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"LCRT 2000": {
+			"Name": "Rebels, Villains, & Superheroes: How Children's Literature Shapes Our Identities",
+			"Credits": "3 Credits",
+			"Desc": "This course explores both classic and contemporary children\u2019s and adolescent literature and media in traditional and digital texts, specifically focusing on developing literary understandings, exploring perspectives and personal responses to literature, and inquiring into trends and issues. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"PHIL 1012": {
+			"Name": "Introduction to Philosophy: Relationship of the Individual to the World",
+			"Credits": "3 Credits",
+			"Desc": "Introductory course in philosophy that focuses on some of the central questions of philosophy, including theories of reality and the nature of knowledge and its limits. The knowledge of these areas is essential to the student for informed participation in the resolution of contemporary problems in today's society. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH3\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-AH3, Arts  Hum: Ways of Thinking.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"PHIL 1020": {
+			"Name": "Introduction to Ethical Reasoning",
+			"Credits": "3 Credits",
+			"Desc": "Studies ethical problems and forms of ethical reasoning within the larger context of social and political philosophy. Specific ethical problems may be addressed, such as poverty, famine, abortion, punishment, animal rights, and environmental sustainability. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH3\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-AH3, Arts  Hum: Ways of Thinking.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"PHIL 2441": {
+			"Name": "Logic, Language and Scientific Reasoning",
+			"Credits": "3 Credits",
+			"Desc": "Intro course in argumentation, critical thinking and scientific reasoning.  Covers rules of logical inference, informal fallacies, problem solving, and probabilistic reasoning. Enhances analytical and critical thinking skills tested on LSAT and MCAT, central to advancement in sciences, and broadly desired by employers. Max Hours: 3 Credits. Term offered: spring, summer, fall. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH3.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-AH3, Arts  Hum: Ways of Thinking.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"RLST 1610": {
+			"Name": "Introduction to Religious Studies",
+			"Credits": "3 Credits",
+			"Desc": "Religion is a complex phenomenon which involves social norms, beliefs and fears, and overarching world view. Religious experiences are among the most profound an individual can have. The course examines religious phenomena from various perspectives, including philosophical, historical, psychological, anthropological, political, sociological, the symbolic and ritual. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH3\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-AH3, Arts  Hum: Ways of Thinking; Denver Core Requirement, Humanities.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"RLST 2660": {
+			"Name": "World Religions",
+			"Credits": "3 Credits",
+			"Desc": "Provides an introduction to the basic beliefs and concepts of the world's great religious traditions. Covers the history, development, belief patterns, and institutional forms of the world's religions, including Judaism, Zoroastrianism, Christianity, Islam, Hinduism, Buddhism, Confucianism, Taoism and Shintoism. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH3\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Humanities; GT courses GT Pathways, GT-AH3, Arts  Hum: Ways of Thinking.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"SPAN 1000": {
+			"Name": "Introduction to Cultures of the Spanish Speaking World",
+			"Credits": "3 Credits",
+			"Desc": "Introduces students to the Spanish-speaking cultures of Spain, Latin America, and the United States through a historical overview and a focus on contemporary politics and culture. Note: Taught in English. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-AH4\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-AH4, Arts  Hum: Foreign Languages; Denver Core Requirement, Humanities.\nTypically Offered: Fall, Spring, Summer.",
+			"Fulfills": "Gen Ed: Core Humanities",
+			"Prereqs": []
+		},
+		"ANTH 1302": {
+			"Name": "Introduction to Archaeology",
+			"Credits": "4 Credits",
+			"Desc": "Introduces the study of past cultures and their environments. Emphasis is on the scientific method, aspects of research design and analytical techniques used by archaeologists to determine chronology, taphonomy, source production areas, exchange networks, and human-environment interactions. Note: Three hours of lecture and a two-hour lab each week. Term offered: fall, spring, summer. Max hours: 4 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul; Denver Core Requirement, Behavioral Sciences.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"ANTH 2102": {
+			"Name": "Culture and the Human Experience",
+			"Credits": "3 Credits",
+			"Desc": "An application of the concept of culture to several aspects of the human experience, including gender relations, emotion and personality, cognition, language, health and healing and economic behavior. In exploring these dimensions of the human experience, the course focuses on selected cultures from each of the world's major geographic areas. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul; Denver Core Requirement, Behavioral Sciences.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"COMM 1011": {
+			"Name": "Fundamentals of Communication",
+			"Credits": "3 Credits",
+			"Desc": "Studies communication theory and application. Topics include communication models, interpersonal communication and the concept of self, nonverbal communication, message preparation and analysis, and decision making. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul; Denver Core Requirement, Behavioral Sciences.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"COMM 1021": {
+			"Name": "Introduction To Media Studies",
+			"Credits": "3 Credits",
+			"Desc": "Explores the role of contemporary media in shaping our sense of ourselves and our world. The class surveys a broad array of critical approaches to understanding media. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Behavioral Sciences; GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"HDFR 2080": {
+			"Name": "Sex, Human Development and Family Systems",
+			"Credits": "3 Credits",
+			"Desc": "Students will become familiar with human sexuality across the life span through behavioral science and ecological perspectives. Different aspects of sexuality including behavioral, biological, developmental and cultural will be examined Implications for working with individuals, families, and couples through a behavioral science context will be explored.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Behavioral Sciences.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"LING 2000": {
+			"Name": "Foundations of Linguistics",
+			"Credits": "3 Credits",
+			"Desc": "Provides students with the foundations of the scientific study of language. Examines core areas within theoretical linguisitics, sociolinguistics, historical linguistics, language acquisition, and writing systems, using a variety of languages. Term offered: spring, fall. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Behavioral Sciences.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"PSYC 1000": {
+			"Name": "Introduction to Psychology I",
+			"Credits": "3 Credits",
+			"Desc": "Introduces the scientific study of behavior, including an overview of the biological basis of behavior, sensation or perception, states of consciousness, learning and memory, thinking and language, intelligence, motivation and emotion. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Behavioral Sciences; GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"PSYC 1005": {
+			"Name": "Introduction to Psychology II",
+			"Credits": "3 Credits",
+			"Desc": "Introduces the scientific study of behavior, including an overview of the history of psychology, development, personality, psychological disorders, therapy, health psychology and social behavior. PSYC\u00a01000 is not a prerequisite for this course. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Behavioral Sciences; GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"SPSY 2200": {
+			"Name": "Child and Adolescent Mental Health in Schools and Communities",
+			"Credits": "3 Credits",
+			"Desc": "Introduces students to child and adolescent mental health and treatment, with a focus on trends in children\u2019s mental health, evidence-based treatments for childhood mental health challenges, and child mental health careers. Course includes an emphasis on school-based mental health practices. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Behavioral Sciences.",
+			"Fulfills": "Gen Ed: Core Behavioral Sciences",
+			"Prereqs": []
+		},
+		"CRJU 1000": {
+			"Name": "Criminology and Criminal Justice: An Overview",
+			"Credits": "3 Credits",
+			"Desc": "This course is designed to provide an overview of the criminal justice process and the criminal justice system in general. Concepts of crime, deviance and justice are discussed and general theories of crime causality are examined. Special emphasis is placed on the components of the criminal justice system: the police, the prosecutorial and defense functions, the judiciary and the field of corrections.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"ECON 2012": {
+			"Name": "Principles of Economics: Macroeconomics",
+			"Credits": "3 Credits",
+			"Desc": "Covers topics of inflation, unemployment, national income, growth and problems of the national economy, stabilization policy, plus others at the discretion of the instructor. Purpose is to teach fundamental principles, to open the field of economics in the way most helpful to further a more detailed study of special problems, and to give those not intending to specialize in the subject an outline of the general principles of economics. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS1.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS1, Soc  Behav Sci:Econ or Pol; Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"ECON 2022": {
+			"Name": "Principles of Economics: Microeconomics",
+			"Credits": "3 Credits",
+			"Desc": "Topics include price determination in a market system composed of households and firms: resource allocation and efficiency of various market structures, plus others at the discretion of the instructor. Note: Complementary to and normally taken following ECON\u00a02012. ECON\u00a02012 is not a prerequisite for ECON\u00a02022. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS1.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences; GT courses GT Pathways, GT-SS1, Soc  Behav Sci:Econ or Pol.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"EDFN 1000": {
+			"Name": "Equality, Rights & Education",
+			"Credits": "3 Credits",
+			"Desc": "Examines the history of U.S. public schooling through landmark court cases. Investigates/analyzes how apartheid came to be institutionalized, how forces of desegregation achieved a series of momentous victories, and how those victories have been undermined through the resegregation of schools.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"ENVS 1342": {
+			"Name": "Environment, Society and Sustainability",
+			"Credits": "3 Credits",
+			"Desc": "Overview of perspectives on environmental issues within the context of sustainable development and taking a systems approach. The focus is on social science approaches to explore the human footprint on the earth, environmentalism, scientific uncertainty, policy creation and social change. Note: This course is a prerequisite for GEOG\u00a04680 Urban Sustainability: Perspectives and Practice. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS2.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences; GT courses GT Pathways, GT-SS2, Soc  Behav Sci: Geography.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"ETST 2000": {
+			"Name": "Introduction to Ethnic Studies",
+			"Credits": "3 Credits",
+			"Desc": "Multi-disciplinary survey of contemporary and historical research analyses of the diverse social, economic, political, and cultural facets of African American, American Indian, Asian American, and Latino communities and cultures. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul; Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"GEOG 1102": {
+			"Name": "World Regions Global Context",
+			"Credits": "3 Credits",
+			"Desc": "Analyzes world regions and their global interconnectedness, including the dynamic and complex relationships between people and the world they inhabit. Demographic and cultural (political, economic, and historic) issues are examined as well as interactions between human societies and natural environments. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS2.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences; GT courses GT Pathways, GT-SS2, Soc  Behav Sci: Geography.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"GEOG 1602": {
+			"Name": "Urban Studies and Planning",
+			"Credits": "3 Credits",
+			"Desc": "Surveys the process of urbanization, emphasizing the development of American cities, using Denver as an example. Topics covered include: evolution of metropolitan form/land use patterns, cultural landscape formation, city planning and architectural design, and urban social and policy issues. Note: This course is a prerequisite for GEOG\u00a04680 Urban Sustainability: Perspectives and Practice AND GEOG\u00a04640 Urban Geography Denver and the US. Term offered: fall, spring. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS2.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS2, Soc  Behav Sci: Geography; Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"GEOG 2202": {
+			"Name": "Hazards to Disasters: Perception and Management",
+			"Credits": "3 Credits",
+			"Desc": "Surveys those physical phenomena that often cause substantial damage when they occur in areas of human settlement. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS2.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS2, Soc  Behav Sci: Geography; Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"HDFR 1080": {
+			"Name": "Lifespan Issues in Family Violence",
+			"Credits": "3 Credits",
+			"Desc": "This course examines family violence over the lifespan from family system and ecological perspectives. The course explores development, definitions, theory, correlates, and the occurrence of family violence over the lifespan; including practice, interventions, and policy within school and community contexts. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"HDFR 2200": {
+			"Name": "Love, Family and Human Development",
+			"Credits": "3 Credits",
+			"Desc": "This course provides an introduction to understanding love, intimate relationships, and family relations through an ecological systems perspective. The course provides an exploration of contemporary diverse family systems and their relationships across the life span.  Max hours:  3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"INTE 2500": {
+			"Name": "#Learning: Digital Spaces and Far Out Places",
+			"Credits": "3 Credits",
+			"Desc": "Digital media have transformed where, how, and why people learn. In this course we examine contemporary developments in digital media and learning. and explore topics such as social networking and media, virtual and augmented reality, civic media, gamified learning, and mobile learning. This is a hands-on and minds-on course where we immerse ourselves in digital spaces to build projects that support our civic, communication and collaboration, and creative interests. Come and learn to use digital media to enhance your life, community, and beyond! Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"PBHL 1001": {
+			"Name": "Race, Gender, Class, & Health",
+			"Credits": "3 Credits",
+			"Desc": "Course focuses on the principles, tools, and population approach of social epidemiology as it relates health to race, gender, and class. Contemporary topics in public health will be used as case studies to illuminate principles and tools both in lecture and in recitation sections. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"PBHL 2001": {
+			"Name": "Introduction to Public Health",
+			"Credits": "4 Credits",
+			"Desc": "An overview of the discipline and practice of public health. Includes the history of the field, its population perspective, emphasis on prevention, tools and techniques. General principles of the field are illustrated through contemporary public health case studies. Term offered: fall, spring. Max hours: 4 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul; Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"PSCI 1001": {
+			"Name": "Introduction to Political Science: The Quest for Freedom and Justice",
+			"Credits": "3 Credits",
+			"Desc": "Introduces the study of politics, its human importance, and its relationship to social institutions. Analysis of the relationship between individual political behavior and characteristics of the political system. Development of key concepts such as power, legitimacy, authority, political socialization, and revolution. Note: Required of all PSCI majors. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS1\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences; GT courses GT Pathways, GT-SS1, Soc  Behav Sci:Econ or Pol.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"PSCI 1101": {
+			"Name": "American Political System",
+			"Credits": "3 Credits",
+			"Desc": "General introduction to the American political system with emphasis upon citizen involvement, the relationships among the various levels and branches of government, formal and informal institutions, processes, and behavior. Note: Required of all PSCI majors. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS1\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences; GT courses GT Pathways, GT-SS1, Soc  Behav Sci:Econ or Pol.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"PUAD 1001": {
+			"Name": "Introduction to Leadership and Public Service",
+			"Credits": "3 Credits",
+			"Desc": "This course provides a broad introduction to public service and encourages exploration of personal values and interests related to leadership, community, and life choices.  Multiple paths to advancing the public good are explored, including volunteerism, citizenship, and service in government and nonprofits.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"RLST 3800": {
+			"Name": "Spirituality and Ecology in Global Societies",
+			"Credits": "3 Credits",
+			"Desc": "This course will examine the historical and contemporary attitudes and actions of religion in responding to the societal impacts of environmental concerns. We will investigate four worldviews in particular: indigenous traditions, Christianity, Judaism and Buddhism, and also consider how these traditions interact with public policy debates and their position on social justice and environmental issues. Religions both create and mitigate conflict. This course will consider ethical and moral approaches, philosophical principles and social movements including ecofeminism and ethics to provide tools for dialogue and critical thinking around ecological challenges. Term offered: spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"SJUS 2000": {
+			"Name": "Foundations in Social Justice",
+			"Credits": "3 Credits",
+			"Desc": "Examines how well the United States, Colorado and Denver are doing in addressing issues of social justice, such as inequality and environmental degradation. Explores various modes of democratic participation -- electoral politics, community activism, and lifestyle changes -- in advancing social justice. Term offered: fall. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS1\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences; GT courses GT Pathways, GT-SS1, Soc  Behav Sci:Econ or Pol.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"SOCY 1001": {
+			"Name": "Understanding the Social World",
+			"Credits": "3 Credits",
+			"Desc": "This survey course provides an introduction to the sociological study of society, including patterns of social relationships, social interaction, and culture. Typical course topics include socialization, the family, criminology, deviance, inequalities, sex and gender, race and ethnicity, health and medicine, self and identities, and globalization. Students gain an understanding of how organizations, institutions, and structures of society shape individual and group experiences. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Social Sciences; GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"SOCY 1011": {
+			"Name": "From Killer Apps to Killer Bots: Technology and Social Change",
+			"Credits": "3 Credits",
+			"Desc": "A young college student updates her social media page to stay in touch with family and high school friends while making new friends on campus. An upstart automobile manufacturer builds a factory manned by robots to produce electronic vehicles designed to reduce the environmental impact of automobiles. The military deploys battalions of unmanned drones to engage with adversaries without risking the lives of their soldiers. Technology mediates nearly all aspects of social life, from reproduction and parenting to crime control and heath care. This course is designed to provide students an introduction to the different social dimensions of technological innovation as well as the theoretical and methodological tools sociologists use to study them. Max hours: 3 Credits.\nGrading Basis: Letter Grade",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"SOCY 2462": {
+			"Name": "Introduction to Social Psychology",
+			"Credits": "3 Credits",
+			"Desc": "Studies the development and functioning of persons, especially within a group context, and the dynamics of small groups. Emphasis on the import of symbols for human behavior, development of self-concepts, and processes of competition and cooperation in group dynamics. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SS3\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SS3, Soc  Behav Sci:Hmn Behav, Cul; Denver Core Requirement, Social Sciences.",
+			"Fulfills": "Gen Ed: Core Social Sciences",
+			"Prereqs": []
+		},
+		"ANTH 3000": {
+			"Name": "Globalization, Migration and Transnationalism",
+			"Credits": "3 Credits",
+			"Desc": "Examines the cultural dynamics of globalization, including:  the development of special economic zones in the global south, rural to urban migration, transnational migration, the maintenance of transnational ties, and cross-border social formations. Reviews the dynamics of globalization through case studies and film. Term offered: spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"CLDE 1000": {
+			"Name": "Language, Identity, & Power: International Perspectives",
+			"Credits": "3 Credits",
+			"Desc": "This course explores the relationship between language, identity, and power in various international contexts. The course considers how legacies of inequality for particular communities are reflected in societal attitudes about languages and language users and subsequent language planning.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"ENGL 3798": {
+			"Name": "International Perspectives in Literature and Film",
+			"Credits": "3 Credits",
+			"Desc": "Fosters an understanding of peoples outside of the U.S. through the study and appreciation of non-western literature. Investigates how historical, cultural, and ideological forces constitute race, ethnicity, nationalism, and alienation in a single country or across a region. Topic and country/region varies by semester. Note: May be repeated for credit when title and content are different. All texts in English translation. Term offered: fall. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"ENGR 3600": {
+			"Name": "International Dimensions of Technology and Culture",
+			"Credits": "3 Credits",
+			"Desc": "This course provides students with an understanding of how science, technology and international issues interrelate in a world that has become more interconnected and interdependent. The course will focus on the technical, organizational and cultural aspects of information and other technologies with an emphasis on their impact on third world countries. Prereq: One course in social sciences, one course in humanities, one course in science. (Satisfies the international perspectives requirement of the UCDHSC core curriculum). Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"ETST 3110": {
+			"Name": "Indigenous Studies",
+			"Credits": "3 Credits",
+			"Desc": "Examines how communities in diverse world regions preserve tradition, share knowledge, and respond to influences both within and outside of their immediate environments. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"ETST 3272": {
+			"Name": "Global Media",
+			"Credits": "3 Credits",
+			"Desc": "Introduction to leading issues in the study of transnational media. The course will focus on the global media environment in the early 21st century, diverse countries, a variety of media, and social issues. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"FINE 1002": {
+			"Name": "International Perspectives through Animation",
+			"Credits": "3 Credits",
+			"Desc": "This course is a look at world political, economic, social, and technological challenges through the lens of animation and visual storytelling. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"FINE 3775": {
+			"Name": "Asian Art, 1850 to Now",
+			"Credits": "3 Credits",
+			"Desc": "A lecture-based course about developments in art and architecture of China, Japan, and Korea after 1850. Prereq FINE\u00a02600 and FINE\u00a02610 for FINE-BA or FINE-BFA majors only. Restriction: All other students must be at junior- or senior-level standing.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq FINE\u00a02600 and FINE\u00a02610 for FINE-BA or FINE-BFA majors only. \nRestriction: All other students must be at junior- or senior-level standing.\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"FITV 1120": {
+			"Name": "Contemporary World Cinema",
+			"Credits": "3 Credits",
+			"Desc": "This course will examine representative examples of films from around the world to understand the current interest and concerns of world cinema, as well as discern what concerns various countries around the world, and how those concerns are expressed.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"FITV 3550": {
+			"Name": "World Theatre",
+			"Credits": "3 Credits",
+			"Desc": "Discussion, workshops and lectures designed to discover, analyze and evaluate the world theatre experience from countries outside of the United States. The course will explore theatre and its precedents in Asia, Africa, Eastern Europe and Latin America.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"FREN 3200": {
+			"Name": "The Francophone World in the Post-Colonial Era",
+			"Credits": "3 Credits",
+			"Desc": "Focuses on the many Francophone regions of the world, including (but not limited to) France, North and West Africa, Southeast Asia, and the Caribbean, and surveys a wide span of subject matter as it pertains to the post-colonial situations in these regions. Taught in English. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Prereq: Sophomore standing or higher. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nRestriction: Sophomore standing or higher.\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"GEOG 3412": {
+			"Name": "Globalization and Regional Development",
+			"Credits": "3 Credits",
+			"Desc": "Addresses global political-restructuring and its implications for regional development in the U.S. Both historical and contemporary processes of globalization are examined. Topics include: the environmental basis of American industrial growth, the relationship between technological change and geographical shifts, the rise and decline of Fordism, the transfer of Japanese manufacturing methods to the U.S., the role of regional and national industrial policy, and the social consequences of globalization for labor and communities. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Students will not earn credit for GEOG\u00a03412 if they have already earned credit for GEOG 3411. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"GRMN 3200": {
+			"Name": "Current German Society and Culture",
+			"Credits": "3 Credits",
+			"Desc": "Provides students with a detailed overview of the systems in modern, united Germany such as social, educational, and political. Examines how Germany sees itself as a vital member of the EU. Exposes students to rudimentary use of the German language. Prereq: Sophomore standing. Term offered: spring, fall. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nRestriction: Sophomore standing or higher.\nAdditional Information: Denver Core Requirement, International Perspectives.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"HDFR 1000": {
+			"Name": "Global Human Development & Learning",
+			"Credits": "3 Credits",
+			"Desc": "The purpose of this course is to examine the contextual nature of human development and learning at the global level.  Emphasis is placed on the ecological development of individuals and learning and schooling within familial, cultural and educational contexts.  Max hours:  3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"HDFR 3250": {
+			"Name": "Families in Global Perspectives",
+			"Credits": "3 Credits",
+			"Desc": "Students will become familiar with family life across the world.  Through ecological systems theories, this course is designed to provide an understanding of families in global perspectives.  The impact of family policy and practices on international families will be examined.  Max hours:  3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"HIST 3121": {
+			"Name": "The World at War, 1914-1945",
+			"Credits": "3 Credits",
+			"Desc": "Examines World Wars I and II as episodes in a protracted conflict among the nations of the capitalist West, the emerging states of Asia and the colonial world, and the USSR. Studies the causes and consequences of the wars. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"HIST 4032": {
+			"Name": "Globalization in World History Since 1945",
+			"Credits": "3 Credits",
+			"Desc": "An interdisciplinary course on contemporary world history and globalization. While the course is historically structured, economic, political, and sociological matters are explored. Note: This course may count for the International Studies major or minor.  See your INTS advisor for more information. Cross-listed with HIST\u00a05032. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"INTB 3000": {
+			"Name": "Global Perspectives",
+			"Credits": "3 Credits",
+			"Desc": "Globalization brings both opportunities and anxieties that need to be fully explored, discussed and understood both by the business and non-business student. This interdisciplinary course is designed to stimulate thought, perspective, discussion and debate for business and non-business students on issues ranging from globalization; political economy and geopolitics; the environment; cultures; finances; economic integration; trade; global regions; emerging markets; human rights; terrorism and conflict; leadership, ethics and values; entrepreneurship, to future trends in global issues. The Global Perspective course is designed (1) to increase and promote both business and non-business students' capacity for international understanding and international enterprise through the study and discussion of global business environment-related issues from multiple points of views in a neutral forum. (2) It is to provide students with the awareness that global issues cannot be viewed in isolation,  Restriction: Restricted to undergraduate majors with junior standing or higher.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nRestriction: Restricted to undergraduate students at a junior standing or higher\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"INTB 4200": {
+			"Name": "International Marketing",
+			"Credits": "3 Credits",
+			"Desc": "Studies managerial marketing policies and practices of firms marketing their products in foreign countries. Analytical survey of institutions, functions, policies, and practices in international marketing. Relates marketing activities to market structure and environment. Cross-listed with MKTG\u00a04200. Prereq: MKTG\u00a03000 with a C or higher. Restricted to undergraduate Business majors at a junior standing or higher.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: MKTG\u00a03000 with a C- or higher.\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": [
+				"MKTG 3000"
+			]
+		},
+		"INTS 2020": {
+			"Name": "Foundations of International Studies",
+			"Credits": "3 Credits",
+			"Desc": "Through a combination of lecture, discussion, and hands-on learning activities, students will develop skills and abilities necessary for academic and professional success in the international studies arena, especially critical thinking, connection building, conceptual understanding, and cultural awareness. The course is structured in three phases: (1) core interdisciplinary concepts; (2) regional foci; and (3) global issues. Note: Please add course note: Students may not receive credit for INTS\u00a02020, if they have already received credit for INTS 2000. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"MKTG 4200": {
+			"Name": "International Marketing",
+			"Credits": "3 Credits",
+			"Desc": "Studies managerial marketing policies and practices of firms marketing their products in foreign countries. Analytical survey of institutions, functions, policies, and practices in international marketing. Relates marketing activities to market structure and environment. Prereq: MKTG\u00a03000 with a grade of C or higher.  Restriction: Restricted to undergraduate Business majors at a junior standing or higher.  Cross-listed with INTB\u00a04200.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: MKTG\u00a03000 with a C- or higher.\nAdditional Information: Denver Core Requirement, International Perspectives.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": [
+				"MKTG 3000"
+			]
+		},
+		"PBHL 2052": {
+			"Name": "Global Demography and Health",
+			"Credits": "3 Credits",
+			"Desc": "This course examines current issues in population growth, fertility, mortality and migration throughout the globe; introduces basic demographic tools; encourages critical thinking about the causes and consequences of population change. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"PSCI 3022": {
+			"Name": "Political Systems of the World",
+			"Credits": "3 Credits",
+			"Desc": "The class focuses on the analyses of various political systems around the world.  Students will look at democracies and dictatorships, industrialized countries and developing countries. Though a structured comparison, students will assess and test key theories in Political Science. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"PSCI 3042": {
+			"Name": "Introduction to International Relations",
+			"Credits": "3 Credits",
+			"Desc": "Basic background and theories of international relations with focus on the interaction between nation states, international organizations, regimes and transnational movements. Themes examined include foreign policy conduct, international security and political economy, human rights and environmental management. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"RLST 3120": {
+			"Name": "Islamic Traditions",
+			"Credits": "3 Credits",
+			"Desc": "Examines birth and history of Islam, its evolution from beginning to current trends and issues. Covers core beliefs, practices, differences between Sunni and Shi'a sects, and relationship to other Western religions. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"RLST 3410": {
+			"Name": "Asian Philosophies and Religions",
+			"Credits": "3 Credits",
+			"Desc": "We in the Western world encounter a vastly different world, a radically different \"universe of meaning,\" when we examine the traditions of the East. Even what we tacitly assume to be \"real\" is claimed by the Hindus and Buddhists of India to be a grand illusion. The world of China is, again, very different from India. An examination of Tibetan and Japanese religious forms will conclude our study of Asian thought. Cross-listed with PHIL\u00a03410. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"SOCY 3720": {
+			"Name": "Global Perspectives on Social Issues",
+			"Credits": "3 Credits",
+			"Desc": "Various cultural and social frameworks are used in a sociological examination and international comparison of select social issues, such as globalization, terrorism, inequality and discrimination. Analysis of selected issues across cultures explores how societal and cultural characteristics shape these issues. Prereq: sophomore standing or higher or permission of instructor. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nRestriction: Sophomore standing or higher.\nAdditional Information: Denver Core Requirement, International Perspectives.",
+			"Fulfills": "Gen Ed: Core International Perspectives",
+			"Prereqs": []
+		},
+		"ANTH 3142": {
+			"Name": "Cultural Diversity in the Modern World",
+			"Credits": "3 Credits",
+			"Desc": "An in-depth analysis of the phenomena of culture and application of the culture concept to understanding cultural diversity in the modern world. Applies the concept of culture to several basic aspects of human social life, for example: social class and gender relations, ethnicity, racism and sexism, education, health and economic behavior. Students explore these issues in the context of case studies of particular groups and/or communities, focusing primarily on the diversity of cultural expression in contemporary U.S. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"COMM 3271": {
+			"Name": "Communication and Diversity",
+			"Credits": "3 Credits",
+			"Desc": "Explores the complexities of communication across diverse identities such as race, ethnicity, and gender. Course attempts to seek solutions via sharing meaning and discovering common ground. Note: This course may count for the International Studies major or minor. See your INTS advisor for more information. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"ECON 3100": {
+			"Name": "Economics of Race and Gender",
+			"Credits": "3 Credits",
+			"Desc": "Overview of the determinants of wages, employment and education in the labor market. Emphasizes the investigation of the evidence and theories of differentials that appear to be associated solely with race and sex, and public policies associated with discrimination and poverty. Prereq: ECON\u00a02022 with a C- or higher. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: ECON\u00a02022 with a C- or higher.\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": [
+				"ECON 2022"
+			]
+		},
+		"EDFN 3000": {
+			"Name": "Undocumented Mexican Immigration",
+			"Credits": "3 Credits",
+			"Desc": "The socio-legal construction of Mexican undocumented immigration from the early decades of the twentieth century to the current era is addressed. Social justice questions including access to higher education arising from the racialization of Latino/a immigrants are also examined.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"EDFN 4000": {
+			"Name": "Food Justice in City & Schools",
+			"Credits": "3 Credits",
+			"Desc": "Food justice examines systemic inequities in access to healthy food. The history of school/community gardens, developments in urban agriculture and school/city policies are examined. The intersection of urban agriculture, hunger, and schooling/learning is examined in school gardens and school farmer's markets. Cross-listed with EDFN\u00a05000.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"ENGL 3795": {
+			"Name": "Race and Ethnicity in American Literature",
+			"Credits": "3 Credits",
+			"Desc": "Focuses alternately on one of several ethnic American literary traditions (e.g. African American, Chicano) and their historical, geographical, social and economic communities. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"ENGR 3400": {
+			"Name": "Technology and Culture",
+			"Credits": "3 Credits",
+			"Desc": "Explores the cultural and political foundations of technology and the impact of technology upon the individual and society. Contributions to technological advances and the impact of technology on women and diverse ethnic groups are examined in the context of specific engineering designs and case studies. Prereq: One course in social sciences, one course in humanities, one course in science. (Satisfies the multicultural diversity requirement of the UCDHSC core curriculum). Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"ETST 3036": {
+			"Name": "American Indian Cultural Images",
+			"Credits": "3 Credits",
+			"Desc": "Analysis of images and perceptions of American Indians in American culture, as seen in politics, education, film, photography, advertising, art, literature and the media. Note: Students may not earn credit for this course if they have earned credit for ETST 2036. Term offered: fall, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"ETST 3704": {
+			"Name": "Culture, Racism and Alienation",
+			"Credits": "3 Credits",
+			"Desc": "The effects of racism on the personality of participants in racist cultures. Term offered: spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"FINE 3636": {
+			"Name": "Through the Lens: Photography and Diversity",
+			"Credits": "3 Credits",
+			"Desc": "Students examine social issues relating to non-dominant cultures, minority groups, biases, and privileges through the lens of photographic imagery. Lectures, discussions, and assignments offer insights into the ways that photography both reflects and impacts attitudes about cultural diversity in the United States. Restriction: Restricted to students with Junior standing or higher. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nRestriction: Restricted to Junior standing or higher.\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"FITV 3611": {
+			"Name": "Drama of Diversity",
+			"Credits": "3 Credits",
+			"Desc": "Investigates the creation and reinforcement of gender, ethnic, and racial stereotypes in theatre, film, and television in the United States. The course explores how popular images are created by writers, directors, and performers, and become \"reality\" for the audiences for which they are intended.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"HDFR 3020": {
+			"Name": "Black and Latino Children in Families and Schools",
+			"Credits": "3 Credits",
+			"Desc": "This course will use ecological systems theory perspectives as a foundation for students to develop their understanding about Black and Latino children as members of family systems, school systems and community systems within cultural contexts.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"HIST 3345": {
+			"Name": "Immigration and Ethnicity in American History",
+			"Credits": "3 Credits",
+			"Desc": "Explores the personal and collective experience of immigrants to America. Discusses problems of assimilation, urban and rural experiences, and implications for politics, the economy and social attitudes. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"HIST 3349": {
+			"Name": "Social Movements in 20th Century America",
+			"Credits": "3 Credits",
+			"Desc": "By surveying the major American social movements of the twentieth century, this course will explore how Americans have created categories of race, ethnicity, culture, and sexuality and how elite and marginalized citizens have deployed these categories in politics. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"LCRT 3815": {
+			"Name": "Once Upon a Time: Family Literacies in Culturally Diverse Communities",
+			"Credits": "3 Credits",
+			"Desc": "This course uses sociocultural theory and perspectives as these relate to family systems and the intersection of culture, literacies, and education. Students develop an understanding about the ways reading, writing and language are embedded in family\u2019s homes, schools, and communities. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"LING 3100": {
+			"Name": "Language in Society",
+			"Credits": "3 Credits",
+			"Desc": "Introduces students to language use in the context of American society. Examines the interaction between language and age, gender, race, ethnicity, education, income, social class, language attitudes, policy and politics. Term offered: spring, fall. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"MGMT 4100": {
+			"Name": "Leveraging Diversity and Inclusion in Business",
+			"Credits": "3 Credits",
+			"Desc": "Practical and policy issues that arise from living and working in a multicultural world in order to promote informed, effective management. Particular emphasis is given to the development of innovative approaches to managing the challenges posed by a work force that differs in characteristics, such as race, gender, ethnicity, age, lifestyle and disability.  Restriction: Restricted to undergraduate students at a junior standing or higher.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nRestriction: Restricted to undergraduate students at a junior standing or higher\nAdditional Information: Denver Core Requirement, Cultural Diversity.\nTypically Offered: Fall, Spring.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"PHIL 3500": {
+			"Name": "Ideology and Culture: Racism and Sexism",
+			"Credits": "3 Credits",
+			"Desc": "Surveys the nature and role of racism and sexism. Topics may include ideology theory, naturalism, the equal protection clause, recent scientific discussion, sociolegal history, and social constructionism. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"PMUS 3100": {
+			"Name": "US Music: Social & Political Impact",
+			"Credits": "3 Credits",
+			"Desc": "Examines and describes the social meaning of American music with particular reference to the roles of major ethnic groups in the creation of this music and the way that the music reveals attitudes toward these groups. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"PSCI 3034": {
+			"Name": "Race, Gender, Law and Public Policy",
+			"Credits": "3 Credits",
+			"Desc": "Historical overview of race and gender relations in the U.S. and an examination of the treatment of issues of race and gender in the judicial system and public policy. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"PSCI 3035": {
+			"Name": "Political Movements: Race and Gender",
+			"Credits": "3 Credits",
+			"Desc": "Examines the emergence, growth, and decline of social movements for race and gender equality. Discussion of political issues of race and gender in the 1990s. Term offered: fall, spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"PSYC 4485": {
+			"Name": "Psychology of Cultural Diversity",
+			"Credits": "3 Credits",
+			"Desc": "Studies diversity in the development of the individual across Asian, Black, Hispanic, and Native American cultures. The experience of self, role of the family, expression of emotions, and psychology of prejudice are emphasized. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"RLST 4000": {
+			"Name": "Religion and Cultural Diversity",
+			"Credits": "3 Credits",
+			"Desc": "Religion is one of the key elements which creates multiculturalism. This course explores issues in religion and religious identity in contemporary America, including Native American spiritual traditions, Jewish-American traditions, Muslim-American traditions, Asian-American traditions, the African-American Pentecostal movement, and the growth of the Black Muslim movement. Attention is also given to the question of gender issues, as the traditional model for gender roles was formulated, in part, from a religious basis. Term offered: spring. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"SOCY 3020": {
+			"Name": "Race and Ethnicity in the U.S.",
+			"Credits": "3 Credits",
+			"Desc": "A sociological examination of race and ethnicity in contemporary U.S. society. Includes a focus on the nature and causes of prejudice and discrimination. Dominant-minority relations are examined, with an emphasis on current status of minority groups and issues. Prereq:  sophomore standing or higher or permission of instructor. Term offered: fall, spring, summer. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nRestriction: Sophomore standing or higher.\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"WGST 3020": {
+			"Name": "Gender, Sexuality and Race in American Popular Culture",
+			"Credits": "3 Credits",
+			"Desc": "This course explores the impact of popular culture on the lived experience of diverse women and men in America.  Students will examine how cultural media (including film, television, print ads, music & digital games) can both reproduce and challenge existing structural inequalities.  Max hours: 3 Credits.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Cultural Diversity.",
+			"Fulfills": "Gen Ed: Core Cultural Diversity",
+			"Prereqs": []
+		},
+		"CSCI 1410": {
+			"Name": "Fundamentals of Computing",
+			"Credits": "3 Credits",
+			"Desc": "First course in computing for those who will take additional computer science courses. Covers the capabilities of a computer, the elements of a modern programming language, and basic techniques for solving problems using a computer. Coreq: CSCI\u00a01411. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nCoreq: CSCI\u00a01411.",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [],
+			"Coreqs": [
+				"CSCI 1411"
+			]
+		},
+		"CSCI 1411": {
+			"Name": "Fundamentals of Computing Laboratory",
+			"Credits": "1 Credit",
+			"Desc": "This laboratory is taken with CSCI\u00a01410 and will provide students with additional help with problem solving and computer exercises to compliment the course material covered in CSCI\u00a01410. Coreq: CSCI\u00a01410. Max Hours: 1 Credit.\nGrading Basis: Letter Grade\nD-En CO: CSCI\u00a01410 coreq",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [],
+			"Coreqs": [
+				"CSCI 1410"
+			]
+		},
+		"CSCI 1510": {
+			"Name": "Logic Design",
+			"Credits": "3 Credits",
+			"Desc": "The design and analysis of combinational and sequential logic circuits. Topics include binary and hexadecimal number systems, Boolean algebra and Boolean function minimization, and algorithmic state machines. Lecture/lab includes experiments with computer-aided design tools. This course requires the level of mathematical maturity of students ready for Calculus I. Max hours: 3 Credits.\nGrading Basis: Letter Grade",
+			"Fulfills": "Required Computer Science Systems Core Courses",
+			"Prereqs": [
+				"MATH 1120",
+				"MATH 1130"
+			]
+		},
+		"CSCI 2312": {
+			"Name": "Object Oriented Programming",
+			"Credits": "3 Credits",
+			"Desc": "Programming topics in a modern programming language. The emphasis is on problem solving using object oriented and Generic Programming. Topics include advanced I/O, classes, inheritance, polymorphism and virtual functions, abstract base classes, exception handling, templates, and the Standard Template Library. Prereq: Grade of C- or higher in the following courses: CSCI\u00a01410 and CSCI\u00a01411. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in the following courses: CSCI\u00a01410 and CSCI\u00a01411",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [
+				"CSCI 1410",
+				"CSCI 1411"
+			]
+		},
+		"CSCI 2421": {
+			"Name": "Data Structures and Program Design",
+			"Credits": "3 Credits",
+			"Desc": "Topics include a first look at an algorithm, data structures, abstract data types, and basic techniques such as sorting, searching, and recursion. Programming exercises are assigned through the semester. Prereq: CSCI\u00a02312 with a grade of C- or higher. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: CSCI\u00a02312 with a grade of C- or higher.",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [
+				"CSCI 2312"
+			]
+		},
+		"CSCI 2511": {
+			"Name": "Discrete Structures",
+			"Credits": "3 Credits",
+			"Desc": "Covers the fundamentals of discrete mathematics, including: logic, sets, functions, asymptotics, mathematical reasoning, induction, combinatorics, discrete probability, relations and graphs. Emphasis on how discrete mathematics applies to computer science in general and algorithm analysis in particular. Prereq: MATH\u00a01401 with a C- or higher (Calculus I). Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: MATH\u00a01401 with a C- or higher",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [
+				"MATH 1401"
+			]
+		},
+		"CSCI 2525": {
+			"Name": "Assembly Language and Computer Organization",
+			"Credits": "3 Credits",
+			"Desc": "Topics include computer architecture, program execution at the hardware level, programming in assembly language, the assembly process, hardware support of some high-level language features, and a program's interface to the operating system. Programming exercises are assigned in this course. These exercises involve the use of specific hardware in designated laboratories. Prereq: Grade of C- or higher in the following courses: CSCI\u00a01410, CSCI\u00a01411 and CSCI\u00a01510. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in the following courses: CSCI\u00a01410, CSCI\u00a01411 and CSCI\u00a01510.",
+			"Fulfills": "Required Computer Science Systems Core Courses",
+			"Prereqs": [
+				"CSCI 1410",
+				"CSCI 1411",
+				"CSCI 1510"
+			]
+		},
+		"CSCI 3287": {
+			"Name": "Database System Concepts",
+			"Credits": "3 Credits",
+			"Desc": "Introduces database design, database management systems, and the SQL standard database language.  Includes data modeling techniques, conceptual database design, theory of object-relational and relational databases, relational algebra, relational calculus, normalization and database integrity. Prereq: Grade of C- or higher in the following courses: ENGL\u00a01020, CSCI\u00a02312 and CSCI\u00a02421. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in the following courses: ENGL\u00a01020, CSCI\u00a02312 and CSCI\u00a02421.\nRestriction: Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [
+				"ENGL 1020",
+				"CSCI 2312",
+				"CSCI 2421"
+			]
+		},
+		"CSCI 3412": {
+			"Name": "Algorithms",
+			"Credits": "3 Credits",
+			"Desc": "Design and analysis of algorithms. Asymptotic analysis as a means of evaluating algorithm efficiency. The application of induction and other mathematical techniques for proving the correctness of an algorithm. Data structures for simplifying algorithm design, such as hash tables, heaps and search trees. Elementary graph algorithms. Assignments include written work and programming projects. Prereq: Grade of C- or higher in the following courses: CSCI\u00a02312, 2421 and 2511. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in the following courses: CSCI\u00a02312, 2421 and 2511. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [
+				"CSCI 2312",
+				"CSCI 2421",
+				"CSCI 2511"
+			]
+		},
+		"CSCI 3415": {
+			"Name": "Principles of Programming Languages",
+			"Credits": "3 Credits",
+			"Desc": "Introduces programming language design concepts and implementation issues. Includes language concepts such as control structures and data types, formal language specification techniques, and syntactic and semantic implementation issues. Prereq: Grade of C- or higher in the following courses: CSCI\u00a02312, 2421 and CSCI\u00a02525. Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in the following courses: CSCI\u00a02312, 2421 and CSCI\u00a02525. Restricted to undergraduate Computer Science Majors and Minors.",
+			"Fulfills": "Required Computer Science Systems Core Courses",
+			"Prereqs": [
+				"CSCI 2312",
+				"CSCI 2421",
+				"CSCI 2525"
+			]
+		},
+		"CSCI 3453": {
+			"Name": "Operating System Concepts",
+			"Credits": "3 Credits",
+			"Desc": "Covers the principles of computer operating systems and the essential components of an operating system. Topics include: I/O devices, file systems, CPU scheduling and memory management. Prereq: Grade of C- or higher in the following courses: CSCI\u00a03412 and CSCI\u00a02525. Restricted to Computer Science Majors, Minors and CSSC Certificate. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in the following courses: CSCI\u00a03412 and CSCI\u00a02525. Restricted to Computer Science Majors, Minors and CSSC Certificate.",
+			"Fulfills": "Required Computer Science Systems Core Courses",
+			"Prereqs": [
+				"CSCI 3412",
+				"CSCI 2525"
+			]
+		},
+		"CSCI 3508": {
+			"Name": "Introduction to Software Engineering",
+			"Credits": "3 Credits",
+			"Desc": "Introduces principles and practices of software engineering: software life-cycle models, requirements engineering, analysis and design tools, human factors risk management, program certification, project management and intellectual property rights. Prereq: Grade of C- or higher in CSCI\u00a03412. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a03412. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [
+				"CSCI 3412"
+			]
+		},
+		"CSCI 3511": {
+			"Name": "Hardware-Software Interface",
+			"Credits": "3 Credits",
+			"Desc": "Hardware and software techniques needed to control and program device interfaces. Input and output devices, computer peripherals, device drivers and interfaces are introduced. Specific programmable devices are used in class projects. Prereq: Grade of C- or higher in CSCI\u00a02525. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a02525. Restriction: Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: System Software",
+			"Prereqs": [
+				"CSCI 2525"
+			]
+		},
+		"CSCI 3560": {
+			"Name": "Probability and Computing",
+			"Credits": "3 Credits",
+			"Desc": "Events and probability. Discrete random variables. Moments of random variables. Conditional probability and expectation. The probabilistic method. Markov chains and random walks. Continuous distributions and the Poisson process. Entropy, randomness and information. Randomized algorithms. Prereq: Grade of a C- or higher in CSCI\u00a02511 and MATH\u00a02411. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of a C- or higher in CSCI\u00a02511 and MATH\u00a02411. Restriction: Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Scientific Computing",
+			"Prereqs": [
+				"CSCI 2511",
+				"MATH 2411"
+			]
+		},
+		"CSCI 3761": {
+			"Name": "Introduction to Computer Networks",
+			"Credits": "3 Credits",
+			"Desc": "Introduction and overview of computer networks. Topics include Internet protocols, network devices, network security, and performance issues. Prereq: Grade of C- or higher in CSCI\u00a02312 and 2421. Restriction: Restricted to Computer Science Majors, Minors and CSSC Certificate. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a02312 and 2421. Restriction: Restricted to Computer Science Majors, Minors and CSSC Certificate.",
+			"Fulfills": "Required Computer Science Systems Core Courses",
+			"Prereqs": [
+				"CSCI 2312",
+				"CSCI 2421"
+			]
+		},
+		"CSCI 4034": {
+			"Name": "Theoretical Foundations of Computer Science",
+			"Credits": "3 Credits",
+			"Desc": "Introduces abstract models for computation, formal languages and machines. Topics include: automata theory, formal languages, grammars and Turing machines. Prereq: Grade of C- or higher in CSCI\u00a03412. Restriction: Restricted to Computer Science Majors, Minors and CSSC Certificate. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a03412. Restricted to Computer Science Majors, Minors and CSSC Certificate.",
+			"Fulfills": "Required Computer Science Core Courses",
+			"Prereqs": [
+				"CSCI 3412"
+			]
+		},
+		"CSCI 4110": {
+			"Name": "Applied Number Theory",
+			"Credits": "3 Credits",
+			"Desc": "Every year, Topics include divisibility, prime numbers, congruences, number theoretic functions, quadratic reciprocity, special diophantine equations, cryptography, computer security, and engineering applications. Cross-listed with CSCI\u00a05110. Prereq: Grade of C- or higher in one of the following courses: MATH\u00a03000 or CSCI\u00a02511. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in MATH\u00a03000 or CSCI\u00a02511. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Scientific Computing",
+			"Prereqs": [
+				"MATH 3000",
+				"CSCI 2511"
+			]
+		},
+		"CSCI 4287": {
+			"Name": "Embedded Systems Programming",
+			"Credits": "3 Credits",
+			"Desc": "Embedded Systems Programming happens across a spectrum of Domains. Embedded Systems Programming in the Small is characterized by the creation of small applications in high volumes. Embedded Systems Programming in the Large is characterized by the creation of medium to large applications in one-off or low volumes using specialized Operating Systems such as Real-time Operating Systems. Students will current languages, and are expected to have basic Operating Systems understanding. Prereq: Graded with C- or higher in CSCI\u00a03453. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a03453. Restriction: Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: System Software",
+			"Prereqs": [
+				"CSCI 3453"
+			]
+		},
+		"CSCI 4455": {
+			"Name": "Data Mining",
+			"Credits": "3 Credits",
+			"Desc": "Introduces concepts, techniques and methodologies to discover patterns in data. Topics include (but are not limited to) data preprocessing and cleansing, data warehousing, pattern mining, classification, prediction, cluster analysis, outlier detection, and online data analytics. Prereq: Grade of C- or higher in the following coures: MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200), CSCI\u00a03287 and CSCI\u00a03412. Restricted to Computer Science Majors and Minors. Cross-listed with CSCI\u00a05455. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrerequisite: Grade of C- or higher in MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200), CSCI\u00a03287 and CSCI\u00a03412. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Data Science",
+			"Prereqs": [
+				"MATH 3195",
+				"MATH 3191",
+				"MATH 3200",
+				"CSCI 3287",
+				"CSCI 3412"
+			]
+		},
+		"CSCI 4551": {
+			"Name": "Parallel & Distributed Computing",
+			"Credits": "3 Credits",
+			"Desc": "Examines a range of topics involving parallel and distributed computing. Topics include language constructs for concurrency, work distribution, synchronization, and communication. Throughout, design of example scientific computing algorithms for parallel and distributed computation will be introduced. Prereq: Grade of C- or higher in Math 3195 (or both MATH\u00a03191 and MATH\u00a03200), CSCI\u00a03415 & CSCI\u00a03453. Restricted to Computer Science Majors and Minors. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in Math 3195 (or both MATH\u00a03191 and MATH\u00a03200), CSCI\u00a03415 CSCI\u00a03453. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "Required Computer Science Systems Core Courses",
+			"Prereqs": [
+				"MATH 3195",
+				"MATH 3191",
+				"MATH 3200",
+				"CSCI 3415",
+				"CSCI 3453"
+			]
+		},
+		"CSCI 4565": {
+			"Name": "Introduction to Computer Graphics",
+			"Credits": "3 Credits",
+			"Desc": "Introduces two and three dimensional computer graphics. Topics include scan conversion, geometric primitives, transformation, viewing, basic rendering, and illumination. Emphasis is on programming using \"C\" and \"C++\" Open GL. \t\nPre-req: Grade of C- or higher in CSCI\u00a03412 and (MATH\u00a03191 or MATH\u00a03195). Restricted to Computer Science Majors and Minors. Cross-listed with CSCI\u00a05565. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPre-req: Grade of C- or higher in CSCI\u00a03412 and (MATH\u00a03191 or MATH\u00a03195). Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: System Software",
+			"Prereqs": [
+				"CSCI 3412",
+				"MATH 3191",
+				"MATH 3195"
+			]
+		},
+		"CSCI 4580": {
+			"Name": "Data Science",
+			"Credits": "3 Credits",
+			"Desc": "Introduces concepts and techniques that enable data cycle from data extraction to knowledge discovery, including but not limited to data exploration, hypotheses testing, data organization, data featurization, supervised and unsupervised data modeling and learning, scaling-up analytics, and data visualization. Prereq: Grade of C- or higher in MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200), CSCI\u00a03287 and CSCI\u00a03412. Restricted to Computer Science Majors & Minors. Cross-listed with CSCI\u00a05580. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrerequisite: Grade of C- or higher in MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200), CSCI\u00a03287 and CSCI\u00a03412. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Data Science",
+			"Prereqs": [
+				"MATH 3195",
+				"MATH 3191",
+				"MATH 3200",
+				"CSCI 3287",
+				"CSCI 3412"
+			]
+		},
+		"CSCI 4591": {
+			"Name": "Computer Architecture",
+			"Credits": "3 Credits",
+			"Desc": "Deals with how assembly language maps to hardware, and basic hardware techniques implemented in computers. Topics include logic design of arithmetic units, data control path processor logic, pipelining, memory systems, and input-output units. The emphasis is on logic structure rather than electronic circuitry. Students must know basic control logic design and be familiar with an assembly language before taking this course. Prereq: Grade of C- or higher in CSCI\u00a02525. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a02525. Restriction: Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "Required Computer Science Systems Core Courses",
+			"Prereqs": [
+				"CSCI 2525"
+			]
+		},
+		"CSCI 4650": {
+			"Name": "Numerical Analysis I",
+			"Credits": "3 Credits",
+			"Desc": "Methods and analysis of techniques used to resolve continuous mathematical problems on the computer. Solution of linear and nonlinear equations, interpolation and integration. Cross-listed with CSCI\u00a05660, MATH\u00a04650, and MATH\u00a05660. Prereq: MATH\u00a02411, MATH\u00a03191 or MATH\u00a03195, and programming experience. Restriction: Restricted to Computer Science Majors. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: MATH\u00a02411 and (MATH\u00a03191 or MATH\u00a03195), and programming experience. Restricted to Computer Science Majors.",
+			"Fulfills": "CS Breadth: Scientific Computing",
+			"Prereqs": [
+				"MATH 2411",
+				"MATH 3191",
+				"MATH 3195"
+			]
+		},
+		"CSCI 4738": {
+			"Name": "Senior Design I",
+			"Credits": "3 Credits",
+			"Desc": "This is an advanced practical course in which students design, implement, and document and test software systems for use in industry, non-profits, government and research institutions. The course offers practical experience by working closely with project sponsors. It also offers extensive experience in oral and written communication throughout the software life cycle. Prereq: Grade of C- or higher in CSCI\u00a03287, CSCI\u00a03415, CSCI\u00a03453, and CSCI\u00a03508. Restriction: Restricted to Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a03287, CSCI\u00a03415, CSCI\u00a03453, and CSCI\u00a03508. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Capstone Project",
+			"Prereqs": [
+				"CSCI 3287",
+				"CSCI 3415",
+				"CSCI 3453",
+				"CSCI 3508"
+			]
+		},
+		"CSCI 4739": {
+			"Name": "Senior Design II",
+			"Credits": "3 Credits",
+			"Desc": "This course is a continuation of Senior Design I. Students must have taken Senior Design I in order to enroll for Senior Design II. In this course, the projects begun in Senior Design I are completed and presented. Prereq: CSCI\u00a04738. Restricted to undergraduate Computer Science Majors and Minors. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a04738. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Capstone Project",
+			"Prereqs": [
+				"CSCI 4738"
+			]
+		},
+		"CSCI 4741": {
+			"Name": "Principles of Cybersecurity",
+			"Credits": "3 Credits",
+			"Desc": "Focuses on the most common threats to cybersecurity as well as ways to prevent security breaches or information loss. Topics will include: understanding and thwarting hacker methods, authentication, cryptography, programming security, malware analysis, web, database and file server security, network and enterprise security methods. Prereq: Grade of C- or higher in CSCI\u00a03287 and CSCI\u00a03761. Restriction: Restricted to Computer Science Majors, Minors and CSSC Certificate. Max hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a03287 and CSCI\u00a03761. Restriction: Restricted to Computer Science Majors, Minors and CSSC Certificate.",
+			"Fulfills": "CS Breadth: Secure Computing",
+			"Prereqs": [
+				"CSCI 3287",
+				"CSCI 3761"
+			]
+		},
+		"CSCI 4742": {
+			"Name": "Cybersecurity Programming and Analysis",
+			"Credits": "3 Credits",
+			"Desc": "Focuses on cybersecurity related programming and analysis skills. Topics include: network and security application development, intrusion detection, automating security hardening. Students will design and develop security applications in multiple programming languages. Undergraduate algorithms and programming knowledge expected. Pre-Req: CSCI\u00a03415. Restricted to undergraduate Computer Science Majors and Minors. Cross-listed with CSCI\u00a05742. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a03415. Restriction: Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Secure Computing",
+			"Prereqs": [
+				"CSCI 3415"
+			]
+		},
+		"CSCI 4743": {
+			"Name": "Cyber and Infrastructure Defense",
+			"Credits": "3 Credits",
+			"Desc": "Presents analytical study of state-of-the-art attack and defense paradigms in cyber systems and infrastructures. Analysis will focus on: theoretical foundations of cybersecurity, practical development of novel technical defense techniques and analysis of alternatives. Knowledge of undergraduate-level networking. Cross-listed with CSCI\u00a05743. Prereq: Grade of C- or higher in CSCI\u00a03761. Restriction: Restricted to Computer Science Majors, Minors and CSSC Certificate. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in CSCI\u00a03761. Restricted to Computer Science Majors, Minors and CSSC Certificate.",
+			"Fulfills": "CS Breadth: Secure Computing",
+			"Prereqs": [
+				"CSCI 3761"
+			]
+		},
+		"CSCI 4930": {
+			"Name": "Machine Learning",
+			"Credits": "3 Credits",
+			"Desc": "Provides theoretical and computational foundations in machine learning to design and develop intelligent applications to perform object recognition, personalized recommendations, improve cybersecurity, fact-checking, forecasting and finding communities based on three classes of algorithms: supervised, unsupervised, semi-supervised and reinforcement learning. Prereq: Grade of C- or higher in the following courses: MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200) & CSCI\u00a03412. Restricted to Computer Science Majors and Minors. Cross-listed with CSCI\u00a05930. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in the following courses: MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200)  CSCI\u00a03412. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Data Science",
+			"Prereqs": [
+				"MATH 3195",
+				"MATH 3191",
+				"MATH 3200",
+				"CSCI 3412"
+			]
+		},
+		"CSCI 4931": {
+			"Name": "Deep Learning",
+			"Credits": "3 Credits",
+			"Desc": "Provides a foundation on deep learning; a sought-after skill in machine learning. Topics include neural network design & learning, restricted Boltzmann machine, convolution neural network, recurrent neural network, LSTMs, deep reinforcement learning, autoencoders, and evolving computation frameworks like TensorFlow, Keras. Prereq: Grade of C- or higher in MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200) and CSCI\u00a03412. Restricted to Computer Science Majors and Minors. Cross-listed with CSCI\u00a05931. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrereq: Grade of C- or higher in the following courses: MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200)  CSCI\u00a03412. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Data Science",
+			"Prereqs": [
+				"MATH 3195",
+				"MATH 3191",
+				"MATH 3200",
+				"CSCI 3412"
+			]
+		},
+		"CSCI 4951": {
+			"Name": "Big Data Systems",
+			"Credits": "3 Credits",
+			"Desc": "Presents a practical while in-depth review of the principles of a series of modern data processing systems (e.g., Hadoop, Spark, TensorFlow) designed to address the Big Data challenges. In combination, these systems enable the data to knowledge (Big) data lifecycle. Prereq: Grade of C- or higher in MATH\u00a03195 (or MATH\u00a03191 and MATH\u00a03200), CSCI\u00a03287 and CSCI\u00a03412. Restriction: Restricted to Computer Science Majors and Minors. Cross-listed with CSCI\u00a05951. Max Hours: 3 Credits.\nGrading Basis: Letter Grade\nPrerequisite: Grade of C- or higher in MATH\u00a03195 (or both MATH\u00a03191 and MATH\u00a03200), CSCI\u00a03287 and CSCI\u00a03412. Restricted to Computer Science Majors and Minors.",
+			"Fulfills": "CS Breadth: Data Science",
+			"Prereqs": [
+				"MATH 3195",
+				"MATH 3191",
+				"MATH 3200",
+				"CSCI 3287",
+				"CSCI 3412"
+			]
+		},
+		"MATH 1401": {
+			"Name": "Calculus I",
+			"Credits": "4 Credits",
+			"Desc": "First course of a three-semester sequence (MATH\u00a01401, 2411, 2421) in calculus. Topics covered include limits, derivatives, applications of derivatives, and the definite integral. Note: No co-credit with MATH\u00a01080. Prereq:MATH\u00a01109 or MATH\u00a01070 or MATH\u00a01110 with a C- or higher and MATH\u00a01120 with a C- or higher or MATH\u00a01130 with a C- or higher or MATH\u00a01401 with a C- or higher OR entry into the MA01 Student Group OR ALEKS PPL score 76-100. If you have any questions or concerns about this requisite, please notify MATH.Placement@ucdenver.edu. Max Hours: 4 Credits.\nGrading Basis: Letter Grade\nMATH\u00a01109 or MATH\u00a01070 or MATH\u00a01110 with a C- or higher and MATH\u00a01120 with a C- or higher or MATH\u00a01130 with a C- or higher or MATH\u00a01401 with a C- or higher OR entry into the MA01 Student Group OR ALEKS PPL score 76-100.\nAdditional Information: Denver Core Requirement, Mathematics; GT courses GT Pathways, GT-MA1, Mathematics.",
+			"Fulfills": "Required Mathematics",
+			"Prereqs": [
+				"MATH 1109",
+				"MATH 1070",
+				"MATH 1110",
+				"MATH 1120",
+				"MATH 1130",
+				"MATH 1401"
+			]
+		},
+		"PHYS 2321": {
+			"Name": "Intro Experimental Phys Lab I",
+			"Credits": "1 Credit",
+			"Desc": "This introductory experimental physics laboratory introduces students to the methods of science through a series of experiments and exercises focused on how objects move. Students working in teams use mathematical and computational approaches to acquire data, examine data, and make conclusions about how well these data support hypotheses and models. Students will use different types of scientific communication, including graphs and other forms of data visualization and cogent written and oral evaluation of experimental findings. Term offered: spring, summer, fall. Max hours: 1 Credit.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lab.\nTypically Offered: Fall, Spring, Summer.",
+			"Fulfills": "Required Science",
+			"Prereqs": []
+		},
+		"MATH 3195": {
+			"Name": "Linear Algebra and Differential Equations",
+			"Credits": "4 Credits",
+			"Desc": "Presents the essential ideas and methods of linear algebra and differential equations, emphasizing the connections between and the applications of both subjects. The course is designed for students in the sciences and engineering. Note: No co-credit with MATH\u00a03200 and MATH\u00a03191. Prerequisite: MATH\u00a02411 with a C- or higher. Term offered: fall, spring, summer. Max hours: 4 Credits.\nGrading Basis: Letter Grade\nPrereq: C- or better in MATH\u00a02411",
+			"Fulfills": "Required Mathematics",
+			"Prereqs": [
+				"MATH 2411"
+			]
+		},
+		"PHYS 2311": {
+			"Name": "General Physics I: Calculus-Based",
+			"Credits": "4 Credits",
+			"Desc": "This is a calculus based physics course covering vector displacement, uniform and accelerated motion, force, momentum, energy, rotating systems, oscillations, and an introduction to thermodynamics. Emphasis is on basic principles. Prerequisite: MATH\u00a01401 with a C- or higher. Term offered: spring, summer, fall. Max Hours: 4 Credits.\nGrading Basis: Letter Grade\nPrerequisite: MATH\u00a01401 with a C- or higher.\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lec.\nTypically Offered: Fall, Spring, Summer.",
+			"Fulfills": "Required Science",
+			"Prereqs": [
+				"MATH 1401"
+			]
+		},
+		"CHEM 2038": {
+			"Name": "General Chemistry Laboratory I",
+			"Credits": "1 Credit",
+			"Desc": "Laboratory course designed to accompany Chem 2031. Topics include gravimetric analysis, statistical analysis, stoichiometry, Avogadro\u2019s number, thermochemistry, atomic spectroscopy, paper chromatography, and gas laws. No co-credit with CHEM\u00a02088. Coreq: CHEM\u00a02031 or CHEM\u00a02081. Term offered: fall, spring, summer. Max hours: 1 Credit. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC1.\nGrading Basis: Letter Grade\nCoreq:  CHEM\u00a02031 or CHEM\u00a02081\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lab; GT courses GT Pathways, GT-SC1, Nat  Phy Sci:Course w/Req Lab.",
+			"Fulfills": "Required Science",
+			"Prereqs": []
+		},
+		"MATH 2411": {
+			"Name": "Calculus II",
+			"Credits": "4 Credits",
+			"Desc": "The second of a three-semester sequence (MATH\u00a01401, 2411, 2421) in calculus. Topics covered include exponential, logarithmic, and trigonometric functions, techniques of integration, indeterminate forms, improper integrals and infinite series. Prereq: C- or better in MATH\u00a01401. Note: Students with a grade of B- or better in MATH\u00a01401 pass this course at a much higher rate. Term offered: fall, spring, summer. Max hours: 4 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-MA1.\nGrading Basis: Letter Grade\nPrereq: C- or better in MATH\u00a01401\nAdditional Information: GT courses GT Pathways, GT-MA1, Mathematics; Denver Core Requirement, Mathematics.",
+			"Fulfills": "Required Mathematics",
+			"Prereqs": [
+				"MATH 1401"
+			]
+		},
+		"BIOL 2011": {
+			"Name": "Organisms to Ecosystems Lab (Gen Bio)",
+			"Credits": "1 Credit",
+			"Desc": "Investigations, observations, and experiments in evolution, bioinformatics, ecology, and animal behavior, anatomy, and physiology; requires off-campus field work. Note: This class is intended for students planning to take upper division biology courses and for biology majors. Students are strongly encouraged to take BIOL\u00a02010 concurrently or before they take this course. No co-credit with BIOL\u00a02031(2098) or BIOL 2081. Term offered: fall, spring, summer. Max hours: 1 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC1.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SC1, Nat  Phy Sci:Course w/Req Lab; Denver Core Requirement, Biol  Phys Sci - Lab.",
+			"Fulfills": "Required Science",
+			"Prereqs": []
+		},
+		"PHYS 2341": {
+			"Name": "Intro Experimental Phys Lab II",
+			"Credits": "1 Credit",
+			"Desc": "This introductory experimental physics laboratory introduces students to the methods of science through a series of experiments and exercises focused on electricity and magnetism. Students working in teams use mathematical and computational approaches to acquire data, examine data, and make conclusions about how well these data support hypotheses and models. Students will use different types of scientific communication, including graphs and other forms of data visualization and cogent written and oral evaluation of experimental findings. Prereq: PHYS\u00a02321 or PHYS 2030 with a C- or higher. Term offered: spring, summer, fall. Max hours: 1 Credit.\nGrading Basis: Letter Grade\nPrereq: PHYS\u00a02321 or PHYS 2030 with a C- or higher.\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lab.\nTypically Offered: Fall, Spring, Summer.",
+			"Fulfills": "Required Science",
+			"Prereqs": [
+				"PHYS 2321",
+				"PHYS 2030"
+			]
+		},
+		"ENGR 1200": {
+			"Name": "Fundamentals of Engineering Design Innovation",
+			"Credits": "3 Credits",
+			"Desc": "This course introduces concepts of engineering design innovation at a variety of scales and disciplines. Participants will experience and explore core technology and design themes including design principles, processes, methods, modes of thinking, and social and cultural aspects or design. Max hours: 3 Credits.\nGrading Basis: Letter Grade",
+			"Fulfills": "Required Engineering Design Courses",
+			"Prereqs": []
+		},
+		"PHYS 2331": {
+			"Name": "General Physics II: Calculus-Based",
+			"Credits": "4 Credits",
+			"Desc": "This is a calculus based physics course covering electrostatics, magnetic fields, electromagnetic waves (including light), and optics. Prerequisite: PHYS\u00a02311 and MATH\u00a02411 with a C- or higher. Term offered: spring, summer, fall. Max Hours: 4 Credits.\nGrading Basis: Letter Grade\nPrerequisite: PHYS\u00a02311 and MATH\u00a02411 with a C- or higher.\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lec.\nTypically Offered: Fall, Spring, Summer.",
+			"Fulfills": "Required Science",
+			"Prereqs": [
+				"PHYS 2311",
+				"MATH 2411"
+			]
+		},
+		"BIOL 2021": {
+			"Name": "Molecules to Cells Lab (Gen Bio)",
+			"Credits": "1 Credit",
+			"Desc": "Introduces the basic scientific approach through investigations, observations, and experiments in cell biology, basic biochemical techniques, genetics, molecular genetics and applications of biotechnology. Note: This class is intended for students planning to take upper division biology courses and for biology majors. Prereq: BIOL\u00a02010 (2061) or BIOL\u00a02030 (2097) with a C- or higher. No co-credit with BIOL\u00a02041(2096) or BIOL 2071. Term offered: fall, spring, summer. Max hours: 1 Credit. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC1.\nGrading Basis: Letter Grade\nPrereq: BIOL\u00a02010 (2061) or BIOL\u00a02030 (2097) with a C- or higher.\nAdditional Information: GT courses GT Pathways, GT-SC1, Nat  Phy Sci:Course w/Req Lab; Denver Core Requirement, Biol  Phys Sci - Lab.",
+			"Fulfills": "Required Science",
+			"Prereqs": [
+				"BIOL 2010",
+				"BIOL 2061",
+				"BIOL 2030",
+				"BIOL 2097"
+			]
+		},
+		"CHEM 2031": {
+			"Name": "General Chemistry I",
+			"Credits": "3 Credits",
+			"Desc": "This is the first of a two semester sequence designed for students pursuing a degree in science or a health related field. Chem 2031 is designed for students who have recently completed high school chemistry or Chem 1000 with a C- or better. Note: Non- science majors should review the course description for Chem 1474 as an alternative, non-majors science CU Denver Undergraduate Core course, with lab credit. Topics covered include the classification of matter, the Metric system, dimensional analysis, atomic theory and the structure of atoms, periodic relationships, empirical formulas, thermochemistry, gas laws and the kinetic molecular theory, compounds and nomenclature of inorganic compounds, the mole, balancing equations, stoichiometry, types of chemical reactions, solution stoichiometry and dilutions, electron configurations, chemical bonding, Lewis Dot Theory, Valence Shell Electron Pair repulsion Theory, and other topics as time allows. This course is a prerequisite or co-requisite for General Chemistry 1 Lab, Chem 2038. No co-credit with CHEM\u00a02081. Note: a beginning course for science majors, medical technologists, pre-medical and pre-dental students. It is strongly recommended that students have taken CHEM\u00a01000 and MATH\u00a01110 or their high school equivalents to be adequately prepared to succeed in this course. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC2.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lec; GT courses GT Pathways, GT-SC2, Nat  Phy Sci:Lec w/o Req Lab.",
+			"Fulfills": "Required Science",
+			"Prereqs": []
+		},
+		"BIOL 2010": {
+			"Name": "Organisms to Ecosystems (Gen Bio)",
+			"Credits": "3 Credits",
+			"Desc": "Introduces four major areas of study: (1) evolution,(2) animal structure and function, (3) plant structure and function and (4) ecology. Note:\u00a0 This class is intended for students planning to take upper division biology courses and for biology majors. Biology majors and pre-health career students must also take the accompanying laboratory BIOL\u00a02011. No co-credit with BIOL\u00a02030(2097) or BIOL 2061. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC2.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SC2, Nat  Phy Sci:Lec w/o Req Lab; Denver Core Requirement, Biol  Phys Sci - Lec.",
+			"Fulfills": "Required Science",
+			"Prereqs": []
+		},
+		"CHEM 2068": {
+			"Name": "General Chemistry Laboratory II",
+			"Credits": "2 Credits",
+			"Desc": "Laboratory course designed to accompany Chem 2061. Topics include colligative properties, spectroscopic analysis, kinetics, equilibrium, acid-base chemistry, titrations, and qualitative analysis of metal cations. No co-credit with CHEM\u00a02098. Prereq: CHEM\u00a02038 or 2088 with a C- or higher. Coreq: CHEM\u00a02061 or 2091. Term offered: fall, spring, summer. Max hours: 2 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC1.\nGrading Basis: Letter Grade\nPrereq: CHEM\u00a02038 or 2088 with a C- or higher \nCoreq:  CHEM\u00a02061 or 2091\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lab; GT courses GT Pathways, GT-SC1, Nat  Phy Sci:Course w/Req Lab.",
+			"Fulfills": "Required Science",
+			"Prereqs": [
+				"CHEM 2038",
+				"CHEM 2088"
+			]
+		},
+		"BIOL 2020": {
+			"Name": "Molecules to Cells (Gen Bio)",
+			"Credits": "3 Credits",
+			"Desc": "Introduces four major areas of study: (1) the chemistry of biological systems; (2) the structure and function of the cell; (3) cellular energy transformations (photosynthesis and respiration); and (4) genetics (mitosis, meiosis, patterns of inheritance, molecular genetics). Note: This class is intended for students planning to take upper division biology courses and for biology majors. Biology majors and pre-health career students must also take the accompanying laboratory BIOL\u00a02021. Prereq: BIOL\u00a02010 (2061) or BIOL\u00a02030 (2097) with a C- or higher. No co-credit with BIOL\u00a02040(2095) or BIOL 2051. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC2.\nGrading Basis: Letter Grade\nPrereq: BIOL\u00a02010 (2061) or BIOL\u00a02030 (2097) with a C- or higher.\nAdditional Information: GT courses GT Pathways, GT-SC2, Nat  Phy Sci:Lec w/o Req Lab; Denver Core Requirement, Biol  Phys Sci - Lec.",
+			"Fulfills": "Required Science",
+			"Prereqs": [
+				"BIOL 2010",
+				"BIOL 2061",
+				"BIOL 2030",
+				"BIOL 2097"
+			]
+		},
+		"CHEM 2061": {
+			"Name": "General Chemistry II",
+			"Credits": "3 Credits",
+			"Desc": "This is a continuation of Chem 2031 and is the second course of a two semester sequence designed for students pursuing a degree in science or a health related field. CHEM\u00a02061 builds upon the understanding of chemistry rooted in the molecular nature of matter and change from General Chemistry I and expands to include topics such as intermolecular forces, solution chemistry, kinetics, chemical equilibrium, acid-base chemistry, buffer chemistry, solubility, thermodynamics and time permitting, electrochemistry. Specific topics include: the use of bonding theories to explain the relationships between atomic structure, molecular shape, and macroscopic properties of matter including boiling point, vapor pressure, surface tension, viscosity, and capillarity; the understanding of molecular structure to explain the energetics of solution formation as well as vapor pressures of pure liquids and solutions; the application of rates of reactions to define the state of equilibrium; the application of problem solving techniques for systems at equilibrium to acid/base and solubility chemistry; and the thermodynamic underpinnings of chemical reaction rates and the spontaneous conversion of chemical species to attain a state of dynamic equilibrium. This course is a prerequisite or co-requisite for General Chemistry II Lab, Chem 2068. Prereq: CHEM\u00a02031 or 2081 with a C- or higher. No co-credit with CHEM\u00a02091. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC2.\nGrading Basis: Letter Grade\nPrereq:  CHEM\u00a02031 or 2081 with a C- or higher\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lec; GT courses GT Pathways, GT-SC2, Nat  Phy Sci:Lec w/o Req Lab.",
+			"Fulfills": "Required Science",
+			"Prereqs": [
+				"CHEM 2031",
+				"CHEM 2081"
+			]
+		}
+	}
 }
