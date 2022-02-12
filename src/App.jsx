@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import saveAs from 'file-saver';
 import Dropzone from 'react-dropzone';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 
 
@@ -76,18 +78,29 @@ class FlowChartItem extends React.Component {
     let bgRGB = this.props.bgCol.slice(1).match(/.{1,2}/g).map(x => Number.parseInt(x, 16));
     let textCol = (bgRGB[0]*0.299 + bgRGB[1]*0.587 + bgRGB[2]*0.114) > 186 ? "#000000" : "#ffffff";
     return (
-      <div style={{backgroundColor: this.props.bgCol, color: textCol}} className={'flow-box ' + 
-      (this.props.taken ? ' taken-class' : '') + (this.props.isPreReq ? ' pre-reqs' : '')} 
-      onMouseEnter={this.props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
-      onMouseLeave={this.props.leaveFunc}>
-        <div className='flow-id'>{this.props.Name}</div>
-        <div className='flow-desc'>
-          {/* !!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering) */}
-          <div className='flow-name'>{!!this.props.cl && this.props.cl.Name}</div>
-          <div className='flow-credits'>{this.props.Credits.slice(0,1)} {this.props.Credits == 1 ? 'hour' : 'hours'}</div>
-          <div className='flow-notes'>{!!this.props.cl && getNotes(this.props.cl.Prereqs)}</div>
+      // overlay trigger will display additional description about the class once it is clicked. The overlay trigger is wrapped around the content/div area that should be clicked to activate the pop up window, root close means that the other pop up will hide when the user clicks somewhere else outside of the box
+      // Overlay Reference: https://react-bootstrap.github.io/components/overlays/
+      <OverlayTrigger trigger="click" rootClose={true} placement="auto" overlay={
+        <Popover id={"popover" + this.props.Name}>
+          <Popover.Header as="h3">{this.props.Name}</Popover.Header>
+          <Popover.Body>
+            {!!this.props.cl && this.props.cl.Desc}
+          </Popover.Body>
+        </Popover>}>
+        <div style={{backgroundColor: this.props.bgCol, color: textCol}} className={'flow-box ' + 
+        (this.props.taken ? ' taken-class' : '') + (this.props.isPreReq ? ' pre-reqs' : '')} 
+        onMouseEnter={this.props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
+        onMouseLeave={this.props.leaveFunc}>
+          <div className='flow-id'>{this.props.Name}</div>
+          <div className='flow-credits'>{this.props.Credits}</div>
+          <div className='flow-desc'>
+            {/* !!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering) */}
+            <div className='flow-name'>{!!this.props.cl && this.props.cl.Name}</div>
+            <div className='flow-restriction'>{this.props.Restriction}</div>
+            <div className='flow-notes'>{!!this.props.cl && getNotes(this.props.cl.Prereqs)}</div>
+          </div>
         </div>
-      </div>
+      </OverlayTrigger>
     );
   }
 }
@@ -214,7 +227,9 @@ class App extends React.Component {
 
   // when begin hovering over box, get prereqs and put in state
   flowBoxEnter(classId) {
-    this.setState({ CurPreReqs: this.state.Class_Desc[classId].Prereqs });
+    if ((classId in this.state.Class_Desc) && ('Prereqs' in this.state.Class_Desc[classId])) {
+      this.setState({ CurPreReqs: this.state.Class_Desc[classId].Prereqs });
+    }
   }
 
   // IF WE WANNA DO THIS:
@@ -253,6 +268,8 @@ class App extends React.Component {
   displayEditView() {
     let headerList = groupBy(Object.entries(this.state.Class_Desc), x => x[1].Fulfills);
     return (
+      <React.Fragment>
+      <div className="credit-count">{this.calculateSemHours(this.state.Classes)}</div>
       <table className='listview-table'>
         <thead>
           <tr>
@@ -296,7 +313,21 @@ class App extends React.Component {
             ))}
         </tbody>
       </table>
+      </React.Fragment>
     );
+  }
+
+  // takes list of flowchart class information, calculates the total amount of credit hours taken from it and the total number of credit hours that are in the classes
+  calculateSemHours(classList) {
+      let total = 0;
+      let taken = 0;
+      for (let cl of classList) {
+        total += parseInt(cl.Credits); 
+        if (this.state.Taken_Classes.indexOf(cl.Name) > -1) { // if have taken, add to count
+            taken += parseInt(cl.Credits);
+        }
+      }
+      return taken + ' taken out of ' + total + " total hours"; // return string for display
   }
 
   // function that handles the content from the json file that should be displayed, and labels the semesters accordingly
@@ -320,6 +351,7 @@ class App extends React.Component {
                 {/* Col: column tag, imported from bootstrap-react 
                   key attribute is used as a unique identifier for an item in a list in react */}
                 <div className='sem-header'>{sem.split('-')[0]}</div>
+                <div className='sem-credits'>{this.calculateSemHours(classes)}</div>
                 {classes.sort((a, b) =>
                   // sort by color order 
                   this.state.Color_Order.indexOf(a.Color) - this.state.Color_Order.indexOf(b.Color)
@@ -375,12 +407,16 @@ class App extends React.Component {
               className={(this.state.Display === 'Flow') ? 'active' : 'inactive'}
               onClick={() => this.menuClick(0)}
             >Flowchart</Nav.Link>
-            <Nav.Link
+            <Nav.Link 
               className={(this.state.Display === 'Edit') ? 'active' : 'inactive'}
               onClick={() => this.menuClick(1)}
-            >Edit Mode</Nav.Link>
+            >Edit Classes</Nav.Link>
           </Nav>
         </Navbar>
+        <div className = "flow-warn">
+          *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered more frequently as resources allow, but students cannot expect them to be
+offered off‐semester. Students should use the rotation shown on this flowchart as a guide for planning their upper level courses.
+        </div>
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
           <div>

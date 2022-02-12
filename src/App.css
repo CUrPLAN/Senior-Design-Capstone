@@ -33,8 +33,14 @@ body {
   margin-left: 2vw;
 }
 
+.navbar-nav {
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
+
 .active {
-  background-color: black;
+  background-color: #bc8c38;
   height: 100%;
 }
 
@@ -69,6 +75,15 @@ body {
 
 .year-header {
   font-size: 1.2em;
+  font-weight: 500;
+}
+
+.sem-header {
+  font-weight: 500;
+}
+
+.sem-credits {
+  font-size: 0.8em;
 }
 
 .sem-classes {
@@ -98,6 +113,11 @@ body {
   font-weight: bold;
 }
 
+.flow-restriction { /*adding variation to restriction info to be more distiguishable*/
+  font-weight: bold;
+  color: #990000;
+}
+
 .flow-notes {
   margin-top: 10px;
   font-weight: 600;
@@ -109,6 +129,11 @@ body {
 
 .pre-reqs {
   border: red solid 3px;
+}
+
+.credit-count { /*aligning total credit count info in edit view*/
+  text-align: right;
+  margin-right: 15px;
 }
 
 .listview-table {
@@ -193,6 +218,14 @@ thead {
   text-align: center;
   line-height: 50px;
   height: 50px;
+}
+
+.flow-warn {
+  padding-top: 2vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 /* hiding the text when a file is uploaded through the upload button */
