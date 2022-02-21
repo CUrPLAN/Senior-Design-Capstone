@@ -40,6 +40,12 @@ var getNotes = function(oldPrereqs) {
   }
 }
 
+var isDarkBackground = function(bgCol) {
+  // let RGB is a variable that dynamically sets the color of each box and calculates the brightness of the color. based on the color, we set it so that the text color will be black or white based on the brightness of the box color
+    let bgRGB = bgCol.slice(1).match(/.{1,2}/g).map(x => Number.parseInt(x, 16));
+    return (bgRGB[0]*0.299 + bgRGB[1]*0.587 + bgRGB[2]*0.114) > 186;
+}
+
 class ListViewItem extends React.Component {
   constructor(props) {
     super(props);
@@ -73,10 +79,8 @@ class FlowChartItem extends React.Component {
   render() {
     // each element for the class description is separated into its own section for future modifications/styling 
 
-    // If the class is in the taken classes list modify transparency
+    // If the class is in the taken classes add class to signal that
     // need spaces so that if there are different css styling elements that need to be applied, that the className property can differentiate from them
-    let bgRGB = this.props.bgCol.slice(1).match(/.{1,2}/g).map(x => Number.parseInt(x, 16));
-    let textCol = (bgRGB[0]*0.299 + bgRGB[1]*0.587 + bgRGB[2]*0.114) > 186 ? "#000000" : "#ffffff";
     return (
       // overlay trigger will display additional description about the class once it is clicked. The overlay trigger is wrapped around the content/div area that should be clicked to activate the pop up window, root close means that the other pop up will hide when the user clicks somewhere else outside of the box
       // Overlay Reference: https://react-bootstrap.github.io/components/overlays/
@@ -84,19 +88,20 @@ class FlowChartItem extends React.Component {
         <Popover id={"popover" + this.props.Name}>
           <Popover.Header as="h3">{this.props.Name}</Popover.Header>
           <Popover.Body>
-            {!!this.props.cl && this.props.cl.Desc}
+            {!!this.props.cl && /(.*):(.*)/.exec(this.props.cl.Desc)[0]}
           </Popover.Body>
         </Popover>}>
-        <div style={{backgroundColor: this.props.bgCol, color: textCol}} className={'flow-box ' + 
-        (this.props.taken ? ' taken-class' : '') + (this.props.isPreReq ? ' pre-reqs' : '')} 
+        <div style={{backgroundColor: this.props.bgCol, color: isDarkBackground(this.props.bgCol) ? "#000000" : "#ffffff"}} 
+        className={'flow-box ' + 
+        (this.props.taken ? ' taken-class' : '') + (this.props.isPreReq ? ' pre-reqs' : '')}
         onMouseEnter={this.props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
         onMouseLeave={this.props.leaveFunc}>
           <div className='flow-id'>{this.props.Name}</div>
           <div className='flow-credits'>{this.props.Credits}</div>
-          <div className='flow-desc'>
+          <div className={this.props.displayAll ? '': 'flow-desc'}>
             {/* !!this.props.cl && this.props.cl.(key) checks that if the element is not null then display this element property (conditional rendering) */}
             <div className='flow-name'>{!!this.props.cl && this.props.cl.Name}</div>
-            <div className='flow-restriction'>{this.props.Restriction}</div>
+            <div className='flow-restriction'>{!!this.props.Restriction && '*' + this.props.Restriction + '*'}</div>
             <div className='flow-notes'>{!!this.props.cl && getNotes(this.props.cl.Prereqs)}</div>
           </div>
         </div>
@@ -113,7 +118,9 @@ class App extends React.Component {
       Classes: [],
       Class_Desc: [],
       Taken_Classes: [],
-      CurPreReqs: []
+      CurPreReqs: [], 
+      Colors: {},
+      displayAll: false
     };
   }
 
@@ -322,12 +329,12 @@ class App extends React.Component {
       let total = 0;
       let taken = 0;
       for (let cl of classList) {
-        total += parseInt(cl.Credits); 
+        total += parseInt(cl.Credits.slice(cl.Credits.indexOf('‐') + 1)); 
         if (this.state.Taken_Classes.indexOf(cl.Name) > -1) { // if have taken, add to count
             taken += parseInt(cl.Credits);
         }
       }
-      return taken + ' taken out of ' + total + " total hours"; // return string for display
+      return taken + ' / ' + total + " credits taken"; // return string for display
   }
 
   // function that handles the content from the json file that should be displayed, and labels the semesters accordingly
@@ -340,14 +347,14 @@ class App extends React.Component {
     // uses map to loop and extract year number in 'year' and list of semesters in 'sems'
     let content = Object.entries(yearSems).map(([year, sems]) => (
       // makes new column for each year with table inside for semesters
-      <Col key={'colyear' + year} className='yearcol'>
+      <Col key={'colyear' + year} lg={3} sm={6} xs={12} className='yearcol'>
         <Container>
           <Row><Col className='year-header'>Year {year}</Col></Row>
           <Row className='sem-classes'>{
             // sort the semesters alphabetically, so that Fall always comes before Spring
             // uses map to loop and extract semester string in 'sem' and list of classes in 'classes'
             sems.sort((a, b) => a[0].localeCompare(b[0])).map(([sem, classes]) => (
-              <Col key={sem} className='semcol'>
+              <Col key={sem} md={6} xs={6} className='semcol'>
                 {/* Col: column tag, imported from bootstrap-react 
                   key attribute is used as a unique identifier for an item in a list in react */}
                 <div className='sem-header'>{sem.split('-')[0]}</div>
@@ -362,6 +369,7 @@ class App extends React.Component {
                     {...cl}
                     cl={this.state.Class_Desc[cl.Name]}
                     bgCol={this.state.Colors[cl.Color]}
+                    displayAll={this.state.displayAll}
                     enterFunc={() => this.flowBoxEnter(cl.Name)}
                     leaveFunc={() => this.flowBoxLeave()}
                     isPreReq={this.state.CurPreReqs.indexOf(cl.Name) > -1}
@@ -371,12 +379,32 @@ class App extends React.Component {
           }</Row>
         </Container>
       </Col>));
+
+      let legendNames = this.state.Colors;
+      console.log(legendNames);
+
+      let legend = Object.entries(legendNames).sort((a, b) => this.state.Color_Order.indexOf(a[0]) - this.state.Color_Order.indexOf(b[0])).map(([name, color]) => ( 
+        <div 
+          key={'legend'+name}
+          className="flow-box-legend" 
+          style={{backgroundColor: color, color: isDarkBackground(color) ? "#000000" : "#ffffff"}}>
+          {name}
+        </div>
+      ));
+      // console.log(legend);
+      
     // the display flowchart function will return the html for entire flowchart
     // since the html code is stored in a variable, the curly brackets are used to denote that the html code in the object should be inserted at this spot    
     return (
       <Container fluid id='flowchart'>
         <Row>
           {content}
+          <div className="flow-legend">
+            <div className="legend-title">
+              Legend
+            </div>
+            {legend}
+          </div>
         </Row>
       </Container>
     );
@@ -413,6 +441,15 @@ class App extends React.Component {
             >Edit Classes</Nav.Link>
           </Nav>
         </Navbar>
+        <div className='expand'>
+        <InputGroup className='class-checkbox'>
+          <InputGroup.Checkbox
+            aria-label="Expand All Details"
+            onChange={() => this.setState({displayAll: !this.state.displayAll})}
+          />
+        </InputGroup>
+        Expand All Details
+        </div>
         <div className = "flow-warn">
           *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered more frequently as resources allow, but students cannot expect them to be
 offered off‐semester. Students should use the rotation shown on this flowchart as a guide for planning their upper level courses.
@@ -425,7 +462,7 @@ offered off‐semester. Students should use the rotation shown on this flowchart
           </div>
 
 
-          <div className="drop">
+          <div className="dropzone">
             <Dropzone onDrop={acceptedFiles => this.onUploadFile(acceptedFiles)}>
               {({getRootProps, getInputProps}) => (
                 <section>
@@ -438,8 +475,8 @@ offered off‐semester. Students should use the rotation shown on this flowchart
             </Dropzone>
           </div>
 
-
           <Button variant="outline-primary" id="save-button" onClick={() => this.saveClick()}>Save</Button>
+          <Button variant="outline-primary" id="print-button" onClick={() => window.print()}>Print</Button>
         </Navbar>
       </div>
     );
