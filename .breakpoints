@@ -7,6 +7,14 @@
         "version": 1,
         "index": 184
       }
+    ],
+    "src/App.jsx": [
+      {
+        "id": "31e364c3-afda-41a3-a748-77050128e759",
+        "line": 28,
+        "version": 4465,
+        "index": 1145
+      }
     ]
   }
 }
