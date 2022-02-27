@@ -99,13 +99,13 @@
 			"Color": "CS CORE"
 		},
 		{
-			"Name": "Science 1",
+			"Name": "Science",
 			"Credits": "3\u20104 hours",
 			"Semester": "Fall-2",
 			"Color": "SCIENCE"
 		},
 		{
-			"Name": "Science 1 Lab",
+			"Name": "Science",
 			"Credits": "1 hour",
 			"Semester": "Fall-2",
 			"Color": "SCIENCE"
@@ -141,13 +141,13 @@
 			"Color": "CS SYSTEMS CORE"
 		},
 		{
-			"Name": "Science 2",
+			"Name": "Science",
 			"Credits": "3\u20104 hours",
 			"Semester": "Spring-2",
 			"Color": "SCIENCE"
 		},
 		{
-			"Name": "Science 2 Lab",
+			"Name": "Science",
 			"Credits": "1 hour",
 			"Semester": "Spring-2",
 			"Color": "SCIENCE"
@@ -306,26 +306,22 @@
 		"CS Breadth: Data Science": {
 			"Credits": 3,
 			"Notes": "(Take One)",
-			"FC_Name": "CS Breadth Choice",
-			"Fallback_Cat": "CS Technical Electives"
+			"FC_Name": ["CS Breadth Choice", "Technical Elective"]
 		},
 		"CS Breadth: Scientific Computing": {
 			"Credits": 3,
 			"Notes": "(Take One)",
-			"FC_Name": "CS Breadth Choice",
-			"Fallback_Cat": "CS Technical Electives"
+			"FC_Name": ["CS Breadth Choice", "Technical Elective"]
 		},
 		"CS Breadth: Secure Computing": {
 			"Credits": 3,
 			"Notes": "(Take One)",
-			"FC_Name": "CS Breadth Choice",
-			"Fallback_Cat": "CS Technical Electives"
+			"FC_Name": ["CS Breadth Choice", "Technical Elective"]
 		},
 		"CS Breadth: System Software": {
 			"Credits": 6,
 			"Notes": "(Take Two)",
-			"FC_Name": "CS Breadth Choice",
-			"Fallback_Cat": "CS Technical Electives"
+			"FC_Name": ["CS Breadth Choice", "Technical Elective"]
 		},
 		"Required Mathematics": {
 			"Credits": 12,
@@ -333,12 +329,13 @@
 		},
 		"Required Science": {
 			"Credits": 10,
-			"Notes": "(Pick Choice 1, 2 or 3)                                                                  \n(*for additional credits to meet 10 see handbook)\nFor choice 1 & 2 addtl credits: CS course, science above chosen \nsequence, math beyond Calc II or ENGR elective (not gen-ed course)"
+			"Notes": "(Pick Choice 1, 2 or 3)                                                                  \n(*for additional credits to meet 10 see handbook)\nFor choice 1 & 2 addtl credits: CS course, science above chosen \nsequence, math beyond Calc II or ENGR elective (not gen-ed course)",
+      "FC_Name": ["Science"]
 		},
 		"CS Technical Electives": {
 			"Credits": 12,
 			"Notes": "See handbook for additional information\nCheck individual courses for prerequisites",
-			"FC_Name": "Technical Elective"
+			"FC_Name": ["Technical Elective"]
 		},
 		"Total Program Hours:": {
 			"Credits": 128,
@@ -351,32 +348,32 @@
 		"Gen Ed: Core Arts": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3 Credits",
-			"FC_Name": "Gen Ed Core"
+			"FC_Name": ["Gen Ed Core"]
 		},
 		"Gen Ed: Core Humanities": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3 Credits",
-			"FC_Name": "Gen Ed Core"
+			"FC_Name": ["Gen Ed Core"]
 		},
 		"Gen Ed: Core Behavioral Sciences": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3-4 Credits",
-			"FC_Name": "Gen Ed Core"
+			"FC_Name": ["Gen Ed Core"]
 		},
 		"Gen Ed: Core Social Sciences": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3-4 Credits",
-			"FC_Name": "Gen Ed Core"
+			"FC_Name": ["Gen Ed Core"]
 		},
 		"Gen Ed: Core International Perspectives": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3 Credits",
-			"FC_Name": "Gen Ed Core"
+			"FC_Name": ["Gen Ed Core"]
 		},
 		"Gen Ed: Core Cultural Diversity": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3 Credits",
-			"FC_Name": "Gen Ed Core"
+			"FC_Name": ["Gen Ed Core"]
 		}
 	},
 	"Class_Desc": {

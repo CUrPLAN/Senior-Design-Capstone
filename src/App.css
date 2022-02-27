@@ -253,36 +253,60 @@ input[type="file"] {
   margin-right: 15px;
 }
 
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.table {
+  width: 98%;
+}
+
 .listview-table {
   border: solid 1px black;
   margin: 1vh 1vw 12vh 1vw;
 }
 
-th {
+.table th {
   border: solid 2px black;
 }
 
-.alert-td {
+.table .alert-td {
   border: solid 2px black;
   text-align: center;
+  font-size: 0.95em;
   background: rgb(197, 9, 9);
   color: white;
   font-weight: bold;
 }
 
-.heading-courses-td {
+.table .heading-courses-td {
   border: solid 2px black;
   text-align: left;
   font-weight: bold;
 }
 
-.heading-credits-td {
+.table .heading-credits-td {
   border: solid 2px black;
   text-align: center;
   font-weight: bold;
 }
 
-.heading-notes-td {
+.table .heading-notes-td {
   border: solid 2px black;
   text-align: left;
   font-weight: bold;
