@@ -9,6 +9,49 @@ use the command ```npm run dev``` to run the dev server
 
 **Public folder** includes the csreqs.json file which has all the class and scheduling information in it.
 
+## Format of Json File "csreqs.json"
+Note: an object is similar to a dictionary in python or hash map in c/c++.
+
+This file has the elements: 
+- Color Order
+    - Format: List of strings that represent color categories
+    - Used for: Determining the order to sort the classes in each semester of the flowchart.
+- Colors
+    - Format: Object, mapping a string that represents a color category to a string that represents a hex color
+    - Used for: Determining the colors to color the boxes on the flowchart.
+    - Relations: Must have same elements as color order.
+- Classes
+    - Format: List of Objects
+        - Properties of each object:
+            - Name: The name for the flowchart box (class id or general requirement to be filled)
+            - Credits: String representing the number of credits needed for that class (Note: If students have options to take a class with less credits but need to eventually take a higher amount of credits, put the higher amount here, as a class will by dynamically added if they take less credits than needed)
+            - Semester: The name for the semester this class should be located in on the flowchart. (These must correspond to each other.)
+            - Color: The color category that the box on the flowchart should be colored with (from color order/ colors)
+    - Used for: Displaying all of the classes on the flowchart.
+- Categories
+    - Format: Object mapping category name to these properties:
+        - Credits: Number of credits in total needed to fulfill this category's requirements.
+        - Notes: Any notes about how to fulfill the category's requirements.
+        - FC_Name: If a class fulfills the category, what is the original name of the flowchart box that it should replace?
+        - Fallback: If a class can fulfill multiple categories.
+    - Used for: Displaying edit view categories and determining which flowchart box classes should be put in.
+- Class_Desc
+    - Format: Object mapping string ID of course to an object
+        - Properties of each object:
+            - Name: String of the full name of course
+            - Credits: String of how many credits this course provides
+            - Desc: String of description of course, with many details
+            - Fulfills: String indicating which category the course fulfills
+            - Prereqs: List of strings indicating which classes must be taken before this one
+    - Used for: Displaying information about the class on the edit view and flowchart view. 
+
+### To Create this file:
+- Use the provided ipynb notebook to run through the process with a pdf flowchart and list view to create the categories.
+- Or manually define some information:
+    - The color order & colors can easily be manually defined.
+    - With some effort, so can the classes & categories.
+    - Use the ipynb notebook to fetch all the information from the school's webpages for the classes. Note: prereqs should be checked, as they are likely to be wrong. 
+
 # Senior-Design-Capstone
 ### Project Name: CUrPLAN
 

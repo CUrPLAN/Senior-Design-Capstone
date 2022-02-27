@@ -3,8 +3,8 @@
   .App { 
     font-size: 0.65em; 
     /* forces webpage to print colored boxes */
-    color-adjust: exact;
     -webkit-print-color-adjust: exact;
+    color-adjust: exact;
   }
   /* don't print navigation */
   #root .App .navbar { display: none; }
@@ -28,6 +28,15 @@ body {
 
 .App {
   text-align: center;
+}
+
+.alert {
+  position: fixed;
+  z-index: 10000;
+  width: 90vw;
+  top: 5vh;
+  left: 5vw;
+  margin: auto;
 }
 
 /*** Navbar styling ***/
@@ -88,6 +97,11 @@ input[type="file"] {
   margin-top: 10px;
   margin-right: 3vw;
   text-align: right;
+}
+
+.credit-count {
+  text-align: left;
+  margin-left: 15px;
 }
 
 .flow-warn {
@@ -238,40 +252,7 @@ input[type="file"] {
   border: 1px solid black;
 }
 
-.legend-title {
-  display: none; /* I think it's obvious its a legend */
-  padding-top: 2em;
-  padding-bottom: 1em;
-  text-align: left;
-  font-size: 12px;
-  font-weight: bold;
-}
-
 /*** Edit View Styling ***/
-.credit-count {
-  text-align: right;
-  margin-right: 15px;
-}
-
-.arrow {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  margin-bottom: 2px;
-  margin-right: 5px;
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
 .table {
   width: 98%;
 }
@@ -292,6 +273,27 @@ input[type="file"] {
   background: rgb(197, 9, 9);
   color: white;
   font-weight: bold;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+}
+
+.down {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transition: 0.1s all linear;
+}
+
+.right {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  transition: 0.1s all linear;
 }
 
 .table .heading-courses-td {
@@ -346,4 +348,9 @@ thead {
   display: inline;
   background-color: rgba(0,0,0,0);
   border: none;
+}
+
+
+#className {
+  text-transform: uppercase;
 }
