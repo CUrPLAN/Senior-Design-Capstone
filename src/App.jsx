@@ -11,7 +11,11 @@ import saveAs from 'file-saver';
 import Dropzone from 'react-dropzone';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
+import { useState } from "react";
 
 
 // adapted from https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-an-array-of-objects
@@ -109,6 +113,57 @@ class FlowChartItem extends React.Component {
     );
   }
 }
+
+function AddCustomClass() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
+  return (
+    <div className="custom-class-button">
+      <Button variant="dark" onClick={handleShow}>
+        Add Custom Class
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Custom Class</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group>
+              <Form.Label>Class Name: </Form.Label>
+              <Form.Control id='className' placeholder="Ex. CSCI 1001"/>
+            <Form.Label>Credit Amount: </Form.Label>
+              <Form.Control id='creditNum' placeholder="Ex. 3"/>
+            <Form.Label>Year: </Form.Label>
+              <Form.Control id='classYear' placeholder="Ex. 1"/>
+            <Form.Label>Semester: </Form.Label>
+              <Form.Control id='classSemester' placeholder="Ex. Fall"/>
+            <Form.Label>Class Category</Form.Label>
+            <DropdownButton id="dropdown-basic-button" variant="dark" title="Select">
+              <Dropdown.Item href="#/action-1">CS BREADTH</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">CS ELECTIVE</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">ENGR</Dropdown.Item>
+              <Dropdown.Item href="#/action-4">MATH</Dropdown.Item>
+              <Dropdown.Item href="#/action-5">SCIENCE</Dropdown.Item>
+              <Dropdown.Item href="#/action-6">GEN ED CORE</Dropdown.Item>
+            </DropdownButton> 
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="dark" onClick={handleClose}>
+            Add Class
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+}
+
 
 class App extends React.Component {
   constructor(props) {
@@ -409,12 +464,13 @@ class App extends React.Component {
       </Container>
     );
   }
-
+  
   // render function under App class is used to tell application to display content
   render() {
+
     console.log("this.state:");
     console.log(this.state);
-
+  
     let content; // variable to store the content to render
     // set content to display based on which tab the user is currently in (the mode they currently see)
     if (this.state.Display === 'Edit') {
@@ -454,6 +510,7 @@ class App extends React.Component {
           *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered more frequently as resources allow, but students cannot expect them to be
 offered off‐semester. Students should use the rotation shown on this flowchart as a guide for planning their upper level courses.
         </div>
+        <AddCustomClass />
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
           <div>
