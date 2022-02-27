@@ -1,20 +1,3 @@
 {
-  "files": {
-    ".breakpoints": [
-      {
-        "id": "66bfde95-6fa2-4b8b-9ae0-212a50053423",
-        "line": 12,
-        "version": 1,
-        "index": 184
-      }
-    ],
-    "src/App.jsx": [
-      {
-        "id": "31e364c3-afda-41a3-a748-77050128e759",
-        "line": 28,
-        "version": 4465,
-        "index": 1145
-      }
-    ]
-  }
+  "files": {}
 }

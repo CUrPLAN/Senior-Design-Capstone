@@ -1,4 +1,4 @@
-/* print styling */
+/*** Print Styling ***/
 @media print {
   .App { 
     font-size: 0.65em; 
@@ -6,12 +6,13 @@
     color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
-  #root .App .navbar { display: none; } /* don't print navigation */
+  /* don't print navigation */
+  #root .App .navbar { display: none; }
   #flowchart { margin: 0; }
-  .flow-desc { 
-    display: block !important; 
-    overflow: hidden;
-  }
+  .flow-desc { overflow: hidden; }
+  .yearcol { max-width: 25%; }
+  .pre-reqs { border: none; }
+  .popover { display: none; }
 }
 
 /*https://stackoverflow.com/questions/39356258/force-landscape-orientation-in-css*/
@@ -20,6 +21,7 @@
   size: A4 landscape;
 }
 
+/*** App Styling ***/
 body {
   overflow-y: scroll;
 }
@@ -30,18 +32,23 @@ body {
 
 /*** Navbar styling ***/
 .navbar-brand {
-  margin-left: 2vw;
+  margin-left: 5vw;
 }
 
 .navbar-nav {
   position: absolute;
   right: 0;
-  margin-right: 20px;
+  margin: 0 1vw;
+}
+
+.nav-link {
+  margin: 0 1vw;
 }
 
 .active {
   background-color: #bc8c38;
   height: 100%;
+  /* border-bottom: 2px solid white; */
 }
 
 #upload-button {
@@ -53,11 +60,49 @@ body {
   margin-right: 10px;
 }
 
+#print-button {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.dropzone {
+  color: white;
+  width: 75vw;
+  margin-left: 90px;
+  margin-right: 90px;
+  border: solid 1px;
+  border-color: gray;
+  border-style: dashed;
+  text-align: center;
+  line-height: 50px;
+  height: 50px;
+}
+
+/* hiding the text when a file is uploaded through the upload button */
+input[type="file"] {
+  display: None;
+}
+
+/*** Expand & Warning Styling ***/
+.expand {
+  margin-top: 10px;
+  margin-right: 3vw;
+  text-align: right;
+}
+
+.flow-warn {
+  padding-top: 1vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
 /*** Flowchart styling ***/
 #flowchart {
   margin: 1vh auto;
   width: 98%;
-  padding-bottom: 2.5rem;
+  padding-bottom: 3.5rem;
 }
 
 .yearcol {
@@ -79,6 +124,7 @@ body {
 }
 
 .sem-header {
+  font-size: 1.1em;
   font-weight: 500;
 }
 
@@ -88,6 +134,11 @@ body {
 
 .sem-classes {
   border: 1px solid black;
+}
+
+.custom-class-button {
+  text-align: right;
+  padding-right: 2em;
 }
 
 /*** Flowchart box styling ***/
@@ -115,7 +166,6 @@ body {
 
 .flow-restriction { /*adding variation to restriction info to be more distiguishable*/
   font-weight: bold;
-  color: #990000;
 }
 
 .flow-notes {
@@ -124,14 +174,81 @@ body {
 }
 
 .taken-class {
-  opacity: 50%;
+  /*opacity: 50%;*/
+  /*background-image: url("./greencheck.png");
+  background-size: 80%;/* 3em 3em; */
+  /*background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-blend-mode: darken; */
+}
+
+.taken-class > .flow-id:before {
+  /*padding-left: 0.8em;*/
+  content: '';
+  background-image: url("../greencheck_2.png");
+  /*background-position: left 0em top 50%;*/
+  background-size: 1.2em;
+  background-repeat: no-repeat;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-flex;
+  margin-left: -0.4em;
+  margin-right: 0.2em;
+  position: relative;
+  top: 0.2em;
+}
+
+.taken-class > .flow-id {
+  text-decoration: line-through solid 0.15em;
+  /*padding-left: 0.8em;
+  background-image: url("./greencheck_2.png");
+  background-position: left 0.1em top 50%;
+  background-size: 1.2em;
+  background-repeat: no-repeat;*/
 }
 
 .pre-reqs {
-  border: red solid 3px;
+  outline: red solid 3px;
+  outline-offset: -3px;
 }
 
-.credit-count { /*aligning total credit count info in edit view*/
+
+/*** Legend Styling ***/
+.flow-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 3vw;
+}
+
+.flow-box-legend {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding: 5px 15px;
+  font-weight: 500;
+  border-radius: 2px;
+  /*margin: 10px;
+  font-size: 0.75em;
+  font-weight: bold;
+  width: 100%;
+  height: 8vh;
+  min-height: 8vh; */
+  border: 1px solid black;
+}
+
+.legend-title {
+  display: none; /* I think it's obvious its a legend */
+  padding-top: 2em;
+  padding-bottom: 1em;
+  text-align: left;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/*** Edit View Styling ***/
+.credit-count {
   text-align: right;
   margin-right: 15px;
 }
@@ -229,30 +346,4 @@ thead {
   display: inline;
   background-color: rgba(0,0,0,0);
   border: none;
-}
-
-.drop {
-  color: white;
-  width: 75vw;
-  margin-left: 90px;
-  margin-right: 90px;
-  border: solid 1px;
-  border-color: gray;
-  border-style: dashed;
-  text-align: center;
-  line-height: 50px;
-  height: 50px;
-}
-
-.flow-warn {
-  padding-top: 2vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-/* hiding the text when a file is uploaded through the upload button */
-input[type="file"] {
-  display: None;
 }
