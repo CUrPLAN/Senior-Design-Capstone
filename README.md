@@ -35,7 +35,7 @@ This file has the elements:
         - FC_Name: If a class fulfills the category, what is the original name of the flowchart box that it should replace?
         - Fallback: If a class can fulfill multiple categories.
     - Used for: Displaying edit view categories and determining which flowchart box classes should be put in.
-- Class_Desc
+- ClassDesc
     - Format: Object mapping string ID of course to an object
         - Properties of each object:
             - Name: String of the full name of course

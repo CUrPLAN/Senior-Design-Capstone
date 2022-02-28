@@ -1,18 +1,36 @@
 /*** Print Styling ***/
 @media print {
-  .App { 
-    font-size: 0.65em; 
+  .App {
+    font-size: 0.65em;
     /* forces webpage to print colored boxes */
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
+
   /* don't print navigation */
-  #root .App .navbar { display: none; }
-  #flowchart { margin: 0; }
-  .flow-desc { overflow: hidden; }
-  .yearcol { max-width: 25%; }
-  .pre-reqs { border: none; }
-  .popover { display: none; }
+  #root .App .navbar {
+    display: none;
+  }
+
+  #flowchart {
+    margin: 0;
+  }
+
+  .flow-desc {
+    overflow: hidden;
+  }
+
+  .yearcol {
+    max-width: 25%;
+  }
+
+  .pre-reqs {
+    border: none;
+  }
+
+  .popover {
+    display: none;
+  }
 }
 
 /*https://stackoverflow.com/questions/39356258/force-landscape-orientation-in-css*/
@@ -21,7 +39,7 @@
   size: A4 landscape;
 }
 
-/*** App Styling ***/
+/*** App & Pop-up Styling ***/
 body {
   overflow-y: scroll;
 }
@@ -37,6 +55,10 @@ body {
   top: 5vh;
   left: 5vw;
   margin: auto;
+}
+
+#className {
+  text-transform: uppercase;
 }
 
 /*** Navbar styling ***/
@@ -128,7 +150,7 @@ input[type="file"] {
   min-width: 50%;
 }
 
-.yearcol > .container {
+.yearcol>.container {
   padding: 0;
 }
 
@@ -168,7 +190,8 @@ input[type="file"] {
   display: none;
 }
 
-/* To reference for hovering containers based on different conditions: https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-one-element-is-hovered */
+/* To reference for hovering containers based on different conditions: 
+https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-one-element-is-hovered */
 /* When user hovers over the class they can see a description of the class */
 .flow-box:hover .flow-desc {
   display: block;
@@ -178,7 +201,8 @@ input[type="file"] {
   font-weight: bold;
 }
 
-.flow-restriction { /*adding variation to restriction info to be more distiguishable*/
+.flow-restriction {
+  /*adding variation to restriction info to be more distiguishable*/
   font-weight: bold;
 }
 
@@ -197,7 +221,7 @@ input[type="file"] {
   background-blend-mode: darken; */
 }
 
-.taken-class > .flow-id:before {
+.taken-class>.flow-id:before {
   /*padding-left: 0.8em;*/
   content: '';
   background-image: url("../greencheck_2.png");
@@ -213,7 +237,7 @@ input[type="file"] {
   top: 0.2em;
 }
 
-.taken-class > .flow-id {
+.taken-class>.flow-id {
   text-decoration: line-through solid 0.15em;
   /*padding-left: 0.8em;
   background-image: url("./greencheck_2.png");
@@ -344,13 +368,8 @@ thead {
   display: inline;
 }
 
-.class-checkbox > .input-group-text {
+.class-checkbox>.input-group-text {
   display: inline;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
-}
-
-
-#className {
-  text-transform: uppercase;
 }

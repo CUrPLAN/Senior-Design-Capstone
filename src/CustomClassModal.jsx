@@ -2,10 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
 import { useState, useEffect } from "react";
-
 
 
 function AddCustomClass(props) {
@@ -13,27 +10,36 @@ function AddCustomClass(props) {
   const [classNameValue, setClassNameValue] = useState('');
   const [creditNumValue, setCreditNumValue] = useState('');
   const [classCategoryValue, setClassCategoryValue] = useState('');
-  const [buttonStatus, setButtonStatus] = useState(true);
+  const [buttonStatus, setButtonStatus] = useState(true); // if submit button disabled
 
-  useEffect(() => { // runs after every render (state changes)
-    setButtonStatus(!(classNameValue.length > 0 && creditNumValue.length > 0 && /^\d+$/.test(creditNumValue) && /^[A-Z]{4}(.*)[\d]{4}$/.test(classNameValue) && classCategoryValue !== ''));
+  useEffect(() => { // runs after every render (state changes) -- adjusts if submit disabled
+    setButtonStatus(!(classNameValue.length > 0 && creditNumValue.length > 0
+      && /^\d+$/.test(creditNumValue) && /^[A-Z]{4}(.*)[\d]{4}$/.test(classNameValue)
+      && classCategoryValue !== ''));
   });
-  
-  const handleClose = () => {setShow(false); setButtonStatus(true); setClassNameValue(''); setCreditNumValue(''); setClassCategoryValue('')};
-  const handleShow = () => {setShow(true);};
 
-  const addClass = () => { handleClose();
-                          console.log(classCategoryValue);
-                          props.onSubmit({
-                            Name: classNameValue,
-                            Credits: creditNumValue + " Credits",
-                            Desc: "",
-                            Fulfills: classCategoryValue,
-                            Prereqs: []
-                          }); }
+  // functions that handle open/close & submitting
+  const handleClose = () => {
+    setShow(false);
+    setButtonStatus(true);
+    setClassNameValue('');
+    setCreditNumValue('');
+    setClassCategoryValue('');
+  };
+  const handleShow = () => { setShow(true); };
+  const addClass = () => {
+    handleClose();
+    console.log(classCategoryValue);
+    props.onSubmit({
+      Name: classNameValue,
+      Credits: creditNumValue + " Credits",
+      Desc: "",
+      Fulfills: classCategoryValue,
+      Prereqs: []
+    });
+  }
 
-  
-  
+  // create Modal with form
   return (
     <div className="custom-class-button">
       <Button variant="dark" onClick={handleShow}>
@@ -45,26 +51,27 @@ function AddCustomClass(props) {
           <Modal.Title>Add Custom Class</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-         <Form> 
-          <Form.Group>
-            <Form.Label>Class Name:</Form.Label>
-              <Form.Control 
-                id='className' 
-                placeholder="Ex. CSCI 1001"
-                onChange={e => {setClassNameValue(e.target.value.toUpperCase());}}/>
-            <Form.Label>Credit Amount:</Form.Label>
+          <Form>
+            <Form.Group>
+              <Form.Label>Class Name:</Form.Label>
               <Form.Control
-                id='creditNum' 
+                id='className'
+                placeholder="Ex. CSCI 1001"
+                onChange={e => { setClassNameValue(e.target.value.toUpperCase()); }} />
+              <Form.Label>Credit Amount:</Form.Label>
+              <Form.Control
+                id='creditNum'
                 placeholder="Ex. 3"
-                onChange={e => {setCreditNumValue(e.target.value);}}/>
-            <Form.Label>Class Category:</Form.Label>
-            <Form.Select value={classCategoryValue}
-              onChange={e => {setClassCategoryValue(e.target.value);}}>
-              <option key='defaultoption' value=''>Select a category</option>
-              {props.CategoryOpts.map((opt, i) => (<option key={'option'+i} value={opt}>{opt}</option>))}
-            </Form.Select>
-          </Form.Group>
-         </Form>
+                onChange={e => { setCreditNumValue(e.target.value); }} />
+              <Form.Label>Class Category:</Form.Label>
+              <Form.Select value={classCategoryValue}
+                onChange={e => { setClassCategoryValue(e.target.value); }}>
+                <option key='defaultoption' value=''>Select a category</option>
+                {props.CategoryOpts.map((opt, i) =>
+                  (<option key={'option' + i} value={opt}>{opt}</option>))}
+              </Form.Select>
+            </Form.Group>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

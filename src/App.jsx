@@ -19,9 +19,9 @@ class App extends React.Component {
       Display: 'Flow',
       Categories: {},
       Classes: [],
-      Class_Desc: {},
-      Taken_Classes: [],
-      CurPreReqs: [], 
+      ClassDesc: {},
+      TakenClasses: [],
+      CurPreReqs: [],
       Colors: {},
       displayAll: false
     };
@@ -39,26 +39,25 @@ class App extends React.Component {
       .catch(e => console.error('Couldn\'t read json file. The error was:\n', e)); // print any errors
   }
 
+  /*** when user submits new information for a custom class (called by AddCustomClass) ***/
   onAddClassSubmit = (newClassObj) => {
-    console.log("onClassSubmit", newClassObj);
-    console.log(this.state.Class_Desc);
-
     // fix name format by just taking class category and number
     let nameParts = newClassObj.Name.match(/([A-Z]{4})(.*)([\d]{4})/);
     newClassObj.Name = nameParts[1] + ' ' + nameParts[3];
-    console.log(newClassObj.Name);
 
-    if(newClassObj.Name in this.state.Class_Desc){
+    if (newClassObj.Name in this.state.ClassDesc) {
       alert("Class already exists!");
       return
     }
-    
-    let newClassDesc = {...this.state.Class_Desc, [newClassObj.Name]: newClassObj};
+
+    // modify objects to include new class
+    let newClassDesc = { ...this.state.ClassDesc, [newClassObj.Name]: newClassObj };
     let newClasses = this.addClassToFlowchart(this.state.Classes, newClassObj.Name, newClassObj.Fulfills);
-
-    this.setState({ Class_Desc: newClassDesc, Taken_Classes: [...this.state.Taken_Classes, newClassObj.Name] });
-
-    
+    this.setState({
+      ClassDesc: newClassDesc,
+      TakenClasses: [...this.state.TakenClasses, newClassObj.Name],
+      Classes: newClasses
+    });
   }
 
   /*** function for handling a click on one of the top navbar links ***/
@@ -80,13 +79,13 @@ class App extends React.Component {
     // when reader reads a file
     reader.onload = (e) => {
       try {
-        let newTakenClasses = JSON.parse(e.target.result).Taken_Classes; // parse upload file
+        let newTakenClasses = JSON.parse(e.target.result).TakenClasses; // parse upload file
         let newClasses = this.state.Classes.slice();
         for (let clId of newTakenClasses) {
           newClasses = this.addClassToFlowchart(newClasses, clId);
         }
         this.setState({
-          Taken_Classes: newTakenClasses,
+          TakenClasses: newTakenClasses,
           Classes: newClasses,
           showAlert: 'success'
         }); // populate classes, display alert
@@ -101,12 +100,13 @@ class App extends React.Component {
   /*** function for saving information from application to a json file
    * make sure to open the webpage into a new tab to test save click functionality ***/
   saveClick() {
-    // adapted from answer to https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
-    const fileData = JSON.stringify({ 'Version': '1.0', 'Taken_Classes': this.state.Taken_Classes });
+    // adapted from answer to 
+    // https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
+    const fileData = JSON.stringify({ 'Version': '1.0', 'TakenClasses': this.state.TakenClasses });
     const blob = new Blob([fileData], { type: "application/json" });
     saveAs(blob, "CUrPLAN");
   }
-  
+
   /*** Calculates amount of credit hours that are needed for a list of flowchart classes
    * And the total number of credit hours that have been taken from the classes
    * Takes: list of flowchart classes ***/
@@ -114,8 +114,8 @@ class App extends React.Component {
     let [total, taken] = [0, 0];
     for (let cl of classList) {
       total += parseInt(cl.Credits);
-      if (this.state.Taken_Classes.includes(cl.Name)) { // if have taken, add to count
-        taken += parseInt(this.state.Class_Desc[cl.Name].Credits);
+      if (this.state.TakenClasses.includes(cl.Name)) { // if have taken, add to count
+        taken += parseInt(this.state.ClassDesc[cl.Name].Credits);
       }
     }
     return [taken, total];
@@ -123,9 +123,10 @@ class App extends React.Component {
 
   /*** function for replacing a non-specific flowchart box with the new specific id of a class ***/
   addClassToFlowchart(origClasses, classID, category) {
-    //to update a state, need to copy contents (using slice) into a new variable, modify the state in that new variable, then set the state (needed because of react's rendering requirements)
+    //to update a state, need to copy contents (using slice) into a new variable, 
+    // modify the state in that new variable, then set the state (needed because of react's rendering requirements)
     let newClasses = origClasses.slice();
-    // for science credit to update properly, add an additional class to the flowchart if biology or chemistry path was taken
+    // for science credit, add an additional class to the flowchart if biology or chemistry path was taken
     if (classID.startsWith('BIOL') || classID.startsWith('CHEM')) {
       newClasses = [...this.state.Classes, {
         "Name": "Science",
@@ -148,7 +149,7 @@ class App extends React.Component {
     }
     return newClasses;
   }
-  
+
   /*** remove a class when you unclick the toggle button ***/
   removeClassFromFlowchart(classID) {
     // finds the class and replaces the information with old category again (when you unclick the class)
@@ -163,77 +164,78 @@ class App extends React.Component {
   /*** function for handling a click on a checkbox ***/
   checkboxClick(classID) {
     // create a copy of the taken classes (for re-rendering purposes in React)
-    if (this.state.Taken_Classes.indexOf(classID) > -1) { // if class is already in taken list
+    if (this.state.TakenClasses.indexOf(classID) > -1) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
-      this.setState({ Taken_Classes: this.state.Taken_Classes.filter(c => c !== classID) });
+      this.setState({ TakenClasses: this.state.TakenClasses.filter(c => c !== classID) });
       this.removeClassFromFlowchart(classID);
     } else {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
-      this.setState({Taken_Classes: [...this.state.Taken_Classes, classID],
-      Classes: this.addClassToFlowchart(this.state.Classes, classID, this.state.Class_Desc[classID].Fulfills)
+      this.setState({
+        TakenClasses: [...this.state.TakenClasses, classID],
+        Classes: this.addClassToFlowchart(this.state.Classes, classID, this.state.ClassDesc[classID].Fulfills)
       });
     }
   }
 
-  // ********function that handles creating the edit view and list view components, with the json info that needs to be displayed***********
-  displayEditView(displayChoice) {
-    // create new list of class descriptions with functions and whether or not the box should be checked for passing to the list view
-    let newClassDesc = Object.entries(this.state.Class_Desc).map(([courseID, item]) => ({
+  /*** creates list/edit view with list of classes to choose ***/
+  displayEditView() {
+    // create new list of class descriptions with functions 
+    // and whether or not the box should be checked for passing to the list view
+    let newClassDesc = Object.entries(this.state.ClassDesc).map(([courseID, item]) => ({
       ...item,
       Id: courseID,
-      changeFunc: () => this.checkboxClick(courseID), // pass function to component: https://reactjs.org/docs/faq-functions.html
-      checked: this.state.Taken_Classes.includes(courseID) // variable used to keep boxes checked when switch between views
+      // pass function to component: https://reactjs.org/docs/faq-functions.html
+      changeFunc: () => this.checkboxClick(courseID),
+      // variable used to keep boxes checked when switch between views
+      checked: this.state.TakenClasses.includes(courseID)
     }));
-    return (        
+    return (
       <ListView
         displayChoice={this.state.Display}
-        Class_Desc={newClassDesc}
+        ClassDesc={newClassDesc}
         Categories={this.state.Categories}>
       </ListView>
     );
   }
 
-  // function that handles the content from the json file that should be displayed, and labels the semesters accordingly
+  /*** creates flow chart view with all classes ***/
   displayFlowChart() {
+    // create new list of classes with all class descriptions needed
+    // along with color and whether or not it's been taken
     let classInfo = this.state.Classes.map(cl => ({
       ...cl,
-      cl: this.state.Class_Desc[cl.Name],
+      cl: this.state.ClassDesc[cl.Name],
       displayAll: this.state.displayAll,
       bgCol: this.state.Colors[cl.Color],
-      taken: this.state.Taken_Classes.includes(cl.Name)
+      taken: this.state.TakenClasses.includes(cl.Name)
     }));
     return (
-      <FlowChart 
-        Classes={classInfo} 
-        ColorOrder={this.state.Color_Order}
+      <FlowChart
+        Classes={classInfo}
+        ColorOrder={this.state.ColorOrder}
         Colors={this.state.Colors}>
       </FlowChart>
     );
   }
-  
+
   // render function under App class is used to tell application to display content
   render() {
-
-    console.log("this.state:");
-    console.log(this.state);
-  
     let content; // variable to store the content to render
     // set content to display based on which tab the user is currently in (the mode they currently see)
-    let display = this.state.Display;
-    if (display === 'Flow') {
+    if (this.state.Display === 'Flow') {
       content = this.displayFlowChart();
     } else {
-      content = this.displayEditView(display);
-    } 
+      content = this.displayEditView();
+    }
     // this return function in the render function will display the content
     // it creates the html code for the navbars and basic layout of the page
     // the {content} segment indicates that the html code from the variable above should be inserted
     // react bootstrap nav dropdown menu link: https://react-bootstrap.github.io/components/dropdowns/
     return (
       <div className="App">
-        <FileAlert 
-          show={this.state.showAlert} 
+        <FileAlert
+          show={this.state.showAlert}
           onClose={() => this.setState({ showAlert: '' })}>
         </FileAlert>
         <Navbar variant='dark' bg='dark' sticky='top'>
@@ -241,39 +243,40 @@ class App extends React.Component {
           <Nav>
             <Nav.Link
               className={(this.state.Display === 'Flow') ? 'active' : 'inactive'}
-              onClick={() => this.menuClick(0)}
-            >Flowchart</Nav.Link>
+              onClick={() => this.menuClick(0)}>Flowchart</Nav.Link>
             <NavDropdown
               className={((this.state.Display.startsWith('Edit')) ? 'active' : 'inactive')}
               onClick={() => this.menuClick(1)}
               title="Edit Classes" id="basic-nav-dropdown"
               menuVariant="dark"
-              align="end"
-            >
+              align="end">
               <NavDropdown.Item
-              onClick={() => this.menuClick(2)}>General Ed Classes</NavDropdown.Item>
+                onClick={() => this.menuClick(2)}>General Ed Classes</NavDropdown.Item>
               <NavDropdown.Item
-              onClick={() => this.menuClick(3)}>Computer Science BS</NavDropdown.Item>
+                onClick={() => this.menuClick(3)}>Computer Science BS</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar>
         <div className='expand'>
-        <InputGroup className='class-checkbox'>
-          <InputGroup.Checkbox
-            aria-label="Expand All Details"
-            onChange={() => this.setState({displayAll: !this.state.displayAll})}
-          />
-        </InputGroup>
-        Expand All Details
+          <InputGroup className='class-checkbox'>
+            <InputGroup.Checkbox
+              aria-label="Expand All Details"
+              onChange={() => this.setState({ displayAll: !this.state.displayAll })}
+            />
+          </InputGroup>
+          Expand All Details
         </div>
         <div className="credit-count">{this.calculateSemHours(this.state.Classes).join(' / ') + ' taken credits'}</div>
-        <div className = "flow-warn">
-          *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered more frequently as resources allow, but students cannot expect them to be
-offered off‐semester. Students should use the rotation shown on this flowchart as a guide for planning their upper level courses.
+        <div className="flow-warn">
+          *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered
+          more frequently as resources allow, but students cannot expect them to be
+          offered off‐semester. Students should use the rotation shown on this flowchart
+          as a guide for planning their upper level courses.
         </div>
-        <AddCustomClass 
-          onSubmit={this.onAddClassSubmit} 
-          CategoryOpts={Object.keys(this.state.Categories).filter(k => 'FC_Name' in this.state.Categories[k])} // gets category names that can fill in multiple boxes on the flowchart
+        <AddCustomClass
+          onSubmit={this.onAddClassSubmit}
+          // gets category names that can fill in multiple boxes on the flowchart
+          CategoryOpts={Object.keys(this.state.Categories).filter(k => 'FC_Name' in this.state.Categories[k])}
         />
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
@@ -289,7 +292,7 @@ offered off‐semester. Students should use the rotation shown on this flowchart
           </div>
           <div className="dropzone">
             <Dropzone onDrop={acceptedFiles => this.onUploadFile(acceptedFiles)}>
-              {({getRootProps, getInputProps}) => (
+              {({ getRootProps, getInputProps }) => (
                 <section>
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />

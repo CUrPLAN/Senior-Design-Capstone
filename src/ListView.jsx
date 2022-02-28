@@ -13,10 +13,10 @@ function ListViewItem(props) {
             onChange={props.changeFunc /* calls change function passed as property when checkbox is toggled*/}
             checked={props.checked /* sets checkboxes as checked based on property passed */}
           />
-        </InputGroup>{/*this is a shorthand if else statement ? :; if condition ? output true statement : output false statement */}
+        </InputGroup>
+        {/* shorthand if-else statement::: if condition ? output true statement : output false statement */}
         {props.Id ? props.Id : " "} {props.Name ? props.Name : " "}</td>
       <td className="credits">{props.Credits ? props.Credits.slice(0, 1) : " "}</td>
-      {/*<td className="notes">{props.Notes ? props.Notes : " "}</td>*/}
       <td className="notes">{props.Prereqs ? getNotes(props.Prereqs) : " "}</td>
     </tr>
   );
@@ -35,9 +35,9 @@ class ListView extends React.Component {
     const currentExpandedRows = this.state.expandedRows;
     const isRowCurrentlyExpanded = currentExpandedRows.includes(rowId);
     //determines which rows to show based on which rows are clicked
-    const newExpandedRows = isRowCurrentlyExpanded ? 
+    const newExpandedRows = isRowCurrentlyExpanded ?
       currentExpandedRows.filter(id => id !== rowId) : currentExpandedRows.concat(rowId);
-      this.setState({expandedRows : newExpandedRows});
+    this.setState({ expandedRows: newExpandedRows });
   }
 
   /*** creates main row for the section, and sub rows if expanded ***/
@@ -47,27 +47,29 @@ class ListView extends React.Component {
     let takenCredits = classes.map(c => c[1].checked ? parseInt(c[1].Credits) : 0).reduce((a, b) => a + b);
 
     // add the main row to a list 
-    const itemRows = [<tr key={"header"+header} onClick={() => this.handleRowClick(header)}>
+    const itemRows = [<tr key={"header" + header} onClick={() => this.handleRowClick(header)}>
       <td className="heading-courses-td"><div className={"arrow " + (isExpanded ? "down" : "right")}></div>{header}</td>
       <td className="heading-credits-td">{takenCredits + ' / ' + this.props.Categories[header].Credits}</td>
       <td className="heading-notes-td">{this.props.Categories[header].Notes}</td>
     </tr>];
-    
-    if(isExpanded) {
+
+    // add children rows to the list if expanded
+    if (isExpanded) {
       classes.forEach(([i, course]) => (
         itemRows.push(<ListViewItem
-                    key={'course' + i}
-                    {...course} // pass elements of a course as properties to the ListViewItem
-                  ></ListViewItem>))
+          key={'course' + i}
+          {...course} // pass elements of a course as properties to the ListViewItem
+        ></ListViewItem>))
       );
     }
-    return itemRows;    
+    return itemRows;
   }
 
-  // ********function that handles creating the edit view and list view components, with the json info that needs to be displayed***********
+  /*** function that handles creating the edit view and list view components, 
+   * with the json info that needs to be displayed ***/
   render() {
     // gets object with groups of classes by headers
-    let headerList = Object.entries(groupBy(Object.entries(this.props.Class_Desc), x => x[1].Fulfills));
+    let headerList = Object.entries(groupBy(Object.entries(this.props.ClassDesc), x => x[1].Fulfills));
     // filters list by argument passed in
     if (this.props.displayChoice === 'EditGenEd') {
       headerList = headerList.filter(x => x[0].includes('Gen Ed'));
@@ -81,10 +83,10 @@ class ListView extends React.Component {
 
     // calls to get the rows for each section of classes, adds them to list
     headerList.forEach(item => {
-        const perItemRows = this.renderItem(item);
-        allItemRows = allItemRows.concat(perItemRows);
+      const perItemRows = this.renderItem(item);
+      allItemRows = allItemRows.concat(perItemRows);
     });
-    
+
     return (
       <Table className='listview-table'>
         <thead>
@@ -96,8 +98,8 @@ class ListView extends React.Component {
         </thead>
         <tbody>
           <tr>
-            <td colSpan={3} className="alert-td">* Course prerequisites change regularly. 
-            Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
+            <td colSpan={3} className="alert-td">* Course prerequisites change regularly.
+              Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information. *</td>
           </tr>
           {/*<tr>
             <td className="heading-courses-td">Required CU Denver Core Curriculum Coursework</td>
@@ -105,7 +107,7 @@ class ListView extends React.Component {
             <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">
               See CU Denver Core Curriculum here</a></td>
           </tr>*/}
-          { allItemRows }
+          {allItemRows}
         </tbody>
       </Table>
     );

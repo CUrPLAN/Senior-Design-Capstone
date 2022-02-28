@@ -1,5 +1,5 @@
 {
-	"Color_Order": [
+	"ColorOrder": [
 		"CS CORE",
 		"CS SYSTEMS CORE",
 		"CS BREADTH",
@@ -376,7 +376,7 @@
 			"FC_Name": ["Gen Ed Core"]
 		}
 	},
-	"Class_Desc": {
+	"ClassDesc": {
 		"ENGL 1020": {
 			"Name": "Core Composition I",
 			"Credits": "3 Credits",
