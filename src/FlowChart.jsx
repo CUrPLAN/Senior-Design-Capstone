@@ -25,28 +25,28 @@ function FlowChartItem(props) {
     // root close means that the other pop up will hide when the user clicks somewhere else outside of the box
     // Overlay Reference: https://react-bootstrap.github.io/components/overlays/
     <OverlayTrigger trigger="click" rootClose={true} placement="auto" overlay={
-      <Popover id={"popover" + this.props.Name}>
-        <Popover.Header as="h3">{this.props.Name}</Popover.Header>
+      <Popover id={"popover" + props.Name}>
+        <Popover.Header as="h3">{props.Name}</Popover.Header>
         <Popover.Body>
-          {!!this.props.cl && this.props.cl.Desc}
+          {!!props.cl && props.cl.Desc}
         </Popover.Body>
       </Popover>}>
       <div style={{
-        backgroundColor: this.props.bgCol,
-        color: isDarkBackground(this.props.bgCol) ? "#000000" : "#ffffff"
+        backgroundColor: props.bgCol,
+        color: isDarkBackground(props.bgCol) ? "#000000" : "#ffffff"
       }}
         className={'flow-box ' +
-          (this.props.taken ? ' taken-class' : '') + (this.props.isPreReq ? ' pre-reqs' : '')}
-        onMouseEnter={this.props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
-        onMouseLeave={this.props.leaveFunc}>
-        <div className='flow-id'>{this.props.Name}</div>
-        <div className='flow-credits'>{this.props.Credits}</div>
-        <div className={this.props.displayAll ? '' : 'flow-desc'}>
-          {/* !!this.props.cl && this.props.cl.(key) checks that if the element is not null 
+          (props.taken ? ' taken-class' : '') + (props.isPreReq ? ' pre-reqs' : '')}
+        onMouseEnter={props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
+        onMouseLeave={props.leaveFunc}>
+        <div className='flow-id'>{props.Name}</div>
+        <div className='flow-credits'>{props.Credits}</div>
+        <div className={props.displayAll ? '' : 'flow-desc'}>
+          {/* !!props.cl && props.cl.(key) checks that if the element is not null 
           and if it is not, then displays this element property (conditional rendering) */}
-          <div className='flow-name'>{!!this.props.cl && this.props.cl.Name}</div>
-          <div className='flow-restriction'>{!!this.props.Restriction && '*' + this.props.Restriction + '*'}</div>
-          <div className='flow-notes'>{!!this.props.cl && getNotes(this.props.cl.Prereqs)}</div>
+          <div className='flow-name'>{!!props.cl && props.cl.Name}</div>
+          <div className='flow-restriction'>{!!props.Restriction && '*' + props.Restriction + '*'}</div>
+          <div className='flow-notes'>{!!props.cl && getNotes(props.cl.Prereqs)}</div>
         </div>
       </div>
     </OverlayTrigger>
