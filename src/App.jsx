@@ -162,6 +162,7 @@ class App extends React.Component {
   }
 
   /*** function for handling a click on a checkbox ***/
+  // only adjust the taken classes
   checkboxClick(classID) {
     // create a copy of the taken classes (for re-rendering purposes in React)
     if (this.state.TakenClasses.indexOf(classID) > -1) { // if class is already in taken list
