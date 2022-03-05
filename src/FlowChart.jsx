@@ -70,10 +70,10 @@ function FlowChart(props) {
   }
 
   // convenient function to allow for easy ordering by color (when passed to the sortby function)
-  const byColor = (a, b) => props.ColorOrder.indexOf(a[0]) - props.ColorOrder.indexOf(b[0]);
+  const byColor = (a, b) => props.ColorOrder.indexOf(a) - props.ColorOrder.indexOf(b);
 
   // maps each color to a div to be displayed 
-  let legend = Object.entries(props.Colors).sort(byColor).map(([name, color]) => (
+  let legend = Object.entries(props.Colors).sort((a, b) => byColor(a[0], b[0])).map(([name, color]) => (
     <div
       key={'legend' + name}
       className="flow-box-legend"
@@ -97,7 +97,7 @@ function FlowChart(props) {
           // uses map to loop and extract year number in 'year' and list of semesters in 'sems'
           Object.entries(yearSems).map(([year, sems]) => (
             // makes new column for each year with table inside for semesters
-            <Col key={'colyear' + year} lg={3} sm={6} xs={12} className='yearcol'>
+            <Col key={'colyear' + year} lg={3} sm={6} s={12} className='yearcol'>
               <Container>
                 <Row><Col className='year-header'>Year {year}</Col></Row>
                 <Row className='sem-classes'>{
@@ -109,7 +109,7 @@ function FlowChart(props) {
                       key attribute is used as a unique identifier for an item in a list in react */}
                       <div className='sem-header'>{sem.split('-')[0]}</div>
                       <div className='sem-credits'>{calculateSemHours(classes).join(' / ') + ' credits taken'}</div>
-                      {classes.sort(byColor).map((cl, i) => (
+                      {classes.sort((a,b) => byColor(a.Color, b.Color)).map((cl, i) => (
                         // FlowChartItem tag renders a box with all the information about the class
                         <FlowChartItem
                           key={sem + 'class' + i}

@@ -52,11 +52,9 @@ class App extends React.Component {
 
     // modify objects to include new class
     let newClassDesc = { ...this.state.ClassDesc, [newClassObj.Name]: newClassObj };
-    let newClasses = this.addClassToFlowchart(this.state.Classes, newClassObj.Name, newClassObj.Fulfills);
     this.setState({
       ClassDesc: newClassDesc,
-      TakenClasses: [...this.state.TakenClasses, newClassObj.Name],
-      Classes: newClasses
+      TakenClasses: [...this.state.TakenClasses, newClassObj.Name]
     });
   }
 
@@ -80,13 +78,8 @@ class App extends React.Component {
     reader.onload = (e) => {
       try {
         let newTakenClasses = JSON.parse(e.target.result).TakenClasses; // parse upload file
-        let newClasses = this.state.Classes.slice();
-        for (let clId of newTakenClasses) {
-          newClasses = this.addClassToFlowchart(newClasses, clId);
-        }
         this.setState({
           TakenClasses: newTakenClasses,
-          Classes: newClasses,
           showAlert: 'success'
         }); // populate classes, display alert
       } catch (err) { // if error during parsing to json or setting state
@@ -121,61 +114,83 @@ class App extends React.Component {
     return [taken, total];
   }
 
-  /*** function for replacing a non-specific flowchart box with the new specific id of a class ***/
-  addClassToFlowchart(origClasses, classID, category) {
-    //to update a state, need to copy contents (using slice) into a new variable, 
-    // modify the state in that new variable, then set the state (needed because of react's rendering requirements)
-    let newClasses = origClasses.slice();
-    // for science credit, add an additional class to the flowchart if biology or chemistry path was taken
-    if (classID.startsWith('BIOL') || classID.startsWith('CHEM')) {
-      newClasses = [...this.state.Classes, {
-        "Name": "Science",
-        "Credits": "1-2 hours",
-        "Semester": "Spring-2",
-        "Color": "SCIENCE"
-      }];
+  /*** replaces a box with fc_name as the name, if it exists, with the classID ***/
+  addClassToFlowchart(classes, classID, fc_name) {
+    // tries to find a flowchart box that thic class can fill
+    let index = classes.findIndex(c => c.Name === fc_name);
+    if (index >= 0) {
+      classes[index].Name = classID;
     }
-    if ('FC_Name' in this.state.Categories[category]) {
-      for (let fc_name of this.state.Categories[category].FC_Name) {
-        // tries to find a flowchart box that thic class can fill
-        let index = this.state.Classes.findIndex(c => c.Name === fc_name);
-        if (index >= 0) {
-          // creates a duplicate of the classes list & modifies info to have this class instead
-          newClasses[index].Type = newClasses[index].Name; // adds element to remember the category
-          newClasses[index].Name = classID;
-          break;
+  }
+  
+  /*** adds the path of classes to the flowchart
+  Note: this is currently releated to adding the correct science classes 
+  TODO: should we do this with the calculation of how many credits needed? 
+      push this class directly & remove it if replaced***/
+  addPathToFlowchart(classes, path, cat) {
+    let fc_name = this.state.Categories[cat].FC_Name[0];
+    let newClass;
+    // goes through classes in path
+    for (let pathID of path) {
+      // finds spot where this class can fill
+      let index = classes.findIndex(c => c.Name === fc_name || 
+        (c.Type === fc_name && !path.includes(c.Name)));
+      if (index >= 0) {
+        if (!newClass) {
+          newClass = {...classes[index]};
+          newClass.Credits = 0;
+        } 
+        classes[index].Type = classes[index].Name;
+        classes[index].Name = pathID;
+        // note if need credits to fulfill the requirement
+        newClass.Credits += parseInt(classes[index].Credits) - parseInt(this.state.ClassDesc[pathID].Credits);
+      }
+    }
+    if (newClass.Credits > 0) {
+      newClass.Credits += ' Credits';
+      return newClass; // if need additional credits, return new class
+    }
+  }
+  
+  getFlowchartWithClasses() {
+    let classes = JSON.parse(JSON.stringify(this.state.Classes)); // deep copy object
+    let classesToAdd = [];
+    let catCreds = {};
+    Object.keys(this.state.Categories).forEach(k => catCreds[k] = 0);
+    for (let clID of this.state.TakenClasses) {
+      if (classes.findIndex(c => c.Name === clID) === -1) { // if not in flowchart
+        let cl = this.state.ClassDesc[clID];
+        if ('Path' in cl) {
+          // calculate the number of taken credits of the path
+          let takenCreds = cl.Path.map(id => 
+            this.state.TakenClasses.includes(id) ? parseInt(this.state.ClassDesc[id].Credits) : 0)
+            .reduce((a, b) => a + b, 0);
+          // if more credits of this path have been taken, replace path with this one
+          if (takenCreds > catCreds[cl.Fulfills]) {
+            catCreds[cl.Fulfills] = takenCreds;
+            classesToAdd = [this.addPathToFlowchart(classes, cl.Path, cl.Fulfills)];
+          }
+        } else {
+          // add class to flowchart
+          let fc_ind = catCreds[cl.Fulfills] >= this.state.Categories[cl.Fulfills].Credits ? 1 : 0;
+          this.addClassToFlowchart(classes, clID, this.state.Categories[cl.Fulfills].FC_Name[fc_ind]);
+          catCreds[cl.Fulfills] += parseInt(cl.Credits);
         }
       }
     }
-    return newClasses;
+    return classes.concat(classesToAdd);
   }
 
-  /*** remove a class when you unclick the toggle button ***/
-  removeClassFromFlowchart(classID) {
-    // finds the class and replaces the information with old category again (when you unclick the class)
-    let index = this.state.Classes.findIndex(cl => cl.Name === classID);
-    if ('Type' in this.state.Classes[index]) {
-      let newClasses = this.state.Classes.slice();
-      newClasses[index].Name = newClasses[index].Type; // .Type is the old category
-      this.setState({ Classes: newClasses });
-    }
-  }
-
-  /*** function for handling a click on a checkbox ***/
-  // only adjust the taken classes
+  /*** function for handling a click on a checkbox
+  Note: must create a copy of the list for re-rendering purposes in React ***/
   checkboxClick(classID) {
-    // create a copy of the taken classes (for re-rendering purposes in React)
-    if (this.state.TakenClasses.indexOf(classID) > -1) { // if class is already in taken list
+    if (this.state.TakenClasses.includes(classID)) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
       this.setState({ TakenClasses: this.state.TakenClasses.filter(c => c !== classID) });
-      this.removeClassFromFlowchart(classID);
     } else {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
-      this.setState({
-        TakenClasses: [...this.state.TakenClasses, classID],
-        Classes: this.addClassToFlowchart(this.state.Classes, classID, this.state.ClassDesc[classID].Fulfills)
-      });
+      this.setState({ TakenClasses: [...this.state.TakenClasses, classID] });
     }
   }
 
@@ -204,7 +219,7 @@ class App extends React.Component {
   displayFlowChart() {
     // create new list of classes with all class descriptions needed
     // along with color and whether or not it's been taken
-    let classInfo = this.state.Classes.map(cl => ({
+    let classInfo = this.getFlowchartWithClasses().map(cl => ({
       ...cl,
       cl: this.state.ClassDesc[cl.Name],
       displayAll: this.state.displayAll,

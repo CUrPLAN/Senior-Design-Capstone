@@ -55,7 +55,8 @@ class ListView extends React.Component {
 
     // add children rows to the list if expanded
     if (isExpanded) {
-      classes.forEach(([i, course]) => (
+      classes.sort((a, b) => a[1].Id.localeCompare(b[1].Id)) // sort ids alphabetically
+        .forEach(([i, course]) => (
         itemRows.push(<ListViewItem
           key={'course' + i}
           {...course} // pass elements of a course as properties to the ListViewItem

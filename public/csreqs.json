@@ -1559,7 +1559,8 @@
 			"Credits": "1 Credit",
 			"Desc": "This introductory experimental physics laboratory introduces students to the methods of science through a series of experiments and exercises focused on how objects move. Students working in teams use mathematical and computational approaches to acquire data, examine data, and make conclusions about how well these data support hypotheses and models. Students will use different types of scientific communication, including graphs and other forms of data visualization and cogent written and oral evaluation of experimental findings. Term offered: spring, summer, fall. Max hours: 1 Credit.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lab.\nTypically Offered: Fall, Spring, Summer.",
 			"Fulfills": "Required Science",
-			"Prereqs": []
+			"Prereqs": [], 
+      "Path": ["PHYS 2311", "PHYS 2321", "PHYS 2331", "PHYS 2341"]
 		},
 		"MATH 3195": {
 			"Name": "Linear Algebra and Differential Equations",
@@ -1577,14 +1578,16 @@
 			"Fulfills": "Required Science",
 			"Prereqs": [
 				"MATH 1401"
-			]
+			], 
+      "Path": ["PHYS 2311", "PHYS 2321", "PHYS 2331", "PHYS 2341"]
 		},
 		"CHEM 2038": {
 			"Name": "General Chemistry Laboratory I",
 			"Credits": "1 Credit",
 			"Desc": "Laboratory course designed to accompany Chem 2031. Topics include gravimetric analysis, statistical analysis, stoichiometry, Avogadro\u2019s number, thermochemistry, atomic spectroscopy, paper chromatography, and gas laws. No co-credit with CHEM\u00a02088. Coreq: CHEM\u00a02031 or CHEM\u00a02081. Term offered: fall, spring, summer. Max hours: 1 Credit. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC1.\nGrading Basis: Letter Grade\nCoreq:  CHEM\u00a02031 or CHEM\u00a02081\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lab; GT courses GT Pathways, GT-SC1, Nat  Phy Sci:Course w/Req Lab.",
 			"Fulfills": "Required Science",
-			"Prereqs": []
+			"Prereqs": [],
+      "Path": ["CHEM 2031", "CHEM 2038", "CHEM 2061", "CHEM 2068"]
 		},
 		"MATH 2411": {
 			"Name": "Calculus II",
@@ -1600,7 +1603,8 @@
 			"Credits": "1 Credit",
 			"Desc": "Investigations, observations, and experiments in evolution, bioinformatics, ecology, and animal behavior, anatomy, and physiology; requires off-campus field work. Note: This class is intended for students planning to take upper division biology courses and for biology majors. Students are strongly encouraged to take BIOL\u00a02010 concurrently or before they take this course. No co-credit with BIOL\u00a02031(2098) or BIOL 2081. Term offered: fall, spring, summer. Max hours: 1 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC1.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SC1, Nat  Phy Sci:Course w/Req Lab; Denver Core Requirement, Biol  Phys Sci - Lab.",
 			"Fulfills": "Required Science",
-			"Prereqs": []
+			"Prereqs": [],
+      "Path": ["BIOL 2010", "BIOL 2011", "BIOL 2020", "BIOL 2021"]
 		},
 		"PHYS 2341": {
 			"Name": "Intro Experimental Phys Lab II",
@@ -1610,7 +1614,8 @@
 			"Prereqs": [
 				"PHYS 2321",
 				"PHYS 2030"
-			]
+			], 
+      "Path": ["PHYS 2311", "PHYS 2321", "PHYS 2331", "PHYS 2341"]
 		},
 		"ENGR 1200": {
 			"Name": "Fundamentals of Engineering Design Innovation",
@@ -1627,7 +1632,8 @@
 			"Prereqs": [
 				"PHYS 2311",
 				"MATH 2411"
-			]
+			], 
+      "Path": ["PHYS 2311", "PHYS 2321", "PHYS 2331", "PHYS 2341"]
 		},
 		"BIOL 2021": {
 			"Name": "Molecules to Cells Lab (Gen Bio)",
@@ -1639,21 +1645,24 @@
 				"BIOL 2061",
 				"BIOL 2030",
 				"BIOL 2097"
-			]
+			],
+      "Path": ["BIOL 2010", "BIOL 2011", "BIOL 2020", "BIOL 2021"]
 		},
 		"CHEM 2031": {
 			"Name": "General Chemistry I",
 			"Credits": "3 Credits",
 			"Desc": "This is the first of a two semester sequence designed for students pursuing a degree in science or a health related field. Chem 2031 is designed for students who have recently completed high school chemistry or Chem 1000 with a C- or better. Note: Non- science majors should review the course description for Chem 1474 as an alternative, non-majors science CU Denver Undergraduate Core course, with lab credit. Topics covered include the classification of matter, the Metric system, dimensional analysis, atomic theory and the structure of atoms, periodic relationships, empirical formulas, thermochemistry, gas laws and the kinetic molecular theory, compounds and nomenclature of inorganic compounds, the mole, balancing equations, stoichiometry, types of chemical reactions, solution stoichiometry and dilutions, electron configurations, chemical bonding, Lewis Dot Theory, Valence Shell Electron Pair repulsion Theory, and other topics as time allows. This course is a prerequisite or co-requisite for General Chemistry 1 Lab, Chem 2038. No co-credit with CHEM\u00a02081. Note: a beginning course for science majors, medical technologists, pre-medical and pre-dental students. It is strongly recommended that students have taken CHEM\u00a01000 and MATH\u00a01110 or their high school equivalents to be adequately prepared to succeed in this course. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC2.\nGrading Basis: Letter Grade\nAdditional Information: Denver Core Requirement, Biol  Phys Sci - Lec; GT courses GT Pathways, GT-SC2, Nat  Phy Sci:Lec w/o Req Lab.",
 			"Fulfills": "Required Science",
-			"Prereqs": []
+			"Prereqs": [],
+      "Path": ["CHEM 2031", "CHEM 2038", "CHEM 2061", "CHEM 2068"]
 		},
 		"BIOL 2010": {
 			"Name": "Organisms to Ecosystems (Gen Bio)",
 			"Credits": "3 Credits",
 			"Desc": "Introduces four major areas of study: (1) evolution,(2) animal structure and function, (3) plant structure and function and (4) ecology. Note:\u00a0 This class is intended for students planning to take upper division biology courses and for biology majors. Biology majors and pre-health career students must also take the accompanying laboratory BIOL\u00a02011. No co-credit with BIOL\u00a02030(2097) or BIOL 2061. Term offered: fall, spring, summer. Max hours: 3 Credits. GT: Course is approved by the Colorado Dept of Higher Education for statewide guaranteed transfer, GT-SC2.\nGrading Basis: Letter Grade\nAdditional Information: GT courses GT Pathways, GT-SC2, Nat  Phy Sci:Lec w/o Req Lab; Denver Core Requirement, Biol  Phys Sci - Lec.",
 			"Fulfills": "Required Science",
-			"Prereqs": []
+			"Prereqs": [],
+      "Path": ["BIOL 2010", "BIOL 2011", "BIOL 2020", "BIOL 2021"]
 		},
 		"CHEM 2068": {
 			"Name": "General Chemistry Laboratory II",
@@ -1663,7 +1672,8 @@
 			"Prereqs": [
 				"CHEM 2038",
 				"CHEM 2088"
-			]
+			],
+      "Path": ["CHEM 2031", "CHEM 2038", "CHEM 2061", "CHEM 2068"]
 		},
 		"BIOL 2020": {
 			"Name": "Molecules to Cells (Gen Bio)",
@@ -1675,7 +1685,8 @@
 				"BIOL 2061",
 				"BIOL 2030",
 				"BIOL 2097"
-			]
+			],
+      "Path": ["BIOL 2010", "BIOL 2011", "BIOL 2020", "BIOL 2021"]
 		},
 		"CHEM 2061": {
 			"Name": "General Chemistry II",
@@ -1685,7 +1696,8 @@
 			"Prereqs": [
 				"CHEM 2031",
 				"CHEM 2081"
-			]
+			],
+      "Path": ["CHEM 2031", "CHEM 2038", "CHEM 2061", "CHEM 2068"]
 		}
 	}
 }
