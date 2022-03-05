@@ -94,42 +94,45 @@ function FlowChart(props) {
   return (
     <Container fluid id='flowchart'>
       <Row>
+        {/* the drag-n-drop functionality uses the react beautiful drag-n-drop library and is handled within the DragDropContext tags which calls the handleOnDragEnd function in the App component to update the state. */}
         <DragDropContext onDragEnd={props.onDragEnd}>
-          
         {// create all of the html code for the years by mapping each entry to the code
-          // uses map to loop and extract year number in 'year' and list of semesters in 'sems'
+         //  uses map to loop and extract year number in 'year' and list of semesters in 'sems'
           Object.entries(yearSems).map(([year, sems]) => (
-            // makes new column for each year with table inside for semesters
+          // makes new column for each year with table inside for semesters
             <Col key={'colyear' + year} lg={3} sm={6} s={12} className='yearcol'>
               <Container>
                 <Row><Col className='year-header'>Year {year}</Col></Row>
                 <Row className='sem-classes'>{
-                  // sort the semesters alphabetically, so that Fall always comes before Spring
-                  // uses map to loop and extract semester string in 'sem' and list of classes in 'classes'
+                  /* sort the semesters alphabetically, so that Fall always comes before Spring
+                  uses map to loop and extract semester string in 'sem' and list of classes in 'classes'*/
                   sems.sort((a, b) => a[0].localeCompare(b[0])).map(([sem, classes]) => (
                     <Droppable key={sem} droppableId={sem}>
                       {(provided) => (
+                      /* Col: column tag, imported from bootstrap-react 
+                      key attribute is used as a unique identifier for an item in a list in react */
                       <Col {...provided.droppableProps} ref={provided.innerRef} md={6} xs={6} className='semcol'>
-                      {/* Col: column tag, imported from bootstrap-react 
-                      key attribute is used as a unique identifier for an item in a list in react */}
                       <div className='sem-header'>{sem.split('-')[0]}</div>
                       <div className='sem-credits'>{calculateSemHours(classes).join(' / ') + ' credits taken'}</div>
                       {classes.sort((a,b) => byColor(a.Color, b.Color)).map((cl, i) => (
+                        /* used <Droppable> tag to identify area where classes can be placed (surrounded around each semester columns), <Draggable> tag to identify the classes that can be dragged. link to implementing drag and drop: https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/*/
                         <Draggable key={cl.index.toString()} draggableId={cl.index.toString()} index={i}>
                           {(provided) => (
-                        // FlowChartItem tag renders a box with all the information about the class
-                       <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>   
-                        <FlowChartItem 
-                          {...cl}
-                          isPreReq={curPrereqs.includes(cl.Name)}
-                          enterFunc={() => setPrereqs((!!cl.cl && !!cl.cl.Prereqs) ? cl.cl.Prereqs : [])}
-                          leaveFunc={() => setPrereqs([])}
-                        ></FlowChartItem>
-                       </div>
+                            // Draggable ref & properties in div surrounding flowchart item for ref to work
+                            // FlowChartItem tag renders a box with all the information about the class
+                            <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>   
+                              <FlowChartItem 
+                                {...cl}
+                                isPreReq={curPrereqs.includes(cl.Name)}
+                                enterFunc={() => setPrereqs((!!cl.cl && !!cl.cl.Prereqs) ? cl.cl.Prereqs : [])}
+                                leaveFunc={() => setPrereqs([])}
+                              ></FlowChartItem>
+                            </div>
                           )}
                         </Draggable>
                         ))}
-                          {provided.placeholder}
+                        {/* To keep everything in place when dragging around classes */}
+                        {provided.placeholder}
                       </Col>
                     )}
                     </Droppable>

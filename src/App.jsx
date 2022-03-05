@@ -216,9 +216,9 @@ class App extends React.Component {
     );
   }
 
+  /*** handles the drag-n-drop state updates to the flowchart (so things stay in their place) ***/
   handleOnDragEnd = (result) => {
-    if (!result.destination) return; // bounds checking
-    console.log(result);
+    if (!result.destination) return; // bounds checking: make sure doesn't go out of list
     let newClasses = this.state.Classes.slice(); // duplicate list for re-rendering
     newClasses[parseInt(result.draggableId)].Semester = result.destination.droppableId;
     this.setState({ Classes: newClasses });
@@ -234,14 +234,15 @@ class App extends React.Component {
       displayAll: this.state.displayAll,
       bgCol: this.state.Colors[cl.Color],
       taken: this.state.TakenClasses.includes(cl.Name),
-      index: i
+      index: i // property for drag and drop
     }));
+    // pass handleOnDragEnd for changing state when class dragged
     return (
       <FlowChart
         Classes={classInfo}
         ColorOrder={this.state.ColorOrder}
         Colors={this.state.Colors}
-        onDragEnd={this.handleOnDragEnd}>
+        onDragEnd={this.handleOnDragEnd}> 
       </FlowChart>
     );
   }
