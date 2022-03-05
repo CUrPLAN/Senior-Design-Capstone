@@ -56,12 +56,12 @@ function AddCustomClass(props) {
               <Form.Label>Class Name:</Form.Label>
               <Form.Control
                 id='className'
-                placeholder="Ex. CSCI 1001"
+                placeholder="CSCI 1001"
                 onChange={e => { setClassNameValue(e.target.value.toUpperCase()); }} />
               <Form.Label>Credit Amount:</Form.Label>
               <Form.Control
                 id='creditNum'
-                placeholder="Ex. 3"
+                placeholder="3"
                 onChange={e => { setCreditNumValue(e.target.value); }} />
               <Form.Label>Class Category:</Form.Label>
               <Form.Select value={classCategoryValue}

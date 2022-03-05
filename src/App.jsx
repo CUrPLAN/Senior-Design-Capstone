@@ -12,6 +12,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import saveAs from 'file-saver';
 import Dropzone from 'react-dropzone';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -100,12 +101,12 @@ class App extends React.Component {
     saveAs(blob, "CUrPLAN");
   }
 
-  /*** Calculates amount of credit hours that are needed for a list of flowchart classes
+  /*** Calculates amount of credit hours taken in total
    * And the total number of credit hours that have been taken from the classes
    * Takes: list of flowchart classes ***/
-  calculateSemHours(classList) {
+  calculateSemHours() {
     let [total, taken] = [0, 0];
-    for (let cl of classList) {
+    for (let cl of this.getFlowchartWithClasses()) {
       total += parseInt(cl.Credits);
       if (this.state.TakenClasses.includes(cl.Name)) { // if have taken, add to count
         taken += parseInt(this.state.ClassDesc[cl.Name].Credits);
@@ -215,22 +216,32 @@ class App extends React.Component {
     );
   }
 
+  handleOnDragEnd = (result) => {
+    if (!result.destination) return; // bounds checking
+    console.log(result);
+    let newClasses = this.state.Classes.slice(); // duplicate list for re-rendering
+    newClasses[parseInt(result.draggableId)].Semester = result.destination.droppableId;
+    this.setState({ Classes: newClasses });
+  }
+
   /*** creates flow chart view with all classes ***/
   displayFlowChart() {
     // create new list of classes with all class descriptions needed
     // along with color and whether or not it's been taken
-    let classInfo = this.getFlowchartWithClasses().map(cl => ({
+    let classInfo = this.getFlowchartWithClasses().map((cl, i) => ({
       ...cl,
       cl: this.state.ClassDesc[cl.Name],
       displayAll: this.state.displayAll,
       bgCol: this.state.Colors[cl.Color],
-      taken: this.state.TakenClasses.includes(cl.Name)
+      taken: this.state.TakenClasses.includes(cl.Name),
+      index: i
     }));
     return (
       <FlowChart
         Classes={classInfo}
         ColorOrder={this.state.ColorOrder}
-        Colors={this.state.Colors}>
+        Colors={this.state.Colors}
+        onDragEnd={this.handleOnDragEnd}>
       </FlowChart>
     );
   }
@@ -282,7 +293,7 @@ class App extends React.Component {
           </InputGroup>
           Expand All Details
         </div>
-        <div className="credit-count">{this.calculateSemHours(this.state.Classes).join(' / ') + ' taken credits'}</div>
+        <div className="credit-count">{this.calculateSemHours().join(' / ') + ' taken credits'}</div>
         <div className="flow-warn">
           *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered
           more frequently as resources allow, but students cannot expect them to be

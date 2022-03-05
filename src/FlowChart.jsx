@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { useState } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 /*** function that returns if white or black text will have better contrast with the color passed ***/
 var isDarkBackground = function (bgCol) {
@@ -64,7 +65,7 @@ function FlowChart(props) {
     let [total, taken] = [0, 0];
     for (let cl of classList) {
       total += parseInt(cl.Credits);
-      taken += cl.checked ? parseInt(cl.cl.Credits) : 0; // if checked (taken) add to count
+      taken += cl.taken ? parseInt(cl.cl.Credits) : 0; // if taken add to count
     }
     return [taken, total];
   }
@@ -93,6 +94,8 @@ function FlowChart(props) {
   return (
     <Container fluid id='flowchart'>
       <Row>
+        <DragDropContext onDragEnd={props.onDragEnd}>
+          
         {// create all of the html code for the years by mapping each entry to the code
           // uses map to loop and extract year number in 'year' and list of semesters in 'sems'
           Object.entries(yearSems).map(([year, sems]) => (
@@ -104,24 +107,36 @@ function FlowChart(props) {
                   // sort the semesters alphabetically, so that Fall always comes before Spring
                   // uses map to loop and extract semester string in 'sem' and list of classes in 'classes'
                   sems.sort((a, b) => a[0].localeCompare(b[0])).map(([sem, classes]) => (
-                    <Col key={sem} md={6} xs={6} className='semcol'>
+                    <Droppable key={sem} droppableId={sem}>
+                      {(provided) => (
+                      <Col {...provided.droppableProps} ref={provided.innerRef} md={6} xs={6} className='semcol'>
                       {/* Col: column tag, imported from bootstrap-react 
                       key attribute is used as a unique identifier for an item in a list in react */}
                       <div className='sem-header'>{sem.split('-')[0]}</div>
                       <div className='sem-credits'>{calculateSemHours(classes).join(' / ') + ' credits taken'}</div>
                       {classes.sort((a,b) => byColor(a.Color, b.Color)).map((cl, i) => (
+                        <Draggable key={cl.index.toString()} draggableId={cl.index.toString()} index={i}>
+                          {(provided) => (
                         // FlowChartItem tag renders a box with all the information about the class
-                        <FlowChartItem
-                          key={sem + 'class' + i}
+                       <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>   
+                        <FlowChartItem 
                           {...cl}
                           isPreReq={curPrereqs.includes(cl.Name)}
                           enterFunc={() => setPrereqs((!!cl.cl && !!cl.cl.Prereqs) ? cl.cl.Prereqs : [])}
                           leaveFunc={() => setPrereqs([])}
-                        ></FlowChartItem>))}
-                    </Col>))
-                }</Row>
+                        ></FlowChartItem>
+                       </div>
+                          )}
+                        </Draggable>
+                        ))}
+                          {provided.placeholder}
+                      </Col>
+                    )}
+                    </Droppable>
+                  ))}</Row>
               </Container>
             </Col>))}
+        </DragDropContext>
       </Row>
       <div className="flow-legend">
         {legend}
