@@ -77,9 +77,9 @@ body {
 }
 
 .active {
-  background-color: #bc8c38;
+  /*background-color: #bc8c38; */
   height: 100%;
-  /* border-bottom: 2px solid white; */
+  border-bottom: 2px solid white;
 }
 
 #upload-button {
@@ -297,6 +297,12 @@ https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-on
   background: rgb(197, 9, 9);
   color: white;
   font-weight: bold;
+}
+.heading-td {
+  border: solid 2px black;
+  text-align: center;
+  font-size: 1em;
+  color: black;
 }
 
 .arrow {

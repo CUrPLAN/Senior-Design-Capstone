@@ -22,6 +22,7 @@ class App extends React.Component {
       Classes: [],
       ClassDesc: {},
       TakenClasses: [],
+      PlannedClasses: [],
       CurPreReqs: [],
       Colors: {},
       displayAll: false
@@ -169,7 +170,8 @@ class App extends React.Component {
           // if more credits of this path have been taken, replace path with this one
           if (takenCreds > catCreds[cl.Fulfills]) {
             catCreds[cl.Fulfills] = takenCreds;
-            classesToAdd = [this.addPathToFlowchart(classes, cl.Path, cl.Fulfills)];
+            let classToAdd = this.addPathToFlowchart(classes, cl.Path, cl.Fulfills);
+            classesToAdd = !classToAdd ? [] : [classToAdd];
           }
         } else {
           // add class to flowchart
@@ -182,9 +184,9 @@ class App extends React.Component {
     return classes.concat(classesToAdd);
   }
 
-  /*** function for handling a click on a checkbox
-  Note: must create a copy of the list for re-rendering purposes in React ***/
-  checkboxClick(classID) {
+  /*** function for handling a click on a checkbox ***/
+  markClassTaken(classID) {
+    console.log("mark taken", classID);
     if (this.state.TakenClasses.includes(classID)) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
       this.setState({ TakenClasses: this.state.TakenClasses.filter(c => c !== classID) });
@@ -192,6 +194,19 @@ class App extends React.Component {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
       this.setState({ TakenClasses: [...this.state.TakenClasses, classID] });
+    }
+  }
+
+  /*** function for handling a click on a checkbox ***/
+  markClassPlanned(classID) {
+    console.log("mark planned", classID);
+    if (this.state.PlannedClasses.includes(classID)) { // if class is already in taken list
+      // removes classid from taken classes list by creating a new list that does not include that classID
+      this.setState({ PlannedClasses: this.state.PlannedClasses.filter(c => c !== classID) });
+    } else {
+      // sets state to be the list of previously selected taken classes, with the addition of the new classID
+      // ... is the spread operator, it makes the elements into elements of the new array
+      this.setState({ PlannedClasses: [...this.state.PlannedClasses, classID] });
     }
   }
 
@@ -203,9 +218,10 @@ class App extends React.Component {
       ...item,
       Id: courseID,
       // pass function to component: https://reactjs.org/docs/faq-functions.html
-      changeFunc: () => this.checkboxClick(courseID),
+      takenFunc: () => this.markClassTaken(courseID),
+      plannedFunc: () => this.markClassPlanned(courseID),
       // variable used to keep boxes checked when switch between views
-      checked: this.state.TakenClasses.includes(courseID)
+      checked: this.state.TakenClasses.includes(courseID) ? 'Taken' : (this.state.PlannedClasses.includes(courseID) ? 'Planned' : null)
     }));
     return (
       <ListView
