@@ -42,22 +42,26 @@ class App extends React.Component {
   }
 
   /*** when user submits new information for a custom class (called by AddCustomClass) ***/
-  onAddClassSubmit = (newClassObj) => {
+  onAddClassSubmit = (newClassObj, status) => {
     // fix name format by just taking class category and number
-    let nameParts = newClassObj.Name.match(/([A-Z]{4})(.*)([\d]{4})/);
-    newClassObj.Name = nameParts[1] + ' ' + nameParts[3];
+    let nameParts = newClassObj.Id.match(/([A-Z]{4})(.*)([\d]{4})/);
+    newClassObj.Id = nameParts[1] + ' ' + nameParts[3];
 
-    if (newClassObj.Name in this.state.ClassDesc) {
+    if (newClassObj.Id in this.state.ClassDesc) {
       alert("Class already exists!");
       return
     }
 
     // modify objects to include new class
-    let newClassDesc = { ...this.state.ClassDesc, [newClassObj.Name]: newClassObj };
+    let newClassDesc = { ...this.state.ClassDesc, [newClassObj.Id]: newClassObj };
     this.setState({
-      ClassDesc: newClassDesc,
-      TakenClasses: [...this.state.TakenClasses, newClassObj.Name]
+      ClassDesc: newClassDesc
     });
+    if (status === 'Taken') {
+      this.setState({ TakenClasses: [...this.state.TakenClasses, newClassObj.Id] });
+    } else {
+      this.setState({ PlannedClasses: [...this.state.PlannedClasses, newClassObj.Id] });      
+    }
   }
 
   /*** function for handling a click on one of the top navbar links ***/
@@ -107,12 +111,12 @@ class App extends React.Component {
    * Takes: list of flowchart classes ***/
   calculateSemHours() {
     let [total, taken] = [0, 0];
-    for (let cl of this.getFlowchartWithClasses()) {
+    this.getFlowchartWithClasses().forEach(cl => {
       total += parseInt(cl.Credits);
       if (this.state.TakenClasses.includes(cl.Name)) { // if have taken, add to count
         taken += parseInt(this.state.ClassDesc[cl.Name].Credits);
       }
-    }
+    });
     return [taken, total];
   }
 
@@ -159,7 +163,7 @@ class App extends React.Component {
     let classesToAdd = [];
     let catCreds = {};
     Object.keys(this.state.Categories).forEach(k => catCreds[k] = 0);
-    for (let clID of this.state.TakenClasses) {
+    for (let clID of this.state.TakenClasses.concat(this.state.PlannedClasses)) {
       if (classes.findIndex(c => c.Name === clID) === -1) { // if not in flowchart
         let cl = this.state.ClassDesc[clID];
         if ('Path' in cl) {
@@ -193,7 +197,8 @@ class App extends React.Component {
     } else {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
-      this.setState({ TakenClasses: [...this.state.TakenClasses, classID] });
+      this.setState({ TakenClasses: [...this.state.TakenClasses, classID], 
+                     PlannedClasses: this.state.PlannedClasses.filter(c => c !== classID)});
     }
   }
 
@@ -206,7 +211,8 @@ class App extends React.Component {
     } else {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
-      this.setState({ PlannedClasses: [...this.state.PlannedClasses, classID] });
+      this.setState({ PlannedClasses: [...this.state.PlannedClasses, classID],
+                    TakenClasses: this.state.TakenClasses.filter(c => c !== classID)});
     }
   }
 
@@ -250,6 +256,7 @@ class App extends React.Component {
       displayAll: this.state.displayAll,
       bgCol: this.state.Colors[cl.Color],
       taken: this.state.TakenClasses.includes(cl.Name),
+      planned: this.state.PlannedClasses.includes(cl.Name),
       index: i // property for drag and drop
     }));
     // pass handleOnDragEnd for changing state when class dragged

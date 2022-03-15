@@ -11,12 +11,12 @@
 	],
 	"Colors": {
 		"CS CORE": "#bcd6ed",
-		"CS ELECTIVE": "#ffd865",
+		"CS ELECTIVE": "#674ea7",
 		"SCIENCE": "#a8d08d",
 		"GEN ED CORE": "#bebebe",
 		"MATH": "#e1efd8",
 		"CS SYSTEMS CORE": "#2d74b5",
-		"CS BREADTH": "#fff1cb",
+		"CS BREADTH": "#D9BBF9",
 		"ENGR": "#e7d0b9"
 	},
 	"Classes": [

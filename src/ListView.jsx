@@ -11,15 +11,6 @@ function ListViewItem(props) {
   const [checked, setChecked] = useState([props.checked]);
   const handleChange = (selectedValue) => {
     let newValue = selectedValue.filter(v => !checked.includes(v)); // gets all the classes from the selected value list that are not currently in the checked list (NOTE: is list)
-    let oldValue = selectedValue.filter(v => checked.includes(v));
-    if (oldValue.length > 0) {
-      if (oldValue[0] === 'Planned') {
-        props.plannedFunc();
-      }
-      if (oldValue[0] === 'Taken') {
-        props.takenFunc();
-      }
-    }
     setChecked(newValue); 
   }
 
