@@ -3,6 +3,7 @@ import ListView from './ListView.jsx';
 import FlowChart from './FlowChart.jsx';
 import AddCustomClass from './CustomClassModal.jsx';
 import FileAlert from './FileAlert.jsx';
+import DragnDropAlert from './DragnDropAlert.jsx';
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -11,7 +12,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import saveAs from 'file-saver';
 import Dropzone from 'react-dropzone';
-
+import Alert from 'react-bootstrap/Alert';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class App extends React.Component {
       CurPreReqs: [],
       Colors: {},
       displayAll: false,
+      DragnDropAlert: null,
       AddedClasses: [] // store ids of user-added-classes
     };
     // https://stackoverflow.com/questions/64420345/how-to-click-on-a-ref-in-react
@@ -255,13 +257,73 @@ class App extends React.Component {
     );
   }
 
+  /*** compares two semester strings (ex. Fall-3, Spring-2) 
+  returns -1 if sem1 is after sem2, returns 1 if sem1 is before sem2, and returns 0 if they're the same ***/
+  compareSemesters(sem1, sem2) {
+    //1) classes have same semesters
+    if (sem1 === sem2) {
+      return 0;
+    }
+    let [sem1Semester, sem1Year] = sem1.split('-');
+    let [sem2Semester, sem2Year] = sem2.split('-');
+    //different cases (currently for fall and spring semesters)
+    //2) years are different -- if the prereqs year is greater than the destination year
+    if (parseInt(sem1Year) > parseInt(sem2Year)) {
+      return -1;
+    }
+    //3) class is dragged to semester before preq -- if its in fall & prereq is in spring of the same year
+    if (sem1Year === sem2Year && sem1Semester === 'Spring' && sem2Semester === 'Fall') {
+      return -1;
+    } 
+    return 1;
+  }
+
   /*** handles the drag-n-drop state updates to the flowchart (so things stay in their place) ***/
   handleOnDragEnd = (result) => {
+    this.setState( { DragnDropAlert: null } );
     if (!result.destination) return; // bounds checking: make sure doesn't go out of list
+    // check for prereqs: (current assumption is that all prereqs are included in the core classes)
+    
     let newClasses = this.state.Classes.slice(); // duplicate list for re-rendering
+
+    //obtain the class name of the class being dragged
+    let classDragged = newClasses[parseInt(result.draggableId)].Name;
+
+    if (classDragged in this.state.ClassDesc) { // checking that the class that was dragged has an Id      
+      //'in' keyword gets the index of the list, 'of' gets the object in the list
+      for (let cl of newClasses) { // go through prereqs of class
+        if (this.state.ClassDesc[classDragged].Prereqs.includes(cl.Name)) { // if the current class is a prereq of the dragged class
+          let output = this.compareSemesters(cl.Semester, result.destination.droppableId); // want current semester to be less than the dragged semester
+          if (output != 1) { //if the prereq class semester is before the dragged class semester, no need to update state
+            let DnDAlertMsg = `${classDragged} cannot be dragged before or in the same semester as ${cl.Name}.`;
+            this.setState( {DragnDropAlert: DnDAlertMsg} );
+            return;
+          } // if END
+        }
+        else if (cl.Name in this.state.ClassDesc && this.state.ClassDesc[cl.Name].Prereqs.includes(classDragged)) { // if the class dragged is a prereq of the current class
+          let output = this.compareSemesters(cl.Semester, result.destination.droppableId); // want the current semester to be greater than the dragged semester
+          if (output != -1) { // if the current semester is not greater than the dragged semester, exit 
+            let DnDAlertMsg = `${classDragged} cannot be dragged after or in the same semester as ${cl.Name}.`;
+            this.setState( {DragnDropAlert: DnDAlertMsg} );
+            return;
+          } // if END
+        } // else if END
+      } // FOR END
+      // ensure that classes with fall/spring restrictions aren't dragged to the wrong semesters
+      if ('Restriction' in  newClasses[parseInt(result.draggableId)]) {
+        let restriction = newClasses[parseInt(result.draggableId)].Restriction.split(' ')[0].toLowerCase(); // 'FALL ONLY'
+        if (!result.destination.droppableId.toLowerCase().startsWith(restriction)) { // if destination doesn't start with restricted semester
+          let DnDAlertMsg = `${classDragged} cannot be dragged to a ${restriction} semester.`;
+          this.setState( { DragnDropAlert: DnDAlertMsg } );
+          return;
+        }
+      }
+    } // IF END
+
+    //parsing through new classes to find the class that is being dragged
     newClasses[parseInt(result.draggableId)].Semester = result.destination.droppableId;
     this.setState({ Classes: newClasses });
-  }
+  } //handleDragEnd function END
 
   /*** creates flow chart view with all classes ***/
   displayFlowChart() {
@@ -306,6 +368,8 @@ class App extends React.Component {
           show={this.state.showAlert}
           onClose={() => this.setState({ showAlert: '' })}>
         </FileAlert>
+        <DragnDropAlert show={this.state.DragnDropAlert} onClose={() => this.setState({ DragnDropAlert: null })}>
+          </DragnDropAlert>
         <Navbar variant='dark' bg='dark' sticky='top'>
           <Navbar.Brand>CUrPLAN</Navbar.Brand>
           <Nav>
