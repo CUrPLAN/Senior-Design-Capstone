@@ -2,6 +2,8 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import { useState, useEffect } from "react";
 
 
@@ -12,10 +14,16 @@ function AddCustomClass(props) {
   const [classCategoryValue, setClassCategoryValue] = useState('');
   const [buttonStatus, setButtonStatus] = useState(true); // if submit button disabled
 
+  const [checked, setChecked] = useState([]);
+  const handleButtonChange = (selectedValue) => {
+    let newValue = selectedValue.filter(v => !checked.includes(v)); // gets all the classes from the selected value list that are not currently in the checked list (NOTE: is list)
+    setChecked(newValue); 
+  }
+
   useEffect(() => { // runs after every render (state changes) -- adjusts if submit disabled
     setButtonStatus(!(classNameValue.length > 0 && creditNumValue.length > 0
       && /^\d+$/.test(creditNumValue) && /^[A-Z]{4}(.*)[\d]{4}$/.test(classNameValue)
-      && classCategoryValue !== ''));
+      && classCategoryValue !== '' && checked.length > 0));
   });
 
   // functions that handle open/close & submitting
@@ -31,12 +39,13 @@ function AddCustomClass(props) {
     handleClose();
     console.log(classCategoryValue);
     props.onSubmit({
-      Name: classNameValue,
+      Id: classNameValue,
+      Name: "Custom Class",
       Credits: creditNumValue + " Credits",
       Desc: "",
       Fulfills: classCategoryValue,
       Prereqs: []
-    });
+    }, checked[0]); // pass status to onsubmit method
   }
 
   // create Modal with form
@@ -52,7 +61,7 @@ function AddCustomClass(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group>
+            <Form.Group className="custom-class-form">
               <Form.Label>Class Name:</Form.Label>
               <Form.Control
                 id='className'
@@ -70,6 +79,31 @@ function AddCustomClass(props) {
                 {props.CategoryOpts.map((opt, i) =>
                   (<option key={'option' + i} value={opt}>{opt}</option>))}
               </Form.Select>
+              <Form.Label className='taken-label'>Status: </Form.Label>
+              <ToggleButtonGroup
+                className='custom-toggle-buttons'
+                type='checkbox' 
+                name={'takenOrPlannedSelectionCustom'}
+                value={checked}
+                onChange={handleButtonChange}
+              >
+                  <ToggleButton
+                    id={"tbg-btn-1Custom"}
+                    value = {'Taken'}
+                    variant = {'outline-success'}
+                    size="sm"
+                  >
+                    Taken
+                  </ToggleButton>
+                <ToggleButton
+                    id={"tbg-btn-2Custom"}
+                    value = {'Planned'}
+                    variant = {'outline-warning'}
+                    size="sm"
+                >
+                  Planned
+                </ToggleButton>
+              </ToggleButtonGroup>
             </Form.Group>
           </Form>
         </Modal.Body>

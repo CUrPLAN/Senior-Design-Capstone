@@ -77,9 +77,9 @@ body {
 }
 
 .active {
-  background-color: #bc8c38;
+  /*background-color: #bc8c38; */
   height: 100%;
-  /* border-bottom: 2px solid white; */
+  border-bottom: 2px solid white;
 }
 
 #upload-button {
@@ -211,21 +211,9 @@ https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-on
   font-weight: 600;
 }
 
-.taken-class {
-  /*opacity: 50%;*/
-  /*background-image: url("./greencheck.png");
-  background-size: 80%;/* 3em 3em; */
-  /*background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-blend-mode: darken; */
-}
-
 .taken-class>.flow-id:before {
-  /*padding-left: 0.8em;*/
   content: '';
-  background-image: url("../greencheck_2.png");
-  /*background-position: left 0em top 50%;*/
+  background-image: url("../check.svg");
   background-size: 1.2em;
   background-repeat: no-repeat;
   width: 1.2em;
@@ -239,11 +227,20 @@ https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-on
 
 .taken-class>.flow-id {
   text-decoration: line-through solid 0.15em;
-  /*padding-left: 0.8em;
-  background-image: url("./greencheck_2.png");
-  background-position: left 0.1em top 50%;
+}
+
+.planned-class>.flow-id:before {
+  content: '';
+  background-image: url("../clock.svg");
   background-size: 1.2em;
-  background-repeat: no-repeat;*/
+  background-repeat: no-repeat;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-flex;
+  margin-left: -0.4em;
+  margin-right: 0.2em;
+  position: relative;
+  top: 0.2em;
 }
 
 .pre-reqs {
@@ -297,6 +294,12 @@ https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-on
   background: rgb(197, 9, 9);
   color: white;
   font-weight: bold;
+}
+.heading-td {
+  border: solid 2px black;
+  text-align: center;
+  font-size: 1em;
+  color: black;
 }
 
 .arrow {
@@ -372,4 +375,18 @@ thead {
   display: inline;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+}
+
+.taken-label {
+  position: relative;
+  top: 5px;
+}
+
+.custom-toggle-buttons {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.custom-class-form > label {
+  margin-top: 10px;
 }

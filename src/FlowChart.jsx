@@ -36,8 +36,8 @@ function FlowChartItem(props) {
         backgroundColor: props.bgCol,
         color: isDarkBackground(props.bgCol) ? "#000000" : "#ffffff"
       }}
-        className={'flow-box ' +
-          (props.taken ? ' taken-class' : '') + (props.isPreReq ? ' pre-reqs' : '')}
+        className={'flow-box ' + (props.planned ? 'planned-class' : '') +
+          (props.taken ? 'taken-class' : '') + (props.isPreReq ? ' pre-reqs' : '')}
         onMouseEnter={props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
         onMouseLeave={props.leaveFunc}>
         <div className='flow-id'>{props.Name}</div>

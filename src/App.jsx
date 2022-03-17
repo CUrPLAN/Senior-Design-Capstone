@@ -23,10 +23,12 @@ class App extends React.Component {
       Classes: [],
       ClassDesc: {},
       TakenClasses: [],
+      PlannedClasses: [],
       CurPreReqs: [],
       Colors: {},
       displayAll: false,
-      DragnDropAlert: null
+      DragnDropAlert: null,
+      AddedClasses: [] // store ids of user-added-classes
     };
     // https://stackoverflow.com/questions/64420345/how-to-click-on-a-ref-in-react
     this.fileUploader = React.createRef(); // ref to upload file dialog
@@ -43,22 +45,27 @@ class App extends React.Component {
   }
 
   /*** when user submits new information for a custom class (called by AddCustomClass) ***/
-  onAddClassSubmit = (newClassObj) => {
+  onAddClassSubmit = (newClassObj, status) => {
     // fix name format by just taking class category and number
-    let nameParts = newClassObj.Name.match(/([A-Z]{4})(.*)([\d]{4})/);
-    newClassObj.Name = nameParts[1] + ' ' + nameParts[3];
+    let nameParts = newClassObj.Id.match(/([A-Z]{4})(.*)([\d]{4})/);
+    newClassObj.Id = nameParts[1] + ' ' + nameParts[3];
 
-    if (newClassObj.Name in this.state.ClassDesc) {
+    if (newClassObj.Id in this.state.ClassDesc) {
       alert("Class already exists!");
       return
     }
 
     // modify objects to include new class
-    let newClassDesc = { ...this.state.ClassDesc, [newClassObj.Name]: newClassObj };
+    let newClassDesc = { ...this.state.ClassDesc, [newClassObj.Id]: newClassObj };
     this.setState({
       ClassDesc: newClassDesc,
-      TakenClasses: [...this.state.TakenClasses, newClassObj.Name]
+      AddedClasses: [...this.state.AddedClasses, newClassObj.Id]
     });
+    if (status === 'Taken') {
+      this.setState({ TakenClasses: [...this.state.TakenClasses, newClassObj.Id] });
+    } else {
+      this.setState({ PlannedClasses: [...this.state.PlannedClasses, newClassObj.Id] });
+    }
   }
 
   /*** function for handling a click on one of the top navbar links ***/
@@ -80,9 +87,18 @@ class App extends React.Component {
     // when reader reads a file
     reader.onload = (e) => {
       try {
-        let newTakenClasses = JSON.parse(e.target.result).TakenClasses; // parse upload file
+        let newInfo = JSON.parse(e.target.result); // parse upload file
+        let newClasses = this.state.Classes.slice();
+        // replace every semester in newClasses with value that was saved in file
+        newClasses.forEach((cl, i) => cl.Semester = newInfo.DragNDropSems[i]);
+        let newClassDesc = {...this.state.ClassDesc};
+        newInfo.AddedClasses.forEach(cl => newClassDesc[cl.Id] = cl);
         this.setState({
-          TakenClasses: newTakenClasses,
+          TakenClasses: newInfo.TakenClasses,
+          PlannedClasses: newInfo.PlannedClasses,
+          Classes: newClasses,
+          AddedClasses: newInfo.AddedClasses.map(cl => cl.Id),
+          ClassDesc: newClassDesc,
           showAlert: 'success'
         }); // populate classes, display alert
       } catch (err) { // if error during parsing to json or setting state
@@ -98,7 +114,13 @@ class App extends React.Component {
   saveClick() {
     // adapted from answer to 
     // https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
-    const fileData = JSON.stringify({ 'Version': '1.0', 'TakenClasses': this.state.TakenClasses });
+    const fileData = JSON.stringify({ 
+      'Version': '1.0', 
+      'TakenClasses': this.state.TakenClasses, 
+      'PlannedClasses': this.state.PlannedClasses, 
+      'DragNDropSems': this.state.Classes.map(cl => cl.Semester), // get only list of semesters
+      'AddedClasses': this.state.AddedClasses.map(id => this.state.ClassDesc[id])
+    });
     const blob = new Blob([fileData], { type: "application/json" });
     saveAs(blob, "CUrPLAN");
   }
@@ -108,12 +130,12 @@ class App extends React.Component {
    * Takes: list of flowchart classes ***/
   calculateSemHours() {
     let [total, taken] = [0, 0];
-    for (let cl of this.getFlowchartWithClasses()) {
+    this.getFlowchartWithClasses().forEach(cl => {
       total += parseInt(cl.Credits);
       if (this.state.TakenClasses.includes(cl.Name)) { // if have taken, add to count
         taken += parseInt(this.state.ClassDesc[cl.Name].Credits);
       }
-    }
+    });
     return [taken, total];
   }
 
@@ -160,7 +182,7 @@ class App extends React.Component {
     let classesToAdd = [];
     let catCreds = {};
     Object.keys(this.state.Categories).forEach(k => catCreds[k] = 0);
-    for (let clID of this.state.TakenClasses) {
+    for (let clID of this.state.TakenClasses.concat(this.state.PlannedClasses)) {
       if (classes.findIndex(c => c.Name === clID) === -1) { // if not in flowchart
         let cl = this.state.ClassDesc[clID];
         if ('Path' in cl) {
@@ -171,7 +193,8 @@ class App extends React.Component {
           // if more credits of this path have been taken, replace path with this one
           if (takenCreds > catCreds[cl.Fulfills]) {
             catCreds[cl.Fulfills] = takenCreds;
-            classesToAdd = [this.addPathToFlowchart(classes, cl.Path, cl.Fulfills)];
+            let classToAdd = this.addPathToFlowchart(classes, cl.Path, cl.Fulfills);
+            classesToAdd = !classToAdd ? [] : [classToAdd];
           }
         } else {
           // add class to flowchart
@@ -184,16 +207,31 @@ class App extends React.Component {
     return classes.concat(classesToAdd);
   }
 
-  /*** function for handling a click on a checkbox
-  Note: must create a copy of the list for re-rendering purposes in React ***/
-  checkboxClick(classID) {
+  /*** function for handling a click on a checkbox ***/
+  markClassTaken(classID) {
+    console.log("mark taken", classID);
     if (this.state.TakenClasses.includes(classID)) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
       this.setState({ TakenClasses: this.state.TakenClasses.filter(c => c !== classID) });
     } else {
       // sets state to be the list of previously selected taken classes, with the addition of the new classID
       // ... is the spread operator, it makes the elements into elements of the new array
-      this.setState({ TakenClasses: [...this.state.TakenClasses, classID] });
+      this.setState({ TakenClasses: [...this.state.TakenClasses, classID], 
+                     PlannedClasses: this.state.PlannedClasses.filter(c => c !== classID)});
+    }
+  }
+
+  /*** function for handling a click on a checkbox ***/
+  markClassPlanned(classID) {
+    console.log("mark planned", classID);
+    if (this.state.PlannedClasses.includes(classID)) { // if class is already in taken list
+      // removes classid from taken classes list by creating a new list that does not include that classID
+      this.setState({ PlannedClasses: this.state.PlannedClasses.filter(c => c !== classID) });
+    } else {
+      // sets state to be the list of previously selected taken classes, with the addition of the new classID
+      // ... is the spread operator, it makes the elements into elements of the new array
+      this.setState({ PlannedClasses: [...this.state.PlannedClasses, classID],
+                    TakenClasses: this.state.TakenClasses.filter(c => c !== classID)});
     }
   }
 
@@ -205,9 +243,10 @@ class App extends React.Component {
       ...item,
       Id: courseID,
       // pass function to component: https://reactjs.org/docs/faq-functions.html
-      changeFunc: () => this.checkboxClick(courseID),
+      takenFunc: () => this.markClassTaken(courseID),
+      plannedFunc: () => this.markClassPlanned(courseID),
       // variable used to keep boxes checked when switch between views
-      checked: this.state.TakenClasses.includes(courseID)
+      checked: this.state.TakenClasses.includes(courseID) ? 'Taken' : (this.state.PlannedClasses.includes(courseID) ? 'Planned' : null)
     }));
     return (
       <ListView
@@ -296,6 +335,7 @@ class App extends React.Component {
       displayAll: this.state.displayAll,
       bgCol: this.state.Colors[cl.Color],
       taken: this.state.TakenClasses.includes(cl.Name),
+      planned: this.state.PlannedClasses.includes(cl.Name),
       index: i // property for drag and drop
     }));
     // pass handleOnDragEnd for changing state when class dragged
