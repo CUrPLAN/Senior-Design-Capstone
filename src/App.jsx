@@ -25,7 +25,8 @@ class App extends React.Component {
       PlannedClasses: [],
       CurPreReqs: [],
       Colors: {},
-      displayAll: false
+      displayAll: false,
+      AddedClasses: [] // store ids of user-added-classes
     };
     // https://stackoverflow.com/questions/64420345/how-to-click-on-a-ref-in-react
     this.fileUploader = React.createRef(); // ref to upload file dialog
@@ -55,12 +56,13 @@ class App extends React.Component {
     // modify objects to include new class
     let newClassDesc = { ...this.state.ClassDesc, [newClassObj.Id]: newClassObj };
     this.setState({
-      ClassDesc: newClassDesc
+      ClassDesc: newClassDesc,
+      AddedClasses: [...this.state.AddedClasses, newClassObj.Id]
     });
     if (status === 'Taken') {
       this.setState({ TakenClasses: [...this.state.TakenClasses, newClassObj.Id] });
     } else {
-      this.setState({ PlannedClasses: [...this.state.PlannedClasses, newClassObj.Id] });      
+      this.setState({ PlannedClasses: [...this.state.PlannedClasses, newClassObj.Id] });
     }
   }
 
@@ -83,9 +85,18 @@ class App extends React.Component {
     // when reader reads a file
     reader.onload = (e) => {
       try {
-        let newTakenClasses = JSON.parse(e.target.result).TakenClasses; // parse upload file
+        let newInfo = JSON.parse(e.target.result); // parse upload file
+        let newClasses = this.state.Classes.slice();
+        // replace every semester in newClasses with value that was saved in file
+        newClasses.forEach((cl, i) => cl.Semester = newInfo.DragNDropSems[i]);
+        let newClassDesc = {...this.state.ClassDesc};
+        newInfo.AddedClasses.forEach(cl => newClassDesc[cl.Id] = cl);
         this.setState({
-          TakenClasses: newTakenClasses,
+          TakenClasses: newInfo.TakenClasses,
+          PlannedClasses: newInfo.PlannedClasses,
+          Classes: newClasses,
+          AddedClasses: newInfo.AddedClasses.map(cl => cl.Id),
+          ClassDesc: newClassDesc,
           showAlert: 'success'
         }); // populate classes, display alert
       } catch (err) { // if error during parsing to json or setting state
@@ -101,7 +112,13 @@ class App extends React.Component {
   saveClick() {
     // adapted from answer to 
     // https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
-    const fileData = JSON.stringify({ 'Version': '1.0', 'TakenClasses': this.state.TakenClasses });
+    const fileData = JSON.stringify({ 
+      'Version': '1.0', 
+      'TakenClasses': this.state.TakenClasses, 
+      'PlannedClasses': this.state.PlannedClasses, 
+      'DragNDropSems': this.state.Classes.map(cl => cl.Semester), // get only list of semesters
+      'AddedClasses': this.state.AddedClasses.map(id => this.state.ClassDesc[id])
+    });
     const blob = new Blob([fileData], { type: "application/json" });
     saveAs(blob, "CUrPLAN");
   }
