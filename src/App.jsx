@@ -139,72 +139,85 @@ class App extends React.Component {
     return [taken, total];
   }
 
-  /*** replaces a box with fc_name as the name, if it exists, with the classID ***/
-  addClassToFlowchart(classes, classID, fc_name) {
+  getCatForFlowchart(initCat, catCreds) {
+    let curCat = initCat;
+    let i = 0;
+    while ('Fallback' in this.state.Categories[curCat]
+    && this.state.Categories[curCat].Fallback.length > i
+    && catCreds[curCat] >= this.state.Categories[curCat].Credits) {
+      curCat = this.state.Categories[curCat].Fallback[i];
+      i += 1;
+    }
+    return curCat;
+  }
+
+  /** replaces a box with FcName as the name, if it exists, with the classID */
+  addClassToFlowchart(classes, classID, catName) {
+    const fcName = this.state.Categories[catName].FC_Name;
     // tries to find a flowchart box that thic class can fill
-    let index = classes.findIndex(c => c.Name === fc_name);
+    const index = classes.findIndex((c) => c.Name === fcName);
     if (index >= 0) {
       classes[index].Name = classID;
     }
   }
-  
-  /*** adds the path of classes to the flowchart
-  Note: this is currently releated to adding the correct science classes 
-  TODO: should we do this with the calculation of how many credits needed? 
-      push this class directly & remove it if replaced***/
-  addPathToFlowchart(classes, path, cat) {
-    let fc_name = this.state.Categories[cat].FC_Name[0];
-    let newClass;
+
+  /** adds the path of classes to the flowchart
+  Note: this is currently releated to adding the correct science classes */
+  addPathToFlowchart(classes, classID) {
+    let cl = this.state.ClassDesc[classID];
+    let FcName = this.state.Categories[cl.Fulfills].FC_Name;
+    let newClasses = [];
     // goes through classes in path
-    for (let pathID of path) {
+    cl.Path.forEach((pathID) => {
       // finds spot where this class can fill
-      let index = classes.findIndex(c => c.Name === fc_name || 
-        (c.Type === fc_name && !path.includes(c.Name)));
+      let index = classes.findIndex((c) => c.Name === FcName
+        || (c.Type === FcName && !cl.Path.includes(c.Name)));
       if (index >= 0) {
-        if (!newClass) {
-          newClass = {...classes[index]};
-          newClass.Credits = 0;
-        } 
+        // note if need credits to fulfill the requirement
+        newClasses.push({ 
+          ...classes[index], 
+          Credits: parseInt(classes[index].Credits) - parseInt(this.state.ClassDesc[pathID].Credits) 
+        });
+        // replace class with name
         classes[index].Type = classes[index].Name;
         classes[index].Name = pathID;
-        // note if need credits to fulfill the requirement
-        newClass.Credits += parseInt(classes[index].Credits) - parseInt(this.state.ClassDesc[pathID].Credits);
       }
-    }
-    if (newClass.Credits > 0) {
-      newClass.Credits += ' Credits';
-      return newClass; // if need additional credits, return new class
-    }
+    });
+    return newClasses.reduce((prev, cur) => {
+      return 'Credits' in prev ? { ...prev, Credits: parseInt(prev.Credits) + parseInt(cur.Credits) } : cur;
+    }, {});
   }
-  
+
   getFlowchartWithClasses() {
     let classes = JSON.parse(JSON.stringify(this.state.Classes)); // deep copy object
-    let classesToAdd = [];
+    let classesToAdd = {};
     let catCreds = {};
     Object.keys(this.state.Categories).forEach(k => catCreds[k] = 0);
-    for (let clID of this.state.TakenClasses.concat(this.state.PlannedClasses)) {
+    this.state.TakenClasses.concat(this.state.PlannedClasses).forEach( clID => {
       if (classes.findIndex(c => c.Name === clID) === -1) { // if not in flowchart
         let cl = this.state.ClassDesc[clID];
         if ('Path' in cl) {
           // calculate the number of taken credits of the path
           let takenCreds = cl.Path.map(id => 
-            this.state.TakenClasses.includes(id) ? parseInt(this.state.ClassDesc[id].Credits) : 0)
+            this.state.TakenClasses.includes(id) || this.state.PlannedClasses.includes(id)
+            ? parseInt(this.state.ClassDesc[id].Credits) : 0)
             .reduce((a, b) => a + b, 0);
           // if more credits of this path have been taken, replace path with this one
           if (takenCreds > catCreds[cl.Fulfills]) {
             catCreds[cl.Fulfills] = takenCreds;
-            let classToAdd = this.addPathToFlowchart(classes, cl.Path, cl.Fulfills);
-            classesToAdd = !classToAdd ? [] : [classToAdd];
+            let newClass = this.addPathToFlowchart(classes, clID, catCreds);
+            if (newClass.Credits) {
+              classesToAdd[cl.Fulfills] = { ...newClass, Credits: `${newClass.Credits} hours` };
+            }
           }
         } else {
-          // add class to flowchart
-          let fc_ind = catCreds[cl.Fulfills] >= this.state.Categories[cl.Fulfills].Credits ? 1 : 0;
-          this.addClassToFlowchart(classes, clID, this.state.Categories[cl.Fulfills].FC_Name[fc_ind]);
-          catCreds[cl.Fulfills] += parseInt(cl.Credits);
+          const cat = this.getCatForFlowchart(cl.Fulfills, catCreds);
+          this.addClassToFlowchart(classes, clID, cat);
+          catCreds[cat] += parseInt(cl.Credits, 10);
         }
       }
-    }
-    return classes.concat(classesToAdd);
+    });
+    return classes.concat(Object.values(classesToAdd).flat());
   }
 
   /*** function for handling a click on a checkbox ***/

@@ -306,22 +306,26 @@
 		"CS Breadth: Data Science": {
 			"Credits": 3,
 			"Notes": "(Take One)",
-			"FC_Name": ["CS Breadth Choice", "Technical Elective"]
+			"FC_Name": "CS Breadth Choice",
+			"Fallback": ["CS Technical Electives"]
 		},
 		"CS Breadth: Scientific Computing": {
 			"Credits": 3,
 			"Notes": "(Take One)",
-			"FC_Name": ["CS Breadth Choice", "Technical Elective"]
+			"FC_Name": "CS Breadth Choice",
+			"Fallback": ["CS Technical Electives"]
 		},
 		"CS Breadth: Secure Computing": {
 			"Credits": 3,
 			"Notes": "(Take One)",
-			"FC_Name": ["CS Breadth Choice", "Technical Elective"]
+			"FC_Name": "CS Breadth Choice",
+			"Fallback": ["CS Technical Electives"]
 		},
 		"CS Breadth: System Software": {
 			"Credits": 6,
 			"Notes": "(Take Two)",
-			"FC_Name": ["CS Breadth Choice", "Technical Elective"]
+			"FC_Name": "CS Breadth Choice",
+			"Fallback": ["CS Technical Electives"]
 		},
 		"Required Mathematics": {
 			"Credits": 12,
@@ -329,13 +333,13 @@
 		},
 		"Required Science": {
 			"Credits": 10,
-			"Notes": "(Pick Choice 1, 2 or 3)                                                                  \n(*for additional credits to meet 10 see handbook)\nFor choice 1 & 2 addtl credits: CS course, science above chosen \nsequence, math beyond Calc II or ENGR elective (not gen-ed course)",
-      "FC_Name": ["Science"]
+			"Notes": "Pick all BIOL, CHEM, or PHYS courses\n(*for additional credits to meet 10 see handbook)",
+      "FC_Name": "Science"
 		},
 		"CS Technical Electives": {
 			"Credits": 12,
 			"Notes": "See handbook for additional information\nCheck individual courses for prerequisites",
-			"FC_Name": ["Technical Elective"]
+			"FC_Name": "Technical Elective"
 		},
 		"Total Program Hours:": {
 			"Credits": 128,
@@ -348,32 +352,32 @@
 		"Gen Ed: Core Arts": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3 Credits",
-			"FC_Name": ["Gen Ed Core"]
+			"FC_Name": "Gen Ed Core"
 		},
 		"Gen Ed: Core Humanities": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3 Credits",
-			"FC_Name": ["Gen Ed Core"]
+			"FC_Name": "Gen Ed Core"
 		},
 		"Gen Ed: Core Behavioral Sciences": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3-4 Credits",
-			"FC_Name": ["Gen Ed Core"]
+			"FC_Name": "Gen Ed Core"
 		},
 		"Gen Ed: Core Social Sciences": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3-4 Credits",
-			"FC_Name": ["Gen Ed Core"]
+			"FC_Name": "Gen Ed Core"
 		},
 		"Gen Ed: Core International Perspectives": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3 Credits",
-			"FC_Name": ["Gen Ed Core"]
+			"FC_Name": "Gen Ed Core"
 		},
 		"Gen Ed: Core Cultural Diversity": {
 			"Credits": 3,
 			"Notes": "Select one of the following: 3 Credits",
-			"FC_Name": ["Gen Ed Core"]
+			"FC_Name": "Gen Ed Core"
 		}
 	},
 	"ClassDesc": {
@@ -1391,8 +1395,6 @@
 			"Fulfills": "CS Breadth: Data Science",
 			"Prereqs": [
 				"MATH 3195",
-				"MATH 3191",
-				"MATH 3200",
 				"CSCI 3287",
 				"CSCI 3412"
 			]
@@ -1404,8 +1406,6 @@
 			"Fulfills": "Required Computer Science Systems Core Courses",
 			"Prereqs": [
 				"MATH 3195",
-				"MATH 3191",
-				"MATH 3200",
 				"CSCI 3415",
 				"CSCI 3453"
 			]
@@ -1417,7 +1417,6 @@
 			"Fulfills": "CS Breadth: System Software",
 			"Prereqs": [
 				"CSCI 3412",
-				"MATH 3191",
 				"MATH 3195"
 			]
 		},
@@ -1428,8 +1427,6 @@
 			"Fulfills": "CS Breadth: Data Science",
 			"Prereqs": [
 				"MATH 3195",
-				"MATH 3191",
-				"MATH 3200",
 				"CSCI 3287",
 				"CSCI 3412"
 			]
@@ -1450,7 +1447,6 @@
 			"Fulfills": "CS Breadth: Scientific Computing",
 			"Prereqs": [
 				"MATH 2411",
-				"MATH 3191",
 				"MATH 3195"
 			]
 		},
@@ -1510,8 +1506,6 @@
 			"Fulfills": "CS Breadth: Data Science",
 			"Prereqs": [
 				"MATH 3195",
-				"MATH 3191",
-				"MATH 3200",
 				"CSCI 3412"
 			]
 		},
@@ -1522,8 +1516,6 @@
 			"Fulfills": "CS Breadth: Data Science",
 			"Prereqs": [
 				"MATH 3195",
-				"MATH 3191",
-				"MATH 3200",
 				"CSCI 3412"
 			]
 		},
@@ -1534,8 +1526,6 @@
 			"Fulfills": "CS Breadth: Data Science",
 			"Prereqs": [
 				"MATH 3195",
-				"MATH 3191",
-				"MATH 3200",
 				"CSCI 3287",
 				"CSCI 3412"
 			]
