@@ -2,8 +2,7 @@ import './App.css';
 import ListView from './ListView.jsx';
 import FlowChart from './FlowChart.jsx';
 import AddCustomClass from './CustomClassModal.jsx';
-import FileAlert from './FileAlert.jsx';
-import DragnDropAlert from './DragnDropAlert.jsx';
+import DismissableAlert from './DismissableAlert.jsx';
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -12,7 +11,6 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import saveAs from 'file-saver';
 import Dropzone from 'react-dropzone';
-import Alert from 'react-bootstrap/Alert';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,7 +25,7 @@ class App extends React.Component {
       CurPreReqs: [],
       Colors: {},
       displayAll: false,
-      DragnDropAlert: null,
+      showAlert: [null, null],
       AddedClasses: [] // store ids of user-added-classes
     };
     // https://stackoverflow.com/questions/64420345/how-to-click-on-a-ref-in-react
@@ -51,8 +49,8 @@ class App extends React.Component {
     newClassObj.Id = nameParts[1] + ' ' + nameParts[3];
 
     if (newClassObj.Id in this.state.ClassDesc) {
-      alert("Class already exists!");
-      return
+      this.setState({ showAlert: ['danger', 'Class already exists!'] });
+      return;
     }
 
     // modify objects to include new class
@@ -99,11 +97,11 @@ class App extends React.Component {
           Classes: newClasses,
           AddedClasses: newInfo.AddedClasses.map(cl => cl.Id),
           ClassDesc: newClassDesc,
-          showAlert: 'success'
+          showAlert: ['success', 'Your file was uploaded successfully!']
         }); // populate classes, display alert
       } catch (err) { // if error during parsing to json or setting state
         console.log(err); // print to console for debugging
-        this.setState({ showAlert: 'error' }); // show dismissable alert
+        this.setState({ showAlert: ['error', 'Your file couldn\'t be uploaded because it had the wrong format.'] }); // show dismissable alert
       }
     };
     reader.readAsText(files[0]); // make reader read the first file uploaded
@@ -293,7 +291,7 @@ class App extends React.Component {
 
   /*** handles the drag-n-drop state updates to the flowchart (so things stay in their place) ***/
   handleOnDragEnd = (result) => {
-    this.setState( { DragnDropAlert: null } );
+    this.setState( { showAlert: [null, null] } );
     if (!result.destination) return; // bounds checking: make sure doesn't go out of list
     // check for prereqs: (current assumption is that all prereqs are included in the core classes)
     
@@ -309,7 +307,7 @@ class App extends React.Component {
           let output = this.compareSemesters(cl.Semester, result.destination.droppableId); // want current semester to be less than the dragged semester
           if (output != 1) { //if the prereq class semester is before the dragged class semester, no need to update state
             let DnDAlertMsg = `${classDragged} cannot be dragged before or in the same semester as ${cl.Name}.`;
-            this.setState( {DragnDropAlert: DnDAlertMsg} );
+            this.setState( {showAlert: ['danger', DnDAlertMsg]} );
             return;
           } // if END
         }
@@ -317,7 +315,7 @@ class App extends React.Component {
           let output = this.compareSemesters(cl.Semester, result.destination.droppableId); // want the current semester to be greater than the dragged semester
           if (output != -1) { // if the current semester is not greater than the dragged semester, exit 
             let DnDAlertMsg = `${classDragged} cannot be dragged after or in the same semester as ${cl.Name}.`;
-            this.setState( {DragnDropAlert: DnDAlertMsg} );
+            this.setState( {showAlert: ['danger', DnDAlertMsg]} );
             return;
           } // if END
         } // else if END
@@ -327,7 +325,7 @@ class App extends React.Component {
         let restriction = newClasses[parseInt(result.draggableId)].Restriction.split(' ')[0].toLowerCase(); // 'FALL ONLY'
         if (!result.destination.droppableId.toLowerCase().startsWith(restriction)) { // if destination doesn't start with restricted semester
           let DnDAlertMsg = `${classDragged} cannot be dragged to a ${restriction} semester.`;
-          this.setState( { DragnDropAlert: DnDAlertMsg } );
+          this.setState( { showAlert: ['danger', DnDAlertMsg] } );
           return;
         }
       }
@@ -377,12 +375,11 @@ class App extends React.Component {
     // react bootstrap nav dropdown menu link: https://react-bootstrap.github.io/components/dropdowns/
     return (
       <div className="App">
-        <FileAlert
-          show={this.state.showAlert}
-          onClose={() => this.setState({ showAlert: '' })}>
-        </FileAlert>
-        <DragnDropAlert show={this.state.DragnDropAlert} onClose={() => this.setState({ DragnDropAlert: null })}>
-          </DragnDropAlert>
+        <DismissableAlert
+          type={this.state.showAlert[0]}
+          show={this.state.showAlert[1]}
+          onClose={() => this.setState({ showAlert: [null, null] })}>
+        </DismissableAlert>
         <Navbar variant='dark' bg='dark' sticky='top'>
           <Navbar.Brand>CUrPLAN</Navbar.Brand>
           <Nav>
