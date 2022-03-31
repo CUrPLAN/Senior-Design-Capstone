@@ -25,3 +25,10 @@ export function getNotes(oldPrereqs) {
     return "";
   }
 }
+
+/*** function that returns if white or black text will have better contrast with the color passed ***/
+export function isDarkBackground(bgCol) {
+  // bgRGB gets the parts of the background color in hex format to rgb format
+  let bgRGB = bgCol.slice(1).match(/.{1,2}/g).map(x => Number.parseInt(x, 16));
+  return (bgRGB[0] * 0.299 + bgRGB[1] * 0.587 + bgRGB[2] * 0.114) > 186; // predefined formula for if a color is dark
+}

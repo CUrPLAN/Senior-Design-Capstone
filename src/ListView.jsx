@@ -1,67 +1,8 @@
-import { groupBy, getNotes } from './functions.js';
-import React from 'react';
-import InputGroup from 'react-bootstrap/InputGroup';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
+import { groupBy } from './functions';
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import { useState } from 'react';
-
-
-function ListViewItem(props) {
-  const [checked, setChecked] = useState([props.checked]);
-  const handleChange = (selectedValue) => {
-    let newValue = selectedValue.filter(v => !checked.includes(v)); // gets all the classes from the selected value list that are not currently in the checked list (NOTE: is list)
-    setChecked(newValue); 
-  }
-
-  return (
-    <tr>
-      <td className="courses">
-        <ToggleButtonGroup 
-          type='checkbox' 
-          name={'takenOrPlannedSelection'+props.uniqueKey}
-          value={checked}
-          onChange={handleChange}
-        >
-            <ToggleButton
-              id={"tbg-btn-1"+props.uniqueKey}
-              value = {'Taken'}
-              variant = {'outline-success'}
-              size="sm"
-              onClick={props.takenFunc} // call to mark it as taken, but won't remove it when the other buttons clicked
-            >
-              Taken
-            </ToggleButton>
-          <ToggleButton
-              id={"tbg-btn-2"+props.uniqueKey}
-              value = {'Planned'}
-              variant = {'outline-warning'}
-              size="sm"
-              onClick={props.plannedFunc}
-          >
-            Planned
-          </ToggleButton>
-        </ToggleButtonGroup>
-         &nbsp;&nbsp;&nbsp;
-        
-        {/*<InputGroup className='class-checkbox'>
-          <InputGroup.Checkbox
-            aria-label="Checkbox for class"
-            onChange={props.changeFunc /* calls change function passed as property when checkbox is toggled}
-            checked={props.checked /* sets checkboxes as checked based on property passed }
-          />
-        </InputGroup>*/}
-        
-        {/* shorthand if-else statement::: if condition ? output true statement : output false statement */}
-        {props.Id ? props.Id : " "} {props.Name ? props.Name : " "}</td>
-      <td className="credits">{props.Credits ? props.Credits.slice(0, 1) : " "}</td>
-      <td className="notes">{props.Prereqs ? getNotes(props.Prereqs) : " "}</td>
-    </tr>
-  );
-}
-
-
-
+import ListViewItem from './ListViewItem'
+import StatusButtons from './StatusButtons'
 
 class ListView extends React.Component {
   constructor(props) {
@@ -150,12 +91,6 @@ class ListView extends React.Component {
               Students are responsible for consulting advisors and the class schedule in the student portal for prerequisite information.*
               </td>
           </tr>
-          {/*<tr>
-            <td className="heading-courses-td">Required CU Denver Core Curriculum Coursework</td>
-            <td className="heading-credits-td">24</td>
-            <td><a href="https://catalog.ucdenver.edu/cu-denver/undergraduate/graduation-undergraduate-core-requirements/cu-denver-core-curriculum/">
-              See CU Denver Core Curriculum here</a></td>
-          </tr>*/}
           {allItemRows}
         </tbody>
       </Table>

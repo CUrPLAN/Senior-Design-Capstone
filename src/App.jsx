@@ -47,9 +47,14 @@ class App extends React.Component {
     // fix name format by just taking class category and number
     let nameParts = newClassObj.Id.match(/([A-Z]{4})(.*)([\d]{4})/);
     newClassObj.Id = nameParts[1] + ' ' + nameParts[3];
+    if (status === 'Taken') {
+      this.markClassTaken(newClassObj.Id);
+    } else {
+      this.markClassPlanned(newClassObj.Id);
+    }
 
     if (newClassObj.Id in this.state.ClassDesc) {
-      this.setState({ showAlert: ['danger', 'Class already exists!'] });
+      this.setState({ showAlert: ['danger', `Class already exists! It was added to your flowchart as a ${status} class.`] });
       return;
     }
 
@@ -59,11 +64,6 @@ class App extends React.Component {
       ClassDesc: newClassDesc,
       AddedClasses: [...this.state.AddedClasses, newClassObj.Id]
     });
-    if (status === 'Taken') {
-      this.setState({ TakenClasses: [...this.state.TakenClasses, newClassObj.Id] });
-    } else {
-      this.setState({ PlannedClasses: [...this.state.PlannedClasses, newClassObj.Id] });
-    }
   }
 
   /*** function for handling a click on one of the top navbar links ***/
@@ -206,6 +206,8 @@ class App extends React.Component {
             let newClass = this.addPathToFlowchart(classes, clID, catCreds);
             if (newClass.Credits) {
               classesToAdd[cl.Fulfills] = { ...newClass, Credits: `${newClass.Credits} hours` };
+            } else {
+              delete classesToAdd[cl.Fulfills];
             }
           }
         } else {
@@ -220,7 +222,6 @@ class App extends React.Component {
 
   /*** function for handling a click on a checkbox ***/
   markClassTaken(classID) {
-    console.log("mark taken", classID);
     if (this.state.TakenClasses.includes(classID)) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
       this.setState({ TakenClasses: this.state.TakenClasses.filter(c => c !== classID) });
@@ -234,7 +235,6 @@ class App extends React.Component {
 
   /*** function for handling a click on a checkbox ***/
   markClassPlanned(classID) {
-    console.log("mark planned", classID);
     if (this.state.PlannedClasses.includes(classID)) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
       this.setState({ PlannedClasses: this.state.PlannedClasses.filter(c => c !== classID) });
@@ -406,7 +406,7 @@ class App extends React.Component {
               onChange={() => this.setState({ displayAll: !this.state.displayAll })}
             />
           </InputGroup>
-          Expand All Details
+          Expand All Flowchart Details
         </div>
         <div className="credit-count">{this.calculateSemHours().join(' / ') + ' taken credits'}</div>
         <div className="flow-warn">
@@ -432,7 +432,7 @@ class App extends React.Component {
             <Button variant="outline-primary" id="upload-button"
               onClick={() => this.fileUploader.current.click()}>Upload</Button>
           </div>
-          <div className="dropzone">
+          <div className="dropzone d-none d-sm-block">
             <Dropzone onDrop={acceptedFiles => this.onUploadFile(acceptedFiles)}>
               {({ getRootProps, getInputProps }) => (
                 <section>

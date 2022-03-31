@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
-import { useState, useEffect } from "react";
+import StatusButtons from './StatusButtons';
 
 
 function AddCustomClass(props) {
@@ -33,6 +31,7 @@ function AddCustomClass(props) {
     setClassNameValue('');
     setCreditNumValue('');
     setClassCategoryValue('');
+    setChecked([]);
   };
   const handleShow = () => { setShow(true); };
   const addClass = () => {
@@ -80,30 +79,7 @@ function AddCustomClass(props) {
                   (<option key={'option' + i} value={opt}>{opt}</option>))}
               </Form.Select>
               <Form.Label className='taken-label'>Status: </Form.Label>
-              <ToggleButtonGroup
-                className='custom-toggle-buttons'
-                type='checkbox' 
-                name={'takenOrPlannedSelectionCustom'}
-                value={checked}
-                onChange={handleButtonChange}
-              >
-                  <ToggleButton
-                    id={"tbg-btn-1Custom"}
-                    value = {'Taken'}
-                    variant = {'outline-success'}
-                    size="sm"
-                  >
-                    Taken
-                  </ToggleButton>
-                <ToggleButton
-                    id={"tbg-btn-2Custom"}
-                    value = {'Planned'}
-                    variant = {'outline-warning'}
-                    size="sm"
-                >
-                  Planned
-                </ToggleButton>
-              </ToggleButtonGroup>
+              <StatusButtons checked={checked} handleButtonChange={handleButtonChange} uniqueKey='Custom'></StatusButtons>
             </Form.Group>
           </Form>
         </Modal.Body>

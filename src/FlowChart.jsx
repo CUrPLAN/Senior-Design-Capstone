@@ -1,58 +1,10 @@
-import { groupBy, getNotes } from './functions.js';
-import React from 'react';
+import { groupBy, isDarkBackground } from './functions.js';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Popover from 'react-bootstrap/Popover';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-/*** function that returns if white or black text will have better contrast with the color passed ***/
-var isDarkBackground = function (bgCol) {
-  // bgRGB gets the parts of the background color in hex format to rgb format
-  let bgRGB = bgCol.slice(1).match(/.{1,2}/g).map(x => Number.parseInt(x, 16));
-  return (bgRGB[0] * 0.299 + bgRGB[1] * 0.587 + bgRGB[2] * 0.114) > 186; // predefined formula for if a color is dark
-}
-
-function FlowChartItem(props) {
-  // each element for the class description is separated into its own section for future modifications/styling 
-
-  // If the class is in the taken classes add class to signal that
-  // The spaces in after each class name ensure that multiple classes can be distinguished for styling
-  return (
-    // overlay trigger will display additional description about the class once it is clicked
-    // The overlay trigger is wrapped around the content/div area that should be clicked to activate the pop up window, 
-    // root close means that the other pop up will hide when the user clicks somewhere else outside of the box
-    // Overlay Reference: https://react-bootstrap.github.io/components/overlays/
-    <OverlayTrigger trigger="click" rootClose={true} placement="auto" overlay={
-      <Popover id={"popover" + props.Name}>
-        <Popover.Header as="h3">{props.Name}</Popover.Header>
-        <Popover.Body>
-          {!!props.cl && props.cl.Desc}
-        </Popover.Body>
-      </Popover>}>
-      <div style={{
-        backgroundColor: props.bgCol,
-        color: isDarkBackground(props.bgCol) ? "#000000" : "#ffffff"
-      }}
-        className={'flow-box ' + (props.planned ? 'planned-class' : '') +
-          (props.taken ? 'taken-class' : '') + (props.isPreReq ? ' pre-reqs' : '')}
-        onMouseEnter={props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
-        onMouseLeave={props.leaveFunc}>
-        <div className='flow-id'>{props.Name}</div>
-        <div className='flow-credits'>{props.Credits}</div>
-        <div className={props.displayAll ? '' : 'flow-desc'}>
-          {/* !!props.cl && props.cl.(key) checks that if the element is not null 
-          and if it is not, then displays this element property (conditional rendering) */}
-          <div className='flow-name'>{!!props.cl && props.cl.Name}</div>
-          <div className='flow-restriction'>{!!props.Restriction && '*' + props.Restriction + '*'}</div>
-          <div className='flow-notes'>{!!props.cl && getNotes(props.cl.Prereqs)}</div>
-        </div>
-      </div>
-    </OverlayTrigger>
-  );
-}
+import FlowChartItem from './FlowChartItem.jsx';
 
 function FlowChart(props) {
 

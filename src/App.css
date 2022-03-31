@@ -248,6 +248,11 @@ https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-on
   outline-offset: -3px;
 }
 
+.popover-fulfills {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 
 /*** Legend Styling ***/
 .flow-legend {
@@ -389,4 +394,8 @@ thead {
 
 .custom-class-form > label {
   margin-top: 10px;
+}
+
+.btn-group {
+    margin-right: 10px;
 }
