@@ -61,19 +61,30 @@ CUrPLAN is a unique and customizable degree planning app (currently for computer
 ### Problem Statement:  
 It’s 2022, there are a plethora of planner apps that help us organize and prioritize all the activities in our lives, yet currently our course-planning system does not provide the same kind of modernized, interactive experience that current students would expect. Every semester, students have to figure out what classes they need to take for the next semester to stay on track with obtaining their degrees while trying to figure out their career journeys. Currently, CU Denver's Computer Science and Engineering Department offers resources such as advisors, the degree audit, a pdf of the list of elective courses available for the upcoming semester, a static flowchart of the Computer Science BS degree map, and the registration cart to find and add classes. Even though all these resources are available to the students, it’s hard to keep track of them since they come from so many different places. It’s also time-consuming to figure out how far along students are with completing their degree, finding which requirements they still need to fulfill, and what classes will satisfy those requirements, all while lining it up with their other responsibilities outside of the university. In other words, the current resources aren’t interactive or geared towards students’ unique circumstances. Our project, CUrPLAN, is an interactive and customizable web application for the Computer Science BS degree that saves students from having to manually plan out their classes and making mistakes that would delay their graduation.
 
-### Goals:
-After Fall 2021, we will have the basic functional prototype done and working. This prototype will be our MVP that will satisfy these basic requirements:
-
-1. A user interface that displays a degree map for the BS CS degree (which will imitate the degree chart given by the CS department). It will show which CS classes they have already fulfilled and which CS classes/credits they need to take to stay on track for graduating in 4 years.
-2. The user will be able to add courses from the BS CS degree path that they have already taken to their degree plan through a list like interface. The courses they have added will be noted on the degree map in order to facilitate easier planning.
-3. Each course list prerequisite courses in the description if there are courses that need to be taken before.
-4. On hovering above a course on the degree map, information about the course will be displayed, including indications of which other courses are pre-requisites for that course.
-5. The user will be able to save the courses they selected to a file, and upload that file to continue planning at a later time.
-
-After Spring 2022, we will include additional features:
-
-1. Each course will have a basic description about what is taught in the course. 
-2. Additional courses for general CU Denver Core classes will be added to the options. 
-3. Users will be able to use their degree plan to insert information about the courses they have already taken.
-4. Users will be able to adjust plan manually based on what they are planning to take.
-5. Degree map will automatically shift classes based on if they have been taken.
+### Features Currently Implemented in the Web App
+1) JSON file of B.S. computer science requirements for current admission year.  
+2) Edit Classes mode for the student to select C.S. classes and general core credit classes they have already taken or plan to take.  
+	a) Menu options for Edit Classes button, to filter to view specific types of classes (C.S. classes or gen ed classes)  
+	b) Group list view options with collapsible headers in the edit mode.  
+	c) Each category shows the number of credits taken in the category.  
+	d) Status toggle buttons for each class (taken, planned, or neither).  
+3) Dynamic flowchart view mode for the student to view which classes they have already completed for the degree, and the classes the student still needs to take in the upcoming semesters.  
+	a) Includes legend at the bottom to help users understand what colors on flowchart mean.  
+    b) Students can drag classes to a specific semester.  
+    c) Class restrictions implemented based on students' current degree plan and where the student drags the chosen course.  
+        i. Class is restricted to Fall only or Spring only.  
+        ii. Class has a prerequisite restriction.  
+	d) Highlighting courses that are prerequisites on the flowchart by hovering over the course.  
+	e) Breadth courses populate on flowchart based on classes taken in edit mode.  
+	f) Provide more information when a user clicks on a class in flowchart mode (Description of what the class offers students).  
+	g) Flowchart is modified based on the science credit options and the route the student takes (bio/chem/physics).  
+        i. Bio and Chem classes are 1-2 credits short in the CS BS degree, while Physics classes fulfill all the credit requirements.  
+        ii. The science route taken is based on the total number of science classes of that type chosen (if there are more physics classes taken than chem classes, then the flowchart will display the physics classes).  
+	h) Each semester in the flowchart view shows minimum credit hours completed per semester (and in total) based on the classes checked as 'Taken'.  
+	g) Users can click the ‘Expand All Flowchart Boxes” checkbox in the top right corner of the flowchart view to show all the class information.  
+4) Saves flowchart view to pdf functionality using web browser or print button.  
+5) Save the current state to the json file to continue the degree plan later.  
+6) Users can upload a previously saved json continuation file to the web app by clicking on the upload button that displays a file dialog or by dragging and dropping the file in the drop zone.  
+    a) Message stating whether or not the file uploaded successfully will be displayed.  
+7) Option to add custom classes (user-entered class id/credits, for an elective class or a missing class)  
+    a) Message appears if the custom class was not able to be added.  
