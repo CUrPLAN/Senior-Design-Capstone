@@ -72,8 +72,8 @@ It’s 2022, there are a plethora of planner apps that help us organize and prio
 	1) Includes legend at the bottom to help users understand what colors on flowchart mean.  
 	2) Students can drag classes to a specific semester.  
 	3) Class restrictions implemented based on students' current degree plan and where the student drags the chosen course.  
-    		1) Class is restricted to Fall only or Spring only.  
-    		2) Class has a prerequisite restriction.  
+		1) Class is restricted to Fall only or Spring only.  
+		2) Class has a prerequisite restriction.  
 	4) Highlighting courses that are prerequisites on the flowchart by hovering over the course.  
 	5) Breadth courses populate on flowchart based on classes taken in edit mode.  
 	6) Provide more information when a user clicks on a class in flowchart mode (Description of what the class offers students).  
@@ -87,4 +87,4 @@ It’s 2022, there are a plethora of planner apps that help us organize and prio
 6) Users can upload a previously saved json continuation file to the web app by clicking on the upload button that displays a file dialog or by dragging and dropping the file in the drop zone.  
 	1) Message stating whether or not the file uploaded successfully will be displayed.  
 7) Option to add custom classes (user-entered class id/credits, for an elective class or a missing class)  
-	1) Message appears if the custom class was not able to be added.  
+	1) Message appears if the custom class was not able to be added.   
