@@ -12,18 +12,17 @@ export function groupBy(xs, func) {
 export function getNotes(oldPrereqs) {
   let prereqs = oldPrereqs.slice();
   if (!(typeof prereqs == 'undefined') && (prereqs.length > 0)) {
-    let lastSubject = prereqs[0].slice(0, 4);
-    for (let i = 1; i < prereqs.length; i++) {
-      if (prereqs[i].slice(0, 4) == lastSubject) {
-        prereqs[i] = prereqs[i].slice(5,);
+    let lastSubject = prereqs[0].slice(0, 4); // gets subject of class (ex. CSCI, ENGL)
+    for (let i = 1; i < prereqs.length; i++) { // goes through rest of prereqs
+      if (prereqs[i].slice(0, 4) == lastSubject) { // if same subject
+        prereqs[i] = prereqs[i].slice(5,); // get class number (remove subject from class ID)
       } else {
-        lastSubject = prereqs[i].slice(0, 4);
+        lastSubject = prereqs[i].slice(0, 4); // set last subject to new subject
       }
     }
-    return 'Prereqs: ' + prereqs.join(' & ');
-  } else {
-    return "";
+    return 'Prereqs: ' + prereqs.join(' & '); // make string, separated by &s
   }
+  return "";
 }
 
 /*** function that returns if white or black text will have better contrast with the color passed ***/

@@ -4,40 +4,44 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import StatusButtons from './StatusButtons';
 
-
+/*** Function to create a modal to add a custom class ***/
 function AddCustomClass(props) {
-  const [show, setShow] = useState(false);
+  // setting state using functional react syntax
+  const [show, setShow] = useState(false); // show / hide modal itself
   const [classNameValue, setClassNameValue] = useState('');
   const [creditNumValue, setCreditNumValue] = useState('');
   const [classCategoryValue, setClassCategoryValue] = useState('');
   const [buttonStatus, setButtonStatus] = useState(true); // if submit button disabled
+  const [checked, setChecked] = useState([]); // which taken/planned buttons are selected
 
-  const [checked, setChecked] = useState([]);
+  /* on button change, change "checked" so that it highlights the correct buttons */
   const handleButtonChange = (selectedValue) => {
     let newValue = selectedValue.filter(v => !checked.includes(v)); // gets all the classes from the selected value list that are not currently in the checked list (NOTE: is list)
     setChecked(newValue); 
   }
 
-  useEffect(() => { // runs after every render (state changes) -- adjusts if submit disabled
+  useEffect(() => { // runs after every render (state changes) -- adjusts if submit button disabled
     setButtonStatus(!(classNameValue.length > 0 && creditNumValue.length > 0
-      && /^\d+$/.test(creditNumValue) && /^[A-Z]{4}(.*)[\d]{4}$/.test(classNameValue)
+      && /^\d+$/.test(creditNumValue) && /^\s*[A-Z]{4}(.*)[\d]{4}\s*$/.test(classNameValue)
       && classCategoryValue !== '' && checked.length > 0));
   });
 
-  // functions that handle open/close & submitting
+  // functions that handle open/close
+  const handleShow = () => { setShow(true); };
   const handleClose = () => {
     setShow(false);
+    // reset all values for the next time the modal is opened
     setButtonStatus(true);
     setClassNameValue('');
     setCreditNumValue('');
     setClassCategoryValue('');
     setChecked([]);
   };
-  const handleShow = () => { setShow(true); };
+  // function to handle submitting the form (adding a new class)
   const addClass = () => {
-    handleClose();
-    console.log(classCategoryValue);
-    props.onSubmit({
+    handleClose(); // close modal on submit
+    // pass information for new class to function passed from App.jsx to update state
+    props.onSubmit({ 
       Id: classNameValue,
       Name: "Custom Class",
       Credits: creditNumValue + " Credits",
@@ -65,7 +69,7 @@ function AddCustomClass(props) {
               <Form.Control
                 id='className'
                 placeholder="CSCI 1001"
-                onChange={e => { setClassNameValue(e.target.value.toUpperCase()); }} />
+                onChange={e => { setClassNameValue(e.target.value.toUpperCase()); }} /> 
               <Form.Label>Credit Amount:</Form.Label>
               <Form.Control
                 id='creditNum'
@@ -75,7 +79,9 @@ function AddCustomClass(props) {
               <Form.Select value={classCategoryValue}
                 onChange={e => { setClassCategoryValue(e.target.value); }}>
                 <option key='defaultoption' value=''>Select a category</option>
-                {props.CategoryOpts.map((opt, i) =>
+                {/* create list of options based on categories this class could fulfill
+                  (passed up from main state in app.jsx) */
+                  props.CategoryOpts.map((opt, i) =>
                   (<option key={'option' + i} value={opt}>{opt}</option>))}
               </Form.Select>
               <Form.Label className='taken-label'>Status: </Form.Label>

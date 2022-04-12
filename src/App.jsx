@@ -8,7 +8,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
 import saveAs from 'file-saver';
 import Dropzone from 'react-dropzone';
 
@@ -16,21 +15,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Display: 'Flow',
+      Display: 'Flow', // determines which page to display
+      // information from json file
+      Colors: {},
       Categories: {},
       Classes: [],
       ClassDesc: {},
+      // holds information about which classes have been marked as what
       TakenClasses: [],
       PlannedClasses: [],
-      CurPreReqs: [],
-      Colors: {},
-      displayAll: false,
-      showAlert: [null, null],
-      AddedClasses: [] // store ids of user-added-classes
+      displayAll: false, // checkbox to display all information on the flowchart is clicked
+      showAlert: [null, null], // to display alert, holds [Bootstrap type (to color - warn/error), Message]
+      AddedClasses: [] // store ids of user-added-classes to save in file 
     };
     // https://stackoverflow.com/questions/64420345/how-to-click-on-a-ref-in-react
     this.fileUploader = React.createRef(); // ref to upload file dialog
-    //this.onAddClassSubmit = this.onAddClassSubmit.bind(this, newClassObj);
   }
 
   /*** when component mounts, load data from json, set state with information ***/
@@ -47,12 +46,14 @@ class App extends React.Component {
     // fix name format by just taking class category and number
     let nameParts = newClassObj.Id.match(/([A-Z]{4})(.*)([\d]{4})/);
     newClassObj.Id = nameParts[1] + ' ' + nameParts[3];
+    // add / remove class id to the correct list
     if (status === 'Taken') {
       this.markClassTaken(newClassObj.Id);
     } else {
       this.markClassPlanned(newClassObj.Id);
     }
 
+    // if is already in flowchart, alert the user, but still add it to the list
     if (newClassObj.Id in this.state.ClassDesc) {
       this.setState({ showAlert: ['danger', `Class already exists! It was added to your flowchart as a ${status} class.`] });
       return;
@@ -137,6 +138,7 @@ class App extends React.Component {
     return [taken, total];
   }
 
+  /*** Determines the category the class falls under based on how many credits of each category it could fill have been taken. For example, if a specific breadth category has all the requirements filled, then the class in that category can be moved onto the fallback category, Technical Electives.***/
   getCatForFlowchart(initCat, catCreds) {
     let curCat = initCat;
     let i = 0;
@@ -186,6 +188,7 @@ class App extends React.Component {
     }, {});
   }
 
+  /*** Get flowchart with populated classes ***/
   getFlowchartWithClasses() {
     let classes = JSON.parse(JSON.stringify(this.state.Classes)); // deep copy object
     let classesToAdd = {};
@@ -220,7 +223,8 @@ class App extends React.Component {
     return classes.concat(Object.values(classesToAdd).flat());
   }
 
-  /*** function for handling a click on a checkbox ***/
+
+  /*** function for handling a click on a checkbox (Taken classes) ***/
   markClassTaken(classID) {
     if (this.state.TakenClasses.includes(classID)) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
@@ -231,9 +235,13 @@ class App extends React.Component {
       this.setState({ TakenClasses: [...this.state.TakenClasses, classID], 
                      PlannedClasses: this.state.PlannedClasses.filter(c => c !== classID)});
     }
+    let [takenCreds, totalCreds] = this.calculateSemHours();
+    if (takenCreds >= totalCreds - 30) {
+      this.setState({ showAlert: ['warning', 'You\'re within 30 hours of graduation. Please do a 30 hour check with your advisor.'] });
+    }
   }
 
-  /*** function for handling a click on a checkbox ***/
+  /*** function for handling a click on a checkbox (Planned classes) ***/
   markClassPlanned(classID) {
     if (this.state.PlannedClasses.includes(classID)) { // if class is already in taken list
       // removes classid from taken classes list by creating a new list that does not include that classID
@@ -289,6 +297,27 @@ class App extends React.Component {
     return 1;
   }
 
+  /*** checks if the prereqs have been violated for a class ***/
+  prereqsViolated(newClasses, curClassID, curSemester) {
+    if (curClassID in this.state.ClassDesc) { // ensure that class has ID 
+      for (let cl of newClasses) { // go through prereqs of class
+        if (this.state.ClassDesc[curClassID].Prereqs.includes(cl.Name)) { // if the current class is a prereq of the dragged class
+          let output = this.compareSemesters(cl.Semester, curSemester); // want current semester to be less than the dragged semester
+          if (output != 1) { //if the prereq class semester is before the dragged class semester, no need to update state
+            return `${curClassID} cannot be dragged before or in the same semester as ${cl.Name}.`;
+          } // if END
+        }
+        else if (cl.Name in this.state.ClassDesc && this.state.ClassDesc[cl.Name].Prereqs.includes(curClassID)) { // if the class dragged is a prereq of the current class
+          let output = this.compareSemesters(cl.Semester, curSemester); // want the current semester to be greater than the dragged semester
+          if (output != -1) { // if the current semester is not greater than the dragged semester, exit 
+            return `${curClassID} cannot be dragged after or in the same semester as ${cl.Name}.`;
+          } // if END
+        } // else if END
+      } // FOR END
+    }
+    return null;
+  }
+
   /*** handles the drag-n-drop state updates to the flowchart (so things stay in their place) ***/
   handleOnDragEnd = (result) => {
     this.setState( { showAlert: [null, null] } );
@@ -300,26 +329,13 @@ class App extends React.Component {
     //obtain the class name of the class being dragged
     let classDragged = newClasses[parseInt(result.draggableId)].Name;
 
-    if (classDragged in this.state.ClassDesc) { // checking that the class that was dragged has an Id      
+    if (classDragged in this.state.ClassDesc) { // checking that the class that was dragged has an Id
       //'in' keyword gets the index of the list, 'of' gets the object in the list
-      for (let cl of newClasses) { // go through prereqs of class
-        if (this.state.ClassDesc[classDragged].Prereqs.includes(cl.Name)) { // if the current class is a prereq of the dragged class
-          let output = this.compareSemesters(cl.Semester, result.destination.droppableId); // want current semester to be less than the dragged semester
-          if (output != 1) { //if the prereq class semester is before the dragged class semester, no need to update state
-            let DnDAlertMsg = `${classDragged} cannot be dragged before or in the same semester as ${cl.Name}.`;
-            this.setState( {showAlert: ['danger', DnDAlertMsg]} );
-            return;
-          } // if END
-        }
-        else if (cl.Name in this.state.ClassDesc && this.state.ClassDesc[cl.Name].Prereqs.includes(classDragged)) { // if the class dragged is a prereq of the current class
-          let output = this.compareSemesters(cl.Semester, result.destination.droppableId); // want the current semester to be greater than the dragged semester
-          if (output != -1) { // if the current semester is not greater than the dragged semester, exit 
-            let DnDAlertMsg = `${classDragged} cannot be dragged after or in the same semester as ${cl.Name}.`;
-            this.setState( {showAlert: ['danger', DnDAlertMsg]} );
-            return;
-          } // if END
-        } // else if END
-      } // FOR END
+      let DnDAlertMsg = this.prereqsViolated(newClasses, classDragged, result.destination.droppableId);
+      if (DnDAlertMsg != null) {
+        this.setState( {showAlert: ['danger', DnDAlertMsg]} );
+        return;
+      }
       // ensure that classes with fall/spring restrictions aren't dragged to the wrong semesters
       if ('Restriction' in  newClasses[parseInt(result.draggableId)]) {
         let restriction = newClasses[parseInt(result.draggableId)].Restriction.split(' ')[0].toLowerCase(); // 'FALL ONLY'
@@ -340,13 +356,14 @@ class App extends React.Component {
   displayFlowChart() {
     // create new list of classes with all class descriptions needed
     // along with color and whether or not it's been taken
-    let classInfo = this.getFlowchartWithClasses().map((cl, i) => ({
+    let classesWithSelected = this.getFlowchartWithClasses();
+    let classInfo = classesWithSelected.map((cl, i) => ({
       ...cl,
       cl: this.state.ClassDesc[cl.Name],
-      displayAll: this.state.displayAll,
       bgCol: this.state.Colors[cl.Color],
       taken: this.state.TakenClasses.includes(cl.Name),
       planned: this.state.PlannedClasses.includes(cl.Name),
+      warnPrereqs: this.prereqsViolated(classesWithSelected, cl.Name, cl.Semester),
       index: i // property for drag and drop
     }));
     // pass handleOnDragEnd for changing state when class dragged
@@ -355,12 +372,12 @@ class App extends React.Component {
         Classes={classInfo}
         ColorOrder={this.state.ColorOrder}
         Colors={this.state.Colors}
-        onDragEnd={this.handleOnDragEnd}> 
+        onDragEnd={this.handleOnDragEnd}>
       </FlowChart>
     );
   }
 
-  // render function under App class is used to tell application to display content
+  /*** render function under App class is used to tell application to display content ***/
   render() {
     let content; // variable to store the content to render
     // set content to display based on which tab the user is currently in (the mode they currently see)
@@ -375,6 +392,7 @@ class App extends React.Component {
     // react bootstrap nav dropdown menu link: https://react-bootstrap.github.io/components/dropdowns/
     return (
       <div className="App">
+        {/* General Alert function, allows us to show success/fail of a file upload, class restrictions, etc. */}
         <DismissableAlert
           type={this.state.showAlert[0]}
           show={this.state.showAlert[1]}
@@ -399,15 +417,6 @@ class App extends React.Component {
             </NavDropdown>
           </Nav>
         </Navbar>
-        <div className='expand'>
-          <InputGroup className='class-checkbox'>
-            <InputGroup.Checkbox
-              aria-label="Expand All Details"
-              onChange={() => this.setState({ displayAll: !this.state.displayAll })}
-            />
-          </InputGroup>
-          Expand All Flowchart Details
-        </div>
         <div className="credit-count">{this.calculateSemHours().join(' / ') + ' taken credits'}</div>
         <div className="flow-warn">
           *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered

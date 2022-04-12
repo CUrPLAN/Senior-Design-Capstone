@@ -3,11 +3,15 @@ import { getNotes, isDarkBackground } from './functions';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
+/*** Creates an individual container for a class to display in the flowchart view ***/
 function FlowChartItem(props) {
   // each element for the class description is separated into its own section for future modifications/styling 
 
-  // If the class is in the taken classes add class to signal that
-  // The spaces in after each class name ensure that multiple classes can be distinguished for styling
+  let classStatus = (props.planned ? 'planned-class' : '') + (props.taken ? 'taken-class' : '');
+  if (props.warnPrereqs) {
+    classStatus = 'warn-class';
+  }
+
   return (
     // overlay trigger will display additional description about the class once it is clicked
     // The overlay trigger is wrapped around the content/div area that should be clicked to activate the pop up window, 
@@ -17,6 +21,7 @@ function FlowChartItem(props) {
       <Popover id={"popover" + props.Name}>
         <Popover.Header as="h3">{props.Name}</Popover.Header>
         <Popover.Body>
+          {props.warnPrereqs && <p className="popover-warning">{props.warnPrereqs.replace("dragged ", "")}</p>}
           <p className="popover-fulfills">{!!props.cl && props.cl.Fulfills}</p>
           {!!props.cl && props.cl.Desc}
         </Popover.Body>
@@ -25,9 +30,8 @@ function FlowChartItem(props) {
         backgroundColor: props.bgCol,
         color: isDarkBackground(props.bgCol) ? "#000000" : "#ffffff"
       }}
-        className={'flow-box ' + (props.planned ? 'planned-class' : '') +
-          (props.taken ? 'taken-class' : '') + (props.isPreReq ? ' pre-reqs' : '')}
-        onMouseEnter={props.enterFunc /* calls change function passed as property when checkbox is toggled*/}
+        className={'flow-box ' + classStatus + (props.isPreReq ? ' pre-reqs' : '') /* add css-styling classes to box based on if taken or planned, or if prereq */}
+        onMouseEnter={props.enterFunc /* calls change function passed as property when user hovers over a class */}
         onMouseLeave={props.leaveFunc}>
         <div className='flow-id'>{props.Name}</div>
         <div className='flow-credits'>{props.Credits}</div>

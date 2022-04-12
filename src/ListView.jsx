@@ -26,7 +26,7 @@ class ListView extends React.Component {
   renderItem(section) {
     let [header, classes] = section;
     let isExpanded = this.state.expandedRows.includes(header);
-    let takenCredits = classes.map(c => c[1].checked ? parseInt(c[1].Credits) : 0).reduce((a, b) => a + b);
+    let takenCredits = classes.map(c => c[1].checked ? parseInt(c[1].Credits) : 0).reduce((a, b) => a + b, 0);
 
     // add the main row to a list 
     const itemRows = [<tr key={"header" + header} onClick={() => this.handleRowClick(header)}>
@@ -49,8 +49,6 @@ class ListView extends React.Component {
     return itemRows;
   }
 
-  /*** function that handles creating the edit view and list view components, 
-   * with the json info that needs to be displayed ***/
   render() {
     // gets object with groups of classes by headers
     let headerList = Object.entries(groupBy(Object.entries(this.props.ClassDesc), x => x[1].Fulfills));
