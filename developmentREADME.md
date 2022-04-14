@@ -5,6 +5,10 @@ https://drive.google.com/drive/folders/1M-zmEioaP0lgG69y0GnedZyt9raaNSc9?usp=sha
 * Requirements document
 * Test cases
 * Use cases
+* Core requirements for each stakeholder
+* Notes gathered from Surveys
+* UI design
+* UML design
 
 ### Stakeholder Video Meetings Folder
 https://drive.google.com/drive/folders/1IAK3iHSIEFn_ipuxUQAXaAAQE0N9XmuD?usp=sharing
