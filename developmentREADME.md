@@ -1,3 +1,11 @@
+# Important Links
+### Important Documentation Folder
+https://drive.google.com/drive/folders/1M-zmEioaP0lgG69y0GnedZyt9raaNSc9?usp=sharing
+### Stakeholder Video Meetings Folder
+https://drive.google.com/drive/folders/1IAK3iHSIEFn_ipuxUQAXaAAQE0N9XmuD?usp=sharing
+### Stakeholder Documentation Folder
+https://drive.google.com/drive/folders/1qYzz8fb-Efu3vGy82wOEvQKJ-XePLSdV?usp=sharing
+
 # Development Notes
 **When using repl, the webpage can be opened at:**
 https://senior-design-capstone.curplan.repl.co/
