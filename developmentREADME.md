@@ -1,10 +1,21 @@
 # Important Links
 ### Important Documentation Folder
 https://drive.google.com/drive/folders/1M-zmEioaP0lgG69y0GnedZyt9raaNSc9?usp=sharing
+#### Folder Contents:
+* Requirements document
+* Test cases
+* Use cases
+
 ### Stakeholder Video Meetings Folder
 https://drive.google.com/drive/folders/1IAK3iHSIEFn_ipuxUQAXaAAQE0N9XmuD?usp=sharing
+#### Folder Contents:
+* Video Recordings from our all of our stakeholder meetings.
+
 ### Stakeholder Documentation Folder
 https://drive.google.com/drive/folders/1qYzz8fb-Efu3vGy82wOEvQKJ-XePLSdV?usp=sharing
+#### Folder Contents:
+* Documentation to go along with stakeholder video recordings
+* Surveys 1 and 2
 
 # Development Notes
 **When using repl, the webpage can be opened at:**
