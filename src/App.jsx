@@ -127,7 +127,7 @@ class App extends React.Component {
   /*** Calculates amount of credit hours taken in total
    * And the total number of credit hours that have been taken from the classes
    * Takes: list of flowchart classes ***/
-  calculateSemHours() {
+  calculateTotalHours() {
     let [total, taken] = [0, 0];
     this.getFlowchartWithClasses().forEach(cl => {
       total += parseInt(cl.Credits);
@@ -235,7 +235,7 @@ class App extends React.Component {
       this.setState({ TakenClasses: [...this.state.TakenClasses, classID], 
                      PlannedClasses: this.state.PlannedClasses.filter(c => c !== classID)});
     }
-    let [takenCreds, totalCreds] = this.calculateSemHours();
+    let [takenCreds, totalCreds] = this.calculateTotalHours();
     if (takenCreds >= totalCreds - 30) {
       this.setState({ showAlert: ['warning', 'You\'re within 30 hours of graduation. Please do a 30 hour check with your advisor.'] });
     }
@@ -417,7 +417,7 @@ class App extends React.Component {
             </NavDropdown>
           </Nav>
         </Navbar>
-        <div className="credit-count">{this.calculateSemHours().join(' / ') + ' taken credits'}</div>
+        <div className="credit-count">{this.calculateTotalHours().join(' / ') + ' taken credits'}</div>
         <div className="flow-warn">
           *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered
           more frequently as resources allow, but students cannot expect them to be

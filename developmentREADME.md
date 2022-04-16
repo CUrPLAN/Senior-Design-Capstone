@@ -28,9 +28,12 @@ https://senior-design-capstone.curplan.repl.co/
 **When running on a local computer**
 use the command ```npm run dev``` to run the dev server
 
-**To deploy to github pages after a major edit:** run the deploy file with ```./deploy.sh```
+### To deploy to github pages after a major edit:
+run the deploy file with ```./deploy.sh```
 
-**Public folder** includes the csreqs.json file which has all the class and scheduling information in it.
+This will deploy the web app to https://curplan.github.io/Senior-Design-Capstone/.
+
+The **/public folder** includes the csreqs.json file which has all the class and scheduling information in it. All referenced images or files should be included in this folder, since the files in this folder will be included in the deployment unchanged. If image files are in the /src folder, they will not display. 
 
 ## General Notes about Implementation
 The flowchart is being created and filled in with appropriate classes every time it reloads --> this prevents the issue of having a class fill in an elective spot, then having to fix every breadth course if a breadth course is taken away (makes it a bit more understandable from a coding standpoint, and isn't a big performance hit).
