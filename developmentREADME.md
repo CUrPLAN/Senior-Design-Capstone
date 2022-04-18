@@ -1,4 +1,14 @@
 # Important Links
+### Video Tutorials Folder
+https://drive.google.com/drive/folders/1bD4S94p2mMaRTUXtdGVh7YFL0Ao_FpMH?usp=sharing
+#### Folder Contents:
+* Video 1 - Quick demo of Web App
+* Video 2 - Code overview and how it works together
+* Video 3 - Code explaination for Flowchart view
+* Video 4 - Code explaination for Edit Classes view
+* Video 5 - Process to get JSON data
+* Video 6 - Going over necessary documents as well as the future for the project
+
 ### Important Documentation Folder
 https://drive.google.com/drive/folders/1M-zmEioaP0lgG69y0GnedZyt9raaNSc9?usp=sharing
 #### Folder Contents:
