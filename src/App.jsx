@@ -207,7 +207,6 @@ class App extends React.Component {
           if (takenCreds > catCreds[cl.Fulfills]) {
             catCreds[cl.Fulfills] = takenCreds;
             let newClass = this.addPathToFlowchart(classes, clID, catCreds);
-            console.log(newClass);
             if (newClass.Credits) {
               classesToAdd[cl.Fulfills] = { 
                 ...newClass, 
@@ -363,7 +362,6 @@ class App extends React.Component {
     // create new list of classes with all class descriptions needed
     // along with color and whether or not it's been taken
     let classesWithSelected = this.getFlowchartWithClasses();
-    console.log(classesWithSelected);
     let classInfo = classesWithSelected.map((cl, i) => ({
       ...cl,
       cl: this.state.ClassDesc[cl.Name],
@@ -373,7 +371,6 @@ class App extends React.Component {
       warnPrereqs: cl.warnPrereqs || this.prereqsViolated(classesWithSelected, cl.Name, cl.Semester),
       index: i // property for drag and drop
     }));
-    console.log(classInfo);
     // pass handleOnDragEnd for changing state when class dragged
     return (
       <FlowChart
