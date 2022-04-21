@@ -33,7 +33,10 @@ function FlowChartItem(props) {
         className={'flow-box ' + classStatus + (props.isPreReq ? ' pre-reqs' : '') /* add css-styling classes to box based on if taken or planned, or if prereq */}
         onMouseEnter={props.enterFunc /* calls change function passed as property when user hovers over a class */}
         onMouseLeave={props.leaveFunc}>
-        <div className='flow-id'>{props.Name}</div>
+        <div className='flow-header'>
+          {classStatus !== '' && <div className='flow-icon'></div>}
+          <div className='flow-id'>{props.Name}</div>
+        </div>
         <div className='flow-credits'>{props.Credits}</div>
         <div className={props.displayAll ? '' : 'flow-desc'}>
           {/* !!props.cl && props.cl.(key) checks that if the element is not null 

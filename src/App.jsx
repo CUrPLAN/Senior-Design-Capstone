@@ -185,7 +185,7 @@ class App extends React.Component {
     });
     return newClasses.reduce((prev, cur) => {
       return 'Credits' in prev ? { ...prev, Credits: parseInt(prev.Credits) + parseInt(cur.Credits) } : cur;
-    }, {});
+    }, {} );
   }
 
   /*** Get flowchart with populated classes ***/
@@ -207,8 +207,14 @@ class App extends React.Component {
           if (takenCreds > catCreds[cl.Fulfills]) {
             catCreds[cl.Fulfills] = takenCreds;
             let newClass = this.addPathToFlowchart(classes, clID, catCreds);
+            console.log(newClass);
             if (newClass.Credits) {
-              classesToAdd[cl.Fulfills] = { ...newClass, Credits: `${newClass.Credits} hours` };
+              classesToAdd[cl.Fulfills] = { 
+                ...newClass, 
+                Credits: `${newClass.Credits} hours`, 
+                warnPrereqs: `Taking the courses ${cl.Path} means that you'll have to take additional courses to reach the credits needed for ${cl.Fulfills}. Please talk to your counselor about how to get these credits.`,
+                Name: newClass.Type || newClass.Name
+              };
             } else {
               delete classesToAdd[cl.Fulfills];
             }
@@ -357,15 +363,17 @@ class App extends React.Component {
     // create new list of classes with all class descriptions needed
     // along with color and whether or not it's been taken
     let classesWithSelected = this.getFlowchartWithClasses();
+    console.log(classesWithSelected);
     let classInfo = classesWithSelected.map((cl, i) => ({
       ...cl,
       cl: this.state.ClassDesc[cl.Name],
       bgCol: this.state.Colors[cl.Color],
       taken: this.state.TakenClasses.includes(cl.Name),
       planned: this.state.PlannedClasses.includes(cl.Name),
-      warnPrereqs: this.prereqsViolated(classesWithSelected, cl.Name, cl.Semester),
+      warnPrereqs: cl.warnPrereqs || this.prereqsViolated(classesWithSelected, cl.Name, cl.Semester),
       index: i // property for drag and drop
     }));
+    console.log(classInfo);
     // pass handleOnDragEnd for changing state when class dragged
     return (
       <FlowChart
