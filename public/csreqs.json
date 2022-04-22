@@ -19,6 +19,16 @@
 		"CS BREADTH": "#D9BBF9",
 		"ENGR": "#e7d0b9"
 	},
+	"Semesters": [
+		"Fall-1", 
+		"Spring-1", 
+		"Fall-2", 
+		"Spring-2", 
+		"Fall-3", 
+		"Spring-3", 
+		"Fall-4", 
+		"Spring-4"
+	],
 	"Classes": [
 		{
 			"Name": "CSCI 1410",
@@ -228,8 +238,7 @@
 			"Name": "CSCI 4738",
 			"Credits": "3 hours",
 			"Semester": "Fall-4",
-			"Color": "CS BREADTH",
-			"Restriction": "FALL ONLY"
+			"Color": "CS BREADTH"
 		},
 		{
 			"Name": "CS Breadth Choice",
@@ -241,8 +250,7 @@
 			"Name": "CSCI 4551",
 			"Credits": "3 hours",
 			"Semester": "Fall-4",
-			"Color": "CS SYSTEMS CORE",
-			"Restriction": "FALL ONLY"
+			"Color": "CS SYSTEMS CORE"
 		},
 		{
 			"Name": "Technical Elective",
@@ -260,8 +268,7 @@
 			"Name": "CSCI 4739",
 			"Credits": "3 hours",
 			"Semester": "Spring-4",
-			"Color": "CS BREADTH",
-			"Restriction": "SPRING ONLY"
+			"Color": "CS BREADTH"
 		},
 		{
 			"Name": "CS Breadth Choice",
@@ -1408,7 +1415,8 @@
 				"MATH 3195",
 				"CSCI 3415",
 				"CSCI 3453"
-			]
+			],
+			"Restriction": "FALL ONLY"
 		},
 		"CSCI 4565": {
 			"Name": "Introduction to Computer Graphics",
@@ -1460,7 +1468,8 @@
 				"CSCI 3415",
 				"CSCI 3453",
 				"CSCI 3508"
-			]
+			],
+			"Restriction": "FALL ONLY"
 		},
 		"CSCI 4739": {
 			"Name": "Senior Design II",
@@ -1469,7 +1478,8 @@
 			"Fulfills": "CS Breadth: Capstone Project",
 			"Prereqs": [
 				"CSCI 4738"
-			]
+			],
+			"Restriction": "SPRING ONLY"
 		},
 		"CSCI 4741": {
 			"Name": "Principles of Cybersecurity",

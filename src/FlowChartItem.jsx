@@ -42,7 +42,7 @@ function FlowChartItem(props) {
           {/* !!props.cl && props.cl.(key) checks that if the element is not null 
           and if it is not, then displays this element property (conditional rendering) */}
           <div className='flow-name'>{!!props.cl && props.cl.Name}</div>
-          <div className='flow-restriction'>{!!props.Restriction && '*' + props.Restriction + '*'}</div>
+          <div className='flow-restriction'>{(!!props.cl && !!props.cl.Restriction) &&'*' + props.cl.Restriction + '*'}</div>
           <div className='flow-notes'>{!!props.cl && getNotes(props.cl.Prereqs)}</div>
         </div>
       </div>

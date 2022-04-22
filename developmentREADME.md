@@ -59,6 +59,7 @@ This file has the elements:
     - Format: List of strings that represent color categories
     - Used for: Determining the order to sort the classes in each semester of the flowchart.
 - Colors
+    - **May not be needed** if you decide to define the colors directly in the flowchart boxes
     - Format: Object, mapping a string that represents a color category to a string that represents a hex color
     - Used for: Determining the colors to color the boxes on the flowchart.
     - Relations: Must have same elements as color order.
@@ -92,22 +93,21 @@ This file has the elements:
     - If the classes were in lists by their fulfills category, it might be easier to create the default list view, but searching for a specific class would be difficult (and that's done more often) -- also, implementing a different sorting / segmentation method would be difficult
 - Categories is a dictionary with the features that could go in a list by the fulfills category: credits, notes, but this way it's easier to access the attributes when we just have a classID
 - Prereqs are just an auto-generated list of strings of the right format from the description, and right now, we assume that its a one dimensional list of class ids --> this makes it easier to parse, but isn't very comprehensive for situations like MATH 3195, which can be filled if the student takes MATH 3191 and 3200?
+- Putting the classes into groups by semester, like:
+[{
+    Semester: "Spring" / "Fall" / "Summer",
+    Year: 4, 
+    Classes: [{ "Name": STRING, "Credits": INT, "Color": CATEGORY }]
+}]
+means that it is much more difficult to loop through all the classes and pass the information related to the current state. (Like planned or taken status. Potentially, this could be solved by passing functions that you would pass arguments to for querying the state, or using redux).
+
 
 
 ### Some considerations for changes:
-- Classes could probably be renamed to Semesters or something, and then we could have it in a format of a list of objects, each of which contains the semester / year of the classes, and then the list of classes
-- Credits could probably be a number
-Then we just have a format like:
-    [{
-        Semester: "Spring" / "Fall" / "Summer",
-        Year: 4, 
-        Classes: [{ "Name": STRING, "Credits": INT, "Color": CATEGORY }]
-    }]
-- Should we come up with a new structure for storing the status: Planned or Taken
-- Credits could just be a value 
+- Come up with a new structure for storing the status: Planned or Taken, or maybe just store it with the class_desc information
+- Could credits just be an integer value 
     - definitely for the flowchart, where it should be the required #
-    - for the classdesc, there are some classes with a range of values - it would be easier if it was just an integer though
-- Restrictions are currently associated with flowchart classes, would they make more sense associated with the class descriptions instead???
+    - for the classdesc, there are some classes with a range of values
 - Paths are associated with the classID, since the fulfills category is associated with it anyway (we could add this to the category like a list of paths like [["PHYS 2311", "PHYS 2321", "PHYS 2331", "PHYS 2341"], ["PHYS 2311", "PHYS 2321", "PHYS 2331", "PHYS 2341"], ["PHYS 2311", "PHYS 2321", "PHYS 2331", "PHYS 2341"]])
 
 

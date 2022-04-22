@@ -342,8 +342,8 @@ class App extends React.Component {
         return;
       }
       // ensure that classes with fall/spring restrictions aren't dragged to the wrong semesters
-      if ('Restriction' in  newClasses[parseInt(result.draggableId)]) {
-        let restriction = newClasses[parseInt(result.draggableId)].Restriction.split(' ')[0].toLowerCase(); // 'FALL ONLY'
+      if ('Restriction' in this.state.ClassDesc[classDragged]) {
+        let restriction = this.state.ClassDesc[classDragged].Restriction.split(' ')[0].toLowerCase(); // 'FALL ONLY'
         if (!result.destination.droppableId.toLowerCase().startsWith(restriction)) { // if destination doesn't start with restricted semester
           let DnDAlertMsg = `${classDragged} cannot be dragged to a ${restriction} semester.`;
           this.setState( { showAlert: ['danger', DnDAlertMsg] } );
