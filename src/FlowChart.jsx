@@ -1,4 +1,4 @@
-import { groupBy, isDarkBackground } from './functions.js';
+import { groupBy, isDarkBackground, compareSemesters } from './functions.js';
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -42,7 +42,8 @@ function FlowChart(props) {
   ));
 
   // get classes grouped by semester (using global function)
-  let semClasses = groupBy(props.Classes, x => x.Semester);
+  let semClasses = Object.fromEntries(props.Semesters.map(s => [s, []]));
+  semClasses = {...semClasses, ...groupBy(props.Classes, x => x.Semester)};
   // get classes grouped by semester to be grouped by year
   let yearSems = groupBy(Object.entries(semClasses), x => x[0].split('-')[1]);
   // returns html for entire flowchart 
@@ -71,7 +72,7 @@ function FlowChart(props) {
                   <Row className='sem-classes'>{
                     /* sort the semesters alphabetically, so that Fall always comes before Spring
                     uses map to loop and extract semester string in 'sem' and list of classes in 'classes'*/
-                    sems.sort((a, b) => a[0].localeCompare(b[0])).map(([sem, classes]) => (
+                    sems.sort((a, b) => -compareSemesters(a[0], b[0])).map(([sem, classes]) => (
                       <Droppable key={sem} droppableId={sem}>
                         {(provided) => (
                         /* Col: column tag, imported from bootstrap-react 

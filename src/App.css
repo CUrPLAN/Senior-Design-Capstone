@@ -12,6 +12,10 @@
     display: none;
   }
 
+  .header-options, .expand {
+    display: none !important;
+  }
+
   #flowchart {
     margin: 0;
   }
@@ -25,7 +29,8 @@
   }
 
   .pre-reqs {
-    border: none;
+    outline: none !important;
+    border: 1px solid black;
   }
 
   .popover {
@@ -114,6 +119,23 @@ input[type="file"] {
 }
 
 /*** Expand & Warning Styling ***/
+.header-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1vh auto;
+}
+
+.header-options .spacer {
+  flex-grow: 1;
+}
+
+.custom-class-button {
+  text-align: right;
+  padding-right: 2em;
+}
+
 .expand {
   margin-top: 10px;
   margin-right: 3vw;
@@ -141,11 +163,7 @@ input[type="file"] {
 }
 
 .yearcol {
-  padding: 15px;
-}
-
-.semcol {
-  min-width: 50%;
+  padding: 0 15px;
 }
 
 .yearcol>.container {
@@ -168,11 +186,6 @@ input[type="file"] {
 
 .sem-classes {
   border: 1px solid black;
-}
-
-.custom-class-button {
-  text-align: right;
-  padding-right: 2em;
 }
 
 /*** Flowchart box styling ***/
@@ -262,7 +275,8 @@ https://stackoverflow.com/questions/4502633/how-to-affect-other-elements-when-on
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin-bottom: 3vw;
+  margin-top: 10px;
+  margin-bottom: 3vh;
 }
 
 .flow-box-legend {

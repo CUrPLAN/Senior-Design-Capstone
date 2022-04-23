@@ -1,4 +1,5 @@
 import './App.css';
+import { compareSemesters } from './functions.js';
 import ListView from './ListView.jsx';
 import FlowChart from './FlowChart.jsx';
 import AddCustomClass from './CustomClassModal.jsx';
@@ -10,6 +11,8 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import saveAs from 'file-saver';
 import Dropzone from 'react-dropzone';
+import AddCustomSemester from './CustomSemesterModal';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +22,7 @@ class App extends React.Component {
       // information from json file
       Colors: {},
       Categories: {},
+      Semesters: [],
       Classes: [],
       ClassDesc: {},
       // holds information about which classes have been marked as what
@@ -39,6 +43,17 @@ class App extends React.Component {
       .then(json => JSON.parse(json))
       .then(data => this.setState(data)) // set state information
       .catch(e => console.error('Couldn\'t read json file. The error was:\n', e)); // print any errors
+  }
+
+  onAddSemesterSubmit = (semester) => {
+    if (this.state.Semesters.includes(semester)) {
+      this.setState({ showAlert: ['danger', 'Semester already exists. Check your flowchart.'] });
+      return;
+    }
+    this.setState({ 
+      showAlert: ['success', 'Semester added to flowchart.'], 
+      Semesters: [...this.state.Semesters, semester] 
+    });
   }
 
   /*** when user submits new information for a custom class (called by AddCustomClass) ***/
@@ -128,14 +143,17 @@ class App extends React.Component {
    * And the total number of credit hours that have been taken from the classes
    * Takes: list of flowchart classes ***/
   calculateTotalHours() {
-    let [total, taken] = [0, 0];
+    let [total, planned, taken] = [0, 0, 0];
     this.getFlowchartWithClasses().forEach(cl => {
       total += parseInt(cl.Credits);
       if (this.state.TakenClasses.includes(cl.Name)) { // if have taken, add to count
         taken += parseInt(this.state.ClassDesc[cl.Name].Credits);
       }
+      if (this.state.PlannedClasses.includes(cl.Name)) { // if have taken, add to count
+        planned += parseInt(this.state.ClassDesc[cl.Name].Credits);
+      }
     });
-    return [taken, total];
+    return [taken, planned, total];
   }
 
   /*** Determines the category the class falls under based on how many credits of each category it could fill have been taken. For example, if a specific breadth category has all the requirements filled, then the class in that category can be moved onto the fallback category, Technical Electives.***/
@@ -220,7 +238,9 @@ class App extends React.Component {
           }
         } else {
           const cat = this.getCatForFlowchart(cl.Fulfills, catCreds);
-          this.addClassToFlowchart(classes, clID, cat);
+          if (catCreds[cl.Fulfills] < this.state.Categories[cl.Fulfills].Credits) {
+            this.addClassToFlowchart(classes, clID, cat);
+          }
           catCreds[cat] += parseInt(cl.Credits, 10);
         }
       }
@@ -240,7 +260,7 @@ class App extends React.Component {
       this.setState({ TakenClasses: [...this.state.TakenClasses, classID], 
                      PlannedClasses: this.state.PlannedClasses.filter(c => c !== classID)});
     }
-    let [takenCreds, totalCreds] = this.calculateTotalHours();
+    let [takenCreds, plannedCreds, totalCreds] = this.calculateTotalHours();
     if (takenCreds >= totalCreds - 30) {
       this.setState({ showAlert: ['warning', 'You\'re within 30 hours of graduation. Please do a 30 hour check with your advisor.'] });
     }
@@ -281,39 +301,18 @@ class App extends React.Component {
     );
   }
 
-  /*** compares two semester strings (ex. Fall-3, Spring-2) 
-  returns -1 if sem1 is after sem2, returns 1 if sem1 is before sem2, and returns 0 if they're the same ***/
-  compareSemesters(sem1, sem2) {
-    //1) classes have same semesters
-    if (sem1 === sem2) {
-      return 0;
-    }
-    let [sem1Semester, sem1Year] = sem1.split('-');
-    let [sem2Semester, sem2Year] = sem2.split('-');
-    //different cases (currently for fall and spring semesters)
-    //2) years are different -- if the prereqs year is greater than the destination year
-    if (parseInt(sem1Year) > parseInt(sem2Year)) {
-      return -1;
-    }
-    //3) class is dragged to semester before preq -- if its in fall & prereq is in spring of the same year
-    if (sem1Year === sem2Year && sem1Semester === 'Spring' && sem2Semester === 'Fall') {
-      return -1;
-    } 
-    return 1;
-  }
-
   /*** checks if the prereqs have been violated for a class ***/
   prereqsViolated(newClasses, curClassID, curSemester) {
     if (curClassID in this.state.ClassDesc) { // ensure that class has ID 
       for (let cl of newClasses) { // go through prereqs of class
         if (this.state.ClassDesc[curClassID].Prereqs.includes(cl.Name)) { // if the current class is a prereq of the dragged class
-          let output = this.compareSemesters(cl.Semester, curSemester); // want current semester to be less than the dragged semester
+          let output = compareSemesters(cl.Semester, curSemester); // want current semester to be less than the dragged semester
           if (output != 1) { //if the prereq class semester is before the dragged class semester, no need to update state
             return `${curClassID} cannot be dragged before or in the same semester as ${cl.Name}.`;
           } // if END
         }
         else if (cl.Name in this.state.ClassDesc && this.state.ClassDesc[cl.Name].Prereqs.includes(curClassID)) { // if the class dragged is a prereq of the current class
-          let output = this.compareSemesters(cl.Semester, curSemester); // want the current semester to be greater than the dragged semester
+          let output = compareSemesters(cl.Semester, curSemester); // want the current semester to be greater than the dragged semester
           if (output != -1) { // if the current semester is not greater than the dragged semester, exit 
             return `${curClassID} cannot be dragged after or in the same semester as ${cl.Name}.`;
           } // if END
@@ -354,6 +353,14 @@ class App extends React.Component {
 
     //parsing through new classes to find the class that is being dragged
     newClasses[parseInt(result.draggableId)].Semester = result.destination.droppableId;
+    if ('Coreqs' in this.state.ClassDesc[classDragged]) {
+      let coreqs = this.state.ClassDesc[classDragged].Coreqs;
+      newClasses.forEach(cl => {
+        if (coreqs.includes(cl.Name)) {
+          cl.Semester = result.destination.droppableId;
+        }
+      })
+    }
     this.setState({ Classes: newClasses });
   } //handleDragEnd function END
 
@@ -374,6 +381,7 @@ class App extends React.Component {
     // pass handleOnDragEnd for changing state when class dragged
     return (
       <FlowChart
+        Semesters={this.state.Semesters}
         Classes={classInfo}
         ColorOrder={this.state.ColorOrder}
         Colors={this.state.Colors}
@@ -391,6 +399,7 @@ class App extends React.Component {
     } else {
       content = this.displayEditView();
     }
+    let [takenHours, plannedHours, neededHours] = this.calculateTotalHours();
     // this return function in the render function will display the content
     // it creates the html code for the navbars and basic layout of the page
     // the {content} segment indicates that the html code from the variable above should be inserted
@@ -403,7 +412,8 @@ class App extends React.Component {
           show={this.state.showAlert[1]}
           onClose={() => this.setState({ showAlert: [null, null] })}>
         </DismissableAlert>
-        <Navbar variant='dark' bg='dark' sticky='top'>
+        <div className='sticky-top'>
+        <Navbar variant='dark' bg='dark'>
           <Navbar.Brand>CUrPLAN</Navbar.Brand>
           <Nav>
             <Nav.Link
@@ -422,18 +432,27 @@ class App extends React.Component {
             </NavDropdown>
           </Nav>
         </Navbar>
-        <div className="credit-count">{this.calculateTotalHours().join(' / ') + ' taken credits'}</div>
+        <ProgressBar>
+          <ProgressBar variant="success" now={takenHours/neededHours*100} />
+          <ProgressBar variant="warning" now={plannedHours/neededHours*100} />
+        </ProgressBar>
+        </div>
+        <div className='header-options'>
+          <div className="credit-count">{`${takenHours}/${neededHours} taken credits`}</div>
+          <div className='spacer'></div> 
+          <AddCustomSemester onSubmit={this.onAddSemesterSubmit}/>
+          <AddCustomClass
+            onSubmit={this.onAddClassSubmit}
+            // gets category names that can fill in multiple boxes on the flowchart
+            CategoryOpts={Object.keys(this.state.Categories).filter(k => 'FC_Name' in this.state.Categories[k])}
+          />
+        </div>
         <div className="flow-warn">
           *3000 & 4000 level CSCI courses are semester dependent. Courses may be offered
           more frequently as resources allow, but students cannot expect them to be
           offered off‐semester. Students should use the rotation shown on this flowchart
           as a guide for planning their upper level courses.
         </div>
-        <AddCustomClass
-          onSubmit={this.onAddClassSubmit}
-          // gets category names that can fill in multiple boxes on the flowchart
-          CategoryOpts={Object.keys(this.state.Categories).filter(k => 'FC_Name' in this.state.Categories[k])}
-        />
         {content}
         <Navbar variant='dark' bg='dark' fixed='bottom'>
           <div>
