@@ -166,6 +166,9 @@ class App extends React.Component {
       curCat = this.state.Categories[curCat].Fallback[i];
       i += 1;
     }
+    if (catCreds[curCat] >= this.state.Categories[curCat].Credits) {
+      return null;
+    }
     return curCat;
   }
 
@@ -238,10 +241,10 @@ class App extends React.Component {
           }
         } else {
           const cat = this.getCatForFlowchart(cl.Fulfills, catCreds);
-          if (catCreds[cl.Fulfills] < this.state.Categories[cl.Fulfills].Credits) {
+          if (cat) {
             this.addClassToFlowchart(classes, clID, cat);
+            catCreds[cat] += parseInt(cl.Credits, 10);
           }
-          catCreds[cat] += parseInt(cl.Credits, 10);
         }
       }
     });

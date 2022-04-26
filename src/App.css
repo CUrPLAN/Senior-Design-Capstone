@@ -8,11 +8,7 @@
   }
 
   /* don't print navigation */
-  #root .App .navbar {
-    display: none;
-  }
-
-  .header-options, .expand {
+  .header-options, .expand, .sticky-top {
     display: none !important;
   }
 
