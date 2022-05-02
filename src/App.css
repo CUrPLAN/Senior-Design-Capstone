@@ -8,7 +8,7 @@
   }
 
   /* don't print navigation */
-  .header-options, .expand, .sticky-top {
+  .header-options, .expand, .sticky-top, .navbar {
     display: none !important;
   }
 
@@ -37,7 +37,7 @@
 /*https://stackoverflow.com/questions/39356258/force-landscape-orientation-in-css*/
 /* forces webpage to print in landscape mode */
 @page {
-  size: A4 landscape;
+  size: auto landscape;
 }
 
 /*** App & Pop-up Styling ***/

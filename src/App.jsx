@@ -51,7 +51,7 @@ class App extends React.Component {
       return;
     }
     this.setState({ 
-      showAlert: ['success', 'Semester added to flowchart.'], 
+      showAlert: ['success', 'Semester added to flowchart. Drag any classes into the new semester.'], 
       Semesters: [...this.state.Semesters, semester] 
     });
   }
@@ -108,6 +108,7 @@ class App extends React.Component {
         let newClassDesc = {...this.state.ClassDesc};
         newInfo.AddedClasses.forEach(cl => newClassDesc[cl.Id] = cl);
         this.setState({
+          Semesters: newInfo.Semesters,
           TakenClasses: newInfo.TakenClasses,
           PlannedClasses: newInfo.PlannedClasses,
           Classes: newClasses,
@@ -130,6 +131,7 @@ class App extends React.Component {
     // https://stackoverflow.com/questions/45941684/save-submitted-form-values-in-a-json-file-using-react
     const fileData = JSON.stringify({ 
       'Version': '1.0', 
+      'Semesters': this.state.Semesters,
       'TakenClasses': this.state.TakenClasses, 
       'PlannedClasses': this.state.PlannedClasses, 
       'DragNDropSems': this.state.Classes.map(cl => cl.Semester), // get only list of semesters
@@ -443,7 +445,7 @@ class App extends React.Component {
         <div className='header-options'>
           <div className="credit-count">{`${takenHours}/${neededHours} taken credits`}</div>
           <div className='spacer'></div> 
-          <AddCustomSemester onSubmit={this.onAddSemesterSubmit}/>
+          <AddCustomSemester onSubmit={this.onAddSemesterSubmit} />
           <AddCustomClass
             onSubmit={this.onAddClassSubmit}
             // gets category names that can fill in multiple boxes on the flowchart
